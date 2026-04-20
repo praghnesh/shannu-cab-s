@@ -25,7 +25,7 @@ const fleetData = [
   {
     id: 3,
     name: "Premium SUV (Innova Crysta)",
-    price: "₹7,000",
+    price: "₹8,000",
     route: "Hyd ⇄ VJA",
     perKm: "₹19/Km (Outstation)",
     capacity: "7 Seats + luggage",
