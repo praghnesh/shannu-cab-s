@@ -42,14 +42,7 @@ const services = [
 ];
 
 export default function Services() {
-  const [selectedService, setSelectedService] = useState<any>(null);
   const [viewIndex, setViewIndex] = useState<number | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  
-  const [pickupLoc, setPickupLoc] = useState("");
-  const [dropLoc, setDropLoc] = useState("");
-
   const activeItem = viewIndex !== null ? services[viewIndex] : null;
 
   const handleNext = () => {
@@ -64,49 +57,7 @@ export default function Services() {
     }
   };
 
-  const handleBookingSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!selectedService) return;
-    
-    setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      Service: selectedService.title,
-      Name: formData.get('name'),
-      Phone: formData.get('phone'),
-      PickupLocation: formData.get('pickup'),
-      DropLocation: formData.get('drop'),
-      PickupDate: formData.get('date'),
-      PickupTime: formData.get('time'),
-      Vehicle: formData.get('vehicle'),
-      Details: formData.get('details')
-    };
-
-    try {
-      await fetch("https://formsubmit.co/ajax/hassanbabushaik1786@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New Service Booking: ${selectedService.title}`,
-          ...data
-        })
-      });
-      setSuccess(true);
-    } catch (error) {
-      console.error(error);
-    }
-
-    setLoading(false);
-    
-    setTimeout(() => {
-      setSuccess(false);
-      setSelectedService(null);
-    }, 3000);
-  };
 
   return (
     <section id="services" className="py-20 bg-white">
@@ -142,122 +93,18 @@ export default function Services() {
                 <p className="text-gray-600 leading-relaxed text-sm flex-grow bg-blue-50/50 p-4 rounded-xl mb-4">
                   {service.description}
                 </p>
-                <button 
-                  onClick={() => setSelectedService(service)}
+                <a 
+                  href="tel:+919948924786"
                   className="mt-auto block w-full bg-orange-50 text-orange-600 font-bold py-3 text-center rounded-lg hover:bg-orange-500 hover:text-white transition shadow-sm"
                 >
                   Book Now
-                </button>
+                </a>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Quick Booking Modal */}
-      {selectedService && (
-        <div className="fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm p-4 sm:p-6">
-          <div className="flex min-h-full items-center justify-center py-6">
-            <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 max-w-md w-full shadow-2xl relative animate-in fade-in zoom-in duration-200">
-              
-              <button 
-                onClick={() => setSelectedService(null)}
-                className="absolute top-3 right-3 sm:top-5 sm:right-5 text-gray-400 hover:text-gray-900 font-bold text-xl bg-gray-100 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors"
-              >
-                ✕
-              </button>
-
-              <h3 className="text-xl sm:text-2xl font-black text-blue-950 mb-2">Book Your Trip</h3>
-              <p className="text-gray-500 text-xs sm:text-sm mb-6 pr-6">Fill out your details to request the <strong className="text-gray-900">{selectedService.title}</strong> package.</p>
-            
-            {success ? (
-              <div className="bg-green-50 text-green-800 p-6 rounded-xl text-center font-medium border border-green-200">
-                <p className="text-xl font-bold mb-2">Booking Requested!</p>
-                <p>We have successfully received your details and will contact you shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleBookingSubmit} className="space-y-4">
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-semibold text-gray-500 block mb-1">Your Name</label>
-                    <input name="name" type="text" required placeholder="Full Name" className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500" />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-semibold text-gray-500 block mb-1">Mobile Number</label>
-                    <input name="phone" type="tel" required placeholder="+91" className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500" />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-semibold text-gray-500 block mb-1">Pickup Location</label>
-                    <input name="pickup" type="text" value={pickupLoc} onChange={(e) => setPickupLoc(e.target.value)} required placeholder="City or Address" className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500" />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-semibold text-gray-500 block mb-1">Drop Location</label>
-                    <input name="drop" type="text" value={dropLoc} onChange={(e) => setDropLoc(e.target.value)} required placeholder="Destination" className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500" />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-semibold text-gray-500 block mb-1">Pickup Date</label>
-                    <input name="date" type="date" required className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500" />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-semibold text-gray-500 block mb-1">Pickup Time</label>
-                    <input name="time" type="time" required className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500" />
-                  </div>
-                </div>
-                
-                {/* Dynamic Map Embed */}
-                {pickupLoc.length > 2 && dropLoc.length > 2 && (
-                  <motion.div 
-                    initial={{ opacity: 0, height: 0 }} 
-                    animate={{ opacity: 1, height: 'auto' }} 
-                    transition={{ duration: 0.4 }}
-                    className="w-full h-48 sm:h-56 rounded-xl overflow-hidden border border-gray-200 shadow-inner my-2"
-                  >
-                    <iframe 
-                       width="100%" 
-                       height="100%" 
-                       style={{ border: 0 }} 
-                       loading="lazy" 
-                       allowFullScreen 
-                       src={`https://maps.google.com/maps?q=${encodeURIComponent(pickupLoc)}+to+${encodeURIComponent(dropLoc)}&t=&ie=UTF8&iwloc=&output=embed`}
-                    />
-                  </motion.div>
-                )}
-
-                <div>
-                  <label className="text-xs font-semibold text-gray-500 block mb-1">Select Vehicle</label>
-                  <select name="vehicle" required className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500 appearance-none font-medium">
-                    <option value="Sedan">Sedan (Swift Dzire/Etios)</option>
-                    <option value="SUV">SUV (Ertiga/Innova)</option>
-                    <option value="Innova Crysta">Innova Crysta (Premium)</option>
-                    <option value="Tempo Traveller">Tempo Traveller (Group)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-gray-500 block mb-1">Additional Details</label>
-                  <textarea name="details" rows={2} placeholder="Any specific requirements...?" className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 outline-none focus:ring-2 focus:ring-orange-500 resize-none"></textarea>
-                </div>
-
-                <button 
-                  type="submit" 
-                  disabled={loading}
-                  className="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 disabled:opacity-75 mt-2"
-                >
-                  {loading ? "Sending securely..." : "Submit Booking"}
-                </button>
-              </form>
-            )}
-
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Detailed Slide Modal for Places */}
       {viewIndex !== null && activeItem && (
@@ -300,15 +147,12 @@ export default function Services() {
                 Status: <span className="text-green-600 uppercase tracking-wider text-sm font-bold ml-3 mb-1 bg-green-100 px-3 py-1 rounded-full">Available Now</span>
               </div>
               
-              <button 
-                onClick={() => {
-                  setSelectedService(activeItem);
-                  setViewIndex(null);
-                }}
-                className="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition shadow-[0_10px_20px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.4)] mb-8 uppercase tracking-wide"
+              <a 
+                href="tel:+919948924786"
+                className="w-full block text-center bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition shadow-[0_10px_20px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.4)] mb-8 uppercase tracking-wide"
               >
                 Book This Package
-              </button>
+              </a>
               
               {/* Pagination Controls */}
               <div className="mt-auto">

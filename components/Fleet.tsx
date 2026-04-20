@@ -6,7 +6,7 @@ const fleetData = [
     id: 1,
     name: "Sedan (Swift Dzire / Etios)",
     price: "₹5,500",
-    route: "Hyd ⇄ VJA",
+    route: "Hyderabad ⇄ Vijayawada",
     perKm: "₹12/Km (Outstation)",
     capacity: "4 Seats + luggage",
     image: "/sedan.png", 
@@ -16,7 +16,7 @@ const fleetData = [
     id: 2,
     name: "SUV (Ertiga / Carens)",
     price: "₹6,500",
-    route: "Hyd ⇄ VJA",
+    route: "Hyderabad ⇄ Vijayawada",
     perKm: "₹15/Km (Outstation)",
     capacity: "6 Seats + luggage",
     image: "/suv.png",
@@ -26,7 +26,7 @@ const fleetData = [
     id: 3,
     name: "Premium SUV (Innova Crysta)",
     price: "₹8,000",
-    route: "Hyd ⇄ VJA",
+    route: "Hyderabad ⇄ Vijayawada",
     perKm: "₹19/Km (Outstation)",
     capacity: "7 Seats + luggage",
     image: "/innova.png",
@@ -155,17 +155,12 @@ export default function Fleet() {
                 {activeItem.perKm} <span className="text-sm font-semibold text-gray-400 ml-2 mb-1">(Outstation)</span>
               </div>
               
-              <button 
-                onClick={() => {
-                  setViewIndex(null);
-                  setTimeout(() => {
-                    document.getElementById('main-booking-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }, 150);
-                }}
-                className="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition shadow-[0_10px_20px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.4)] mb-8 uppercase tracking-wide"
+              <a 
+                href="tel:+919948924786"
+                className="w-full block text-center bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition shadow-[0_10px_20px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.4)] mb-8 uppercase tracking-wide"
               >
                 Book This Vehicle
-              </button>
+              </a>
 
               {/* Pagination Controls */}
               <div className="mt-auto">
