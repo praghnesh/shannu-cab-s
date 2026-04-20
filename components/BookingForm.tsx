@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from 'react';
-import { MapPin, Calendar, Clock, Car, User, Phone, ArrowLeftRight } from 'lucide-react';
+import { MapPin, Calendar, Clock, Car, Phone, ArrowLeftRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function BookingForm() {
@@ -30,15 +30,13 @@ export default function BookingForm() {
     
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
       phone: formData.get('phone'),
       pickup: formData.get('pickup'),
       drop: formData.get('drop'),
       tripType: tripTab,
       date: formData.get('date'),
       time: formData.get('time'),
-      vehicle: formData.get('vehicle'),
-      details: formData.get('details')
+      vehicle: formData.get('vehicle')
     };
 
     try {
@@ -49,7 +47,7 @@ export default function BookingForm() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `New Cab Booking: ${tripTab}`,
+          _subject: `New Cab Booking from ${data.phone}`,
           ...data
         })
       });
@@ -152,15 +150,7 @@ export default function BookingForm() {
         )}
 
         {/* Row 2: Customer Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 pt-4 border-t border-gray-100">
-          
-          <div className="relative">
-            <label className="text-xs font-semibold text-gray-500 block mb-1">Passenger Name</label>
-            <div className="flex items-center border-b border-gray-300 py-1 focus-within:border-blue-600 transition">
-              <User size={18} className="text-gray-400 mr-2" />
-              <input name="name" required className="w-full bg-transparent outline-none text-gray-800" placeholder="Full Name" />
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pt-4 border-t border-gray-100">
 
           <div className="relative">
             <label className="text-xs font-semibold text-gray-500 block mb-1">Contact Number</label>
@@ -185,18 +175,7 @@ export default function BookingForm() {
 
         </div>
 
-        {/* Row 3: Additional Details */}
-        <div className="mb-4">
-          <label className="text-xs font-semibold text-gray-500 block mb-2">Additional Details</label>
-          <div className="border border-gray-200 rounded-xl hover:bg-gray-50/50 transition focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-500 relative bg-white">
-            <textarea 
-              name="details" 
-              rows={2} 
-              placeholder="Pickup location, passengers, etc..." 
-              className="w-full bg-transparent p-3 text-gray-900 outline-none resize-none placeholder-gray-400 font-medium"
-            ></textarea>
-          </div>
-        </div>
+
 
         {/* Big Search / Submit Button */}
         <div className="text-center mt-6 relative z-20 flex justify-center">

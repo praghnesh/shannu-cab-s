@@ -8,7 +8,7 @@ export const metadata = {
 export default function FleetPage() {
   return (
     <div className="pt-24 min-h-screen bg-white">
-      <FleetComponent />
+      <FleetComponent hideViewAll={true} />
     </div>
   );
 }

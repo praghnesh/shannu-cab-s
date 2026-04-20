@@ -24,11 +24,23 @@ export default function Footer() {
 
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Popular Routes</h3>
-            <ul className="space-y-3">
-              <li>Vijayawada ⇄ Hyderabad</li>
-              <li>Hyderabad ⇄ Tirupati</li>
-              <li>Vijayawada ⇄ Rajahmundry</li>
-              <li>Hyderabad Outstation</li>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-2 hover:text-white cursor-default transition">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                Vijayawada ⇄ Hyderabad
+              </li>
+              <li className="flex items-center gap-2 hover:text-white cursor-default transition">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                Hyderabad ⇄ Srisailam
+              </li>
+              <li className="flex items-center gap-2 hover:text-white cursor-default transition">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                Vijayawada ⇄ Vizag / Araku
+              </li>
+              <li className="flex items-center gap-2 hover:text-white cursor-default transition">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                Hyderabad ⇄ Tirupati
+              </li>
             </ul>
           </div>
 

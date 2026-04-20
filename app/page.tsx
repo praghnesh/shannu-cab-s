@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Fleet />
+      <Fleet limit={8} />
       <Testimonials />
     </>
   );
