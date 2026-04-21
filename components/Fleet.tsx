@@ -107,33 +107,31 @@ export default function Fleet({ limit, hideViewAll }: FleetProps = {}) {
   return (
     <section id="fleet" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-orange-500 font-semibold tracking-wide uppercase text-sm mb-2">Our Vehicles</h2>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">Choose Your Ride</h3>
-            
-            {/* Extremely Prominent Route Selector */}
-            <div className="bg-white p-2 rounded-2xl shadow-xl border-2 border-blue-600/20 mb-12 max-w-xl">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
-                <div className="bg-blue-600 text-white px-6 py-4 rounded-xl flex items-center gap-3 font-bold whitespace-nowrap">
-                  <span>📍</span> SELECT DESTINATION
-                </div>
-                <div className="relative flex-grow">
-                  <select 
-                    value={selectedRoute}
-                    onChange={(e) => {
-                      setSelectedRoute(e.target.value);
-                      setViewIndex(null); 
-                    }}
-                    className="w-full bg-transparent px-6 py-4 text-gray-900 font-extrabold text-lg outline-none cursor-pointer appearance-none"
-                  >
-                    {routes.map(r => (
-                      <option key={r.value} value={r.value}>{r.label}</option>
-                    ))}
-                  </select>
-                  <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600 font-bold">
-                    ▼
-                  </div>
+        <div className="text-center mb-16">
+          <h2 className="text-orange-500 font-semibold tracking-wide uppercase text-sm mb-2">Our Vehicles</h2>
+          <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-8">Choose Your Ride</h3>
+          
+          {/* Centered & Enlarged Route Selector */}
+          <div className="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl border-2 border-blue-600/30 mx-auto max-w-2xl transition-all hover:border-blue-600/50">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
+              <div className="bg-blue-600 text-white px-8 py-5 rounded-xl flex items-center justify-center gap-3 font-bold whitespace-nowrap text-lg shadow-lg">
+                <span>📍</span> SELECT YOUR ROUTE
+              </div>
+              <div className="relative flex-grow">
+                <select 
+                  value={selectedRoute}
+                  onChange={(e) => {
+                    setSelectedRoute(e.target.value);
+                    setViewIndex(null); 
+                  }}
+                  className="w-full bg-transparent px-8 py-5 text-gray-900 font-extrabold text-xl outline-none cursor-pointer appearance-none text-center sm:text-left"
+                >
+                  {routes.map(r => (
+                    <option key={r.value} value={r.value}>{r.label}</option>
+                  ))}
+                </select>
+                <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600 font-bold scale-125">
+                  ▼
                 </div>
               </div>
             </div>
