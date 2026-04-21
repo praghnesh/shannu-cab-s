@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, ArrowRight, X, Clock, ShieldCheck, MapPin, Headphones, Heart, Star, Briefcase, Sparkles, Navigation } from 'lucide-react';
+import { Phone, ArrowRight, X, Clock, ShieldCheck, MapPin, Headphones, Heart, Star, Briefcase, Sparkles, Navigation, CheckCircle } from 'lucide-react';
 
 const services = [
   {

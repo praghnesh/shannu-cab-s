@@ -50,7 +50,7 @@ const routes = [
   { label: "Group Travel & Buses", value: "Buses & Group Travel" }
 ];
 
-export default function Fleet() {
+export default function Fleet({ limit = 100 }: { limit?: number }) {
   const [viewIndex, setViewIndex] = useState<number | null>(null);
   const [selectedRoute, setSelectedRoute] = useState<string>("Hyderabad ⇄ Vijayawada");
 
