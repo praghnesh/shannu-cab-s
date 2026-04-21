@@ -203,42 +203,41 @@ export default function Services() {
           >
             <motion.div 
               initial={{ scale: 0.9, rotate: -1 }} animate={{ scale: 1, rotate:0 }}
-              className="bg-white rounded-[5rem] w-full max-w-5xl shadow-2xl relative overflow-hidden flex flex-col md:flex-row border-[15px] border-white/10"
+              className="bg-white rounded-[2.5rem] w-full max-w-4xl shadow-2xl relative overflow-hidden flex flex-col md:flex-row border-[8px] border-white/10"
             >
-              <button onClick={() => setViewIndex(null)} className="absolute top-10 right-10 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-4 rounded-3xl"><X size={32} /></button>
+              <button onClick={() => setViewIndex(null)} className="absolute top-6 right-6 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-2 rounded-xl transition-colors"><X size={24} /></button>
               
-              <div className="md:w-1/2 relative h-80 md:h-auto min-h-[400px]">
-                 <Image src={activeItem.image} alt={activeItem.title} fill className="object-cover" />
-                 <div className="absolute inset-0 bg-blue-950/20"></div>
+              <div className="lg:w-1/2 bg-slate-50 flex items-center justify-center relative h-[250px] lg:h-auto">
+                 <Image src={activeItem.image} alt={activeItem.title} fill className="object-cover lg:object-contain p-0 lg:p-8" />
               </div>
 
-              <div className="md:w-1/2 p-12 sm:p-20">
-                 <div className="mb-10">
-                    <span className="text-orange-500 font-black tracking-widest uppercase text-xs block mb-4">Official Service Tier</span>
-                    <h2 className="text-5xl font-black text-blue-950 mb-6 tracking-tighter leading-none">{activeItem.title}</h2>
-                    <p className="text-slate-600 text-xl font-medium leading-relaxed border-l-8 border-orange-500 pl-8">
+              <div className="lg:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+                 <div className="mb-4 lg:mb-6">
+                    <span className="text-orange-500 font-black tracking-widest uppercase text-[10px] block mb-1">Official Service Tier</span>
+                    <h2 className="text-2xl md:text-5xl font-black text-blue-950 mb-3 tracking-tighter leading-none">{activeItem.title}</h2>
+                    <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed border-l-4 border-orange-500 pl-6">
                       {activeItem.detail}
                     </p>
                  </div>
                  
-                 <div className="space-y-6">
-                    <div className="flex items-center gap-4 text-blue-950 font-black text-lg">
-                       <CheckCircle className="text-green-500" /> Professional Uniformed Chauffeur
-                    </div>
-                    <div className="flex items-center gap-4 text-blue-950 font-black text-lg">
-                       <CheckCircle className="text-green-500" /> Free Cancellation up to 2 hours
-                    </div>
-                    <div className="flex items-center gap-4 text-blue-950 font-black text-lg">
-                       <CheckCircle className="text-green-500" /> Real-time GPS Trip Sharing
-                    </div>
+                 <div className="space-y-2 mb-6">
+                    {[
+                      "Professional Uniformed Chauffeur",
+                      "Free Cancellation up to 2 hours",
+                      "Real-time GPS Trip Sharing"
+                    ].map(f => (
+                      <div key={f} className="flex items-center gap-3 text-blue-950 font-black text-xs md:text-sm">
+                         <CheckCircle size={16} className="text-green-500 shrink-0" /> {f}
+                      </div>
+                    ))}
                  </div>
 
                  <motion.a 
-                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                     href="tel:+919948924786" 
-                    className="mt-12 block w-full bg-blue-950 text-white font-black text-2xl py-8 rounded-[2.5rem] hover:bg-orange-500 transition-all text-center flex items-center justify-center gap-4"
+                    className="mt-8 flex w-full bg-blue-950 text-white font-black text-base py-4 rounded-[1rem] hover:bg-orange-500 transition-all items-center justify-center gap-2 shadow-2xl"
                  >
-                    <Star size={32} fill="currentColor" /> BOOK THIS SERVICE
+                    <Star size={16} fill="currentColor" /> BOOK THIS SERVICE
                  </motion.a>
               </div>
             </motion.div>

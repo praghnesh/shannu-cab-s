@@ -193,51 +193,51 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             <motion.div 
               initial={{ scale: 0.9, y: 100 }}
               animate={{ scale: 1, y: 0 }}
-              className="bg-white rounded-[4rem] w-full max-w-6xl shadow-2xl relative overflow-hidden flex flex-col lg:flex-row border-[12px] border-white/20"
+              className="bg-white rounded-[2rem] w-full max-w-4xl shadow-2xl relative overflow-hidden flex flex-col lg:flex-row border-[6px] border-white/20"
             >
-              <button onClick={() => setViewIndex(null)} className="absolute top-10 right-10 text-slate-400 hover:text-orange-500 z-50 bg-slate-50 p-3 rounded-2xl transition-colors"><X size={32} /></button>
+              <button onClick={() => setViewIndex(null)} className="absolute top-6 right-6 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-2 rounded-xl transition-colors"><X size={24} /></button>
               
-              <div className={`lg:w-1/2 p-20 ${activeItem.bgColor} flex items-center justify-center relative min-h-[400px]`}>
-                 <Image src={activeItem.image} alt={activeItem.name} fill className="object-contain p-20 drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)]" />
+              <div className={`lg:w-1/2 p-10 ${activeItem.bgColor} flex items-center justify-center relative h-[300px] lg:h-auto`}>
+                 <Image src={activeItem.image} alt={activeItem.name} fill className="object-contain p-8 drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]" />
               </div>
 
-              <div className="lg:w-1/2 p-12 sm:p-20 flex flex-col justify-center">
-                 <div className="mb-12">
-                    <div className="flex gap-2 mb-6">
-                       {[1,2,3,4,5].map(i => <Star key={i} size={20} fill="#f97316" color="#f97316" />)}
-                       <span className="ml-4 text-orange-500 font-extrabold text-sm uppercase tracking-widest">(5.0 Rating)</span>
+              <div className="lg:w-1/2 p-8 flex flex-col justify-center">
+                 <div className="mb-6 lg:mb-8">
+                    <div className="flex gap-2 mb-4">
+                       {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="#f97316" color="#f97316" />)}
+                       <span className="ml-2 text-orange-500 font-extrabold text-[10px] uppercase tracking-widest">(5.0 Rating)</span>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-blue-950 mb-6 tracking-tighter leading-none">{activeItem.name}</h2>
-                    <p className="text-slate-500 text-xl leading-relaxed border-l-4 border-orange-500 pl-8 ml-2">
-                       Luxury redefined for the {activeItem.route} route. Our {activeItem.name} features ergonomic seating, advanced climate control, and ample luggage space for your peace of mind.
+                    <h2 className="text-2xl md:text-5xl font-black text-blue-950 mb-3 tracking-tighter leading-none">{activeItem.name}</h2>
+                    <p className="text-slate-500 text-sm md:text-base leading-relaxed border-l-4 border-orange-500 pl-6 ml-2">
+                       Premium {activeItem.type} for the {activeItem.route} route. Features ergonomic seating, climate control, and ample luggage space.
                     </p>
                  </div>
 
-                 <div className="grid grid-cols-2 gap-6 mb-12">
-                    <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 hover:border-blue-500/20 transition-all">
-                       <Users className="text-blue-600 mb-4" size={32} />
-                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Max Capacity</p>
-                       <p className="text-2xl font-black text-blue-950 leading-none">{activeItem.capacity}</p>
+                 <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="bg-slate-50 p-4 rounded-[1rem] border border-slate-100">
+                       <Users className="text-blue-600 mb-1" size={20} />
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Max Capacity</p>
+                       <p className="text-lg font-black text-blue-950 leading-none">{activeItem.capacity}</p>
                     </div>
-                    <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 transition-all">
-                       <Zap className="text-orange-600 mb-4" size={32} />
-                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Support Level</p>
-                       <p className="text-2xl font-black text-blue-950 leading-none">VIP PRIORITY</p>
+                    <div className="bg-slate-50 p-4 rounded-[1rem] border border-slate-100">
+                       <Zap className="text-orange-600 mb-1" size={20} />
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Support Level</p>
+                       <p className="text-lg font-black text-blue-950 leading-none">VIP PRIORITY</p>
                     </div>
                  </div>
 
-                 <div className="flex flex-col sm:flex-row gap-6">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <motion.a 
                        whileHover={{ scale: 1.05 }}
                        whileTap={{ scale: 0.95 }}
                        href="tel:+919948924786" 
-                       className="flex-grow bg-blue-950 text-white font-black text-2xl py-8 rounded-[2rem] hover:bg-orange-500 transition-all text-center flex items-center justify-center gap-4 shadow-3xl"
+                       className="flex-grow bg-blue-950 text-white font-black text-base py-4 rounded-[1.2rem] hover:bg-orange-500 transition-all text-center flex items-center justify-center gap-3 shadow-2xl"
                     >
-                       <Phone size={32} /> RESERVE NOW
+                       <Phone size={20} /> RESERVE NOW
                     </motion.a>
-                    <div className="flex gap-4">
-                       <button onClick={handlePrev} className="bg-slate-100 p-8 rounded-[2rem] hover:bg-slate-200 transition-colors"><ArrowRight size={28} className="rotate-180" /></button>
-                       <button onClick={handleNext} className="bg-slate-100 p-8 rounded-[2rem] hover:bg-slate-200 transition-colors"><ArrowRight size={28} /></button>
+                    <div className="flex gap-3 justify-center sm:justify-start">
+                       <button onClick={handlePrev} className="bg-slate-100 p-5 rounded-[1.2rem] hover:bg-slate-200 transition-colors"><ArrowRight size={20} className="rotate-180" /></button>
+                       <button onClick={handleNext} className="bg-slate-100 p-5 rounded-[1.2rem] hover:bg-slate-200 transition-colors"><ArrowRight size={20} /></button>
                     </div>
                  </div>
               </div>
