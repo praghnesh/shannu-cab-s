@@ -8,6 +8,8 @@ const fleetData = [
   { id: 2, name: "SUV (Ertiga)", price: "₹6,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹15/Km", capacity: "6 Seats", image: "/suv.png", type: "Family", bgColor: "bg-blue-50" },
   { id: 3, name: "Premium SUV (Innova)", price: "₹8,000", route: "Hyderabad ⇄ Vijayawada", perKm: "₹19/Km", capacity: "7 Seats", image: "/innova.png", type: "Premium", bgColor: "bg-blue-50" },
   { id: 4, name: "Innova Crysta", price: "₹9,000", route: "Hyderabad ⇄ Vijayawada", perKm: "₹21/Km", capacity: "7 Seats", image: "/innova.png", type: "Luxury", bgColor: "bg-blue-50" },
+  { id: 201, name: "Force Urbania", price: "On Request", route: "Hyderabad ⇄ Vijayawada", perKm: "₹28/Km", capacity: "7/17 Seats", image: "/urbania.png", type: "Premium Van", bgColor: "bg-blue-50" },
+  { id: 202, name: "40 Seater Luxury Bus (AC/Non-AC)", price: "On Request", route: "Hyderabad ⇄ Vijayawada", perKm: "₹45/Km", capacity: "40 Seats", image: "/bus.png", type: "Heavy Vehicle", bgColor: "bg-blue-50" },
   { id: 104, name: "Tempo Traveller", price: "On Request", route: "Hyderabad ⇄ Vijayawada", perKm: "₹24/Km", capacity: "12-17 Seats", image: "/tempo.png", type: "Group", bgColor: "bg-blue-50" },
 
   // Hyderabad ⇄ Guntur
@@ -62,6 +64,11 @@ const fleetData = [
   { id: 54, name: "SUV (Ertiga)", price: "₹4,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹15/Km", capacity: "6 Seats", image: "/suv.png", type: "Family", bgColor: "bg-sky-50" },
   { id: 55, name: "Premium SUV (Innova)", price: "₹5,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹19/Km", capacity: "7 Seats", image: "/innova.png", type: "Premium", bgColor: "bg-sky-50" },
   { id: 56, name: "Tempo Traveller", price: "On Request", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹24/Km", capacity: "12-17 Seats", image: "/tempo.png", type: "Group", bgColor: "bg-sky-50" },
+
+  // Group Travel & Buses (Special Category)
+  { id: 301, name: "Force Urbania", price: "On Request", route: "Buses & Group Travel", perKm: "₹28/Km", capacity: "17 Seats", image: "/urbania.png", type: "Premium Van", bgColor: "bg-gray-100" },
+  { id: 302, name: "40 Seater Luxury Bus (AC)", price: "On Request", route: "Buses & Group Travel", perKm: "₹45/Km", capacity: "40 Seats", image: "/bus.png", type: "Heavy Vehicle", bgColor: "bg-gray-100" },
+  { id: 303, name: "40 Seater Bus (Non-AC)", price: "On Request", route: "Buses & Group Travel", perKm: "₹35/Km", capacity: "40 Seats", image: "/bus.png", type: "Heavy Vehicle", bgColor: "bg-gray-100" },
 ];
 
 interface FleetProps {
@@ -100,7 +107,8 @@ export default function Fleet({ limit, hideViewAll }: FleetProps = {}) {
     { label: "Vijayawada ⇄ Vizag", value: "Vijayawada ⇄ Vizag" },
     { label: "Vijayawada ⇄ Tirupati", value: "Vijayawada ⇄ Tirupati" },
     { label: "Vijayawada ⇄ Guntur", value: "Vijayawada ⇄ Guntur" },
-    { label: "Vijayawada ⇄ Machilipatnam", value: "Vijayawada ⇄ Machilipatnam" }
+    { label: "Vijayawada ⇄ Machilipatnam", value: "Vijayawada ⇄ Machilipatnam" },
+    { label: "Group Travel & Buses", value: "Buses & Group Travel" }
   ];
 
 
