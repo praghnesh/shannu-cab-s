@@ -11,8 +11,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Shannu Car Travels | Premium Cab Booking in Hyderabad & Vijayawada',
-  description: 'Book the best cab and tour services including airport transfer, outstation, corporate travel, and wedding cars with Shannu Car Travels.',
+  title: 'Fast Travels | Premium Cab Booking in Hyderabad & Vijayawada',
+  description: 'Book the best cab and tour services including airport transfer, outstation, corporate travel, and wedding cars with Fast Travels.',
 }
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
 import ServicesComponent from '@/components/Services';
 
 export const metadata = {
-  title: 'Our Services | Shannu Car Travels',
+  title: 'Our Services | Fast Travels',
   description: 'Premium outstation cabs, airport transfers, and wedding cars.',
 };
 

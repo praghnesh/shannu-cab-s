@@ -5,14 +5,14 @@ const testimonials = [
     id: 1,
     name: "Rajesh Kumar",
     role: "Regular Customer",
-    content: "Booked an Innova for a family trip to Srisailam. The driver was very professional, car was spotless, and the driving was very safe. Highly recommend Shannu Cabs!",
+    content: "Booked an Innova for a family trip to Srisailam. The driver was very professional, car was spotless, and the driving was very safe. Highly recommend Fast Travels!",
     rating: 5
   },
   {
     id: 2,
     name: "Sneha Reddy",
     role: "Corporate Client",
-    content: "We use Shannu Travels for all our corporate airport transfers in Hyderabad. They are always on time, even for 3 AM flights. Excellent service.",
+    content: "We use Fast Travels for all our corporate airport transfers in Hyderabad. They are always on time, even for 3 AM flights. Excellent service.",
     rating: 5
   },
   {
@@ -33,7 +33,7 @@ const testimonials = [
     id: 5,
     name: "Kiran Dev",
     role: "Business Traveler",
-    content: "Most reliable cab service for long distances. I've tried many, but Shannu travels' punctuality and driver behavior are unmatched in the region.",
+    content: "Most reliable cab service for long distances. I've tried many, but Fast Travels' punctuality and driver behavior are unmatched in the region.",
     rating: 5
   }
 ];

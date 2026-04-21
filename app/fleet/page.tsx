@@ -1,7 +1,7 @@
 import FleetComponent from '@/components/Fleet';
 
 export const metadata = {
-  title: 'Our Vehicle Fleet | Shannu Car Travels',
+  title: 'Our Vehicle Fleet | Fast Travels',
   description: 'View our diverse fleet including Sedans, SUVs, and Tempo Travellers.',
 };
 
