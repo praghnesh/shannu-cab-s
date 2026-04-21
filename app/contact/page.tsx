@@ -1,133 +1,171 @@
 "use client";
 import { useState } from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Send, CheckCircle, Clock, ShieldCheck, Heart } from 'lucide-react';
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     
     const formData = new FormData(e.currentTarget);
     const data = {
-      FirstName: formData.get('firstName'),
-      LastName: formData.get('lastName'),
-      Mobile: formData.get('phone'),
-      Message: formData.get('message')
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
     };
 
     try {
       await fetch("https://formsubmit.co/ajax/hassanbabushaik1786@gmail.com", {
         method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: `New Contact Form Message from ${data.FirstName}`,
+          _subject: `New Contact Message from ${data.name}`,
           ...data
         })
       });
       setSuccess(true);
-      (e.target as HTMLFormElement).reset();
     } catch (error) {
-      console.error(error);
+      console.error("Message failed:", error);
     }
 
     setLoading(false);
-    setTimeout(() => setSuccess(false), 8000);
+    (e.target as HTMLFormElement).reset();
+    setTimeout(() => setSuccess(false), 5000);
   };
 
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-gray-50 flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row"
-        >
-          
-          <div className="bg-blue-950 p-6 sm:p-8 md:p-12 text-white md:w-2/5 flex flex-col justify-center">
-            <h2 className="text-4xl font-bold mb-6">Contact Us</h2>
-            <p className="text-blue-200 mb-12 text-lg">We'd love to hear from you. Get in touch directly for customized travel arrangements and group bookings!</p>
-            
-            <div className="space-y-8">
-              <div className="flex items-center gap-4">
-                <div className="bg-orange-500/20 p-4 rounded-xl text-orange-400">
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-blue-200">Call/WhatsApp Us</p>
-                  <p className="text-xl font-bold">+91 9948924786</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="bg-orange-500/20 p-4 rounded-xl text-orange-400">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-blue-200">Email Address</p>
-                  <p className="font-semibold text-base sm:text-lg break-all">hassanbabushaik1786@gmail.com</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="bg-orange-500/20 p-4 rounded-xl text-orange-400">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-blue-200">Main Office</p>
-                  <p className="font-semibold text-lg">Vijayawada & Hyderabad,<br/>Andhra Pradesh & Telangana</p>
-                </div>
-              </div>
+    <motion.main 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen bg-slate-50"
+    >
+      <div className="pt-20">
+         <div className="bg-blue-950 py-32 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-orange-500/10 blur-[150px] rounded-full -top-32 -left-32 animate-pulse"></div>
+            <div className="max-w-4xl mx-auto px-4 relative z-10">
+               <span className="text-orange-500 font-black tracking-[0.3em] uppercase text-xs mb-4 block">Get In Touch</span>
+               <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none mb-8">CONNECT <br /> WITH US.</h1>
+               <p className="text-blue-100/60 text-xl md:text-2xl font-medium max-w-2xl mx-auto">Have a specific travel requirement? Our VIP concierge team is ready to assist you 24/7/365.</p>
             </div>
-          </div>
-          
-          <div className="p-6 sm:p-8 md:p-12 md:w-3/5 bg-white flex flex-col justify-center">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8">Send Us A Message</h3>
-            
-            {success ? (
-              <div className="bg-green-50 text-green-800 p-6 rounded-xl text-center font-medium border border-green-200">
-                <p className="text-xl font-bold mb-2">Message Sent Successfully!</p>
-                <p>Thank you for reaching out. Our team will contact you shortly.</p>
-              </div>
-            ) : (
-              <form className="space-y-6" onSubmit={handleContactSubmit}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
-                    <input name="firstName" type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none" required />
+         </div>
+
+         <div className="max-w-7xl mx-auto px-4 py-24">
+            <div className="grid lg:grid-cols-2 gap-20">
+               
+               {/* Contact Info Side */}
+               <div className="space-y-16">
+                  <div className="space-y-4">
+                     <h2 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter leading-none">Fast Travels Headquarters</h2>
+                     <p className="text-slate-500 text-xl font-medium leading-relaxed">Serving the elite inter-city travel needs across Andhra Pradesh, Telangana, and the entire South India belt.</p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
-                    <input name="lastName" type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none" />
+
+                  <div className="space-y-8">
+                     <div className="flex items-center gap-8 group">
+                        <div className="bg-blue-950 text-white p-6 rounded-3xl shadow-xl group-hover:bg-orange-500 transition-colors">
+                           <Phone size={32} />
+                        </div>
+                        <div>
+                           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Direct Call (24/7)</p>
+                           <p className="text-3xl font-black text-blue-950 tracking-tighter hover:text-orange-500 transition-colors cursor-pointer">+91 9948924786</p>
+                        </div>
+                     </div>
+
+                     <div className="flex items-center gap-8 group">
+                        <div className="bg-blue-950 text-white p-6 rounded-3xl shadow-xl group-hover:bg-orange-500 transition-colors">
+                           <Mail size={32} />
+                        </div>
+                        <div>
+                           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Email Support</p>
+                           <p className="text-2xl font-black text-blue-950 tracking-tighter break-all">hassanbabushaik1786@gmail.com</p>
+                        </div>
+                     </div>
+
+                     <div className="flex items-center gap-8 group">
+                        <div className="bg-blue-950 text-white p-6 rounded-3xl shadow-xl group-hover:bg-orange-500 transition-colors">
+                           <MapPin size={32} />
+                        </div>
+                        <div>
+                           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Main Terminals</p>
+                           <p className="text-2xl font-black text-blue-950 tracking-tighter">Hyderabad & Vijayawada</p>
+                        </div>
+                     </div>
                   </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Mobile Number</label>
-                  <input name="phone" type="tel" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none" required />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Your Details</label>
-                  <textarea name="message" rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none" placeholder="How can we help you?..."></textarea>
-                </div>
-                
-                <button type="submit" disabled={loading} className="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 disabled:opacity-75">
-                  {loading ? 'Sending...' : 'Send Notification'}
-                </button>
-              </form>
-            )}
-          </div>
-          
-        </motion.div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                     {[
+                       { icon: <Clock size={20} />, label: "Always Active", val: "24/7 Available" },
+                       { icon: <ShieldCheck size={20} />, label: "Security Hub", val: "Live Tracked" },
+                       { icon: <Heart size={20} />, label: "Customer Care", val: "VIP Support" },
+                       { icon: <CheckCircle size={20} />, label: "Compliance", val: "100% Legal" },
+                     ].map((stat, i) => (
+                        <div key={i} className="bg-white p-6 rounded-[2rem] border border-slate-100 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all">
+                           <div className="text-orange-500 mb-2">{stat.icon}</div>
+                           <span className="text-[10px] font-black text-slate-400 mb-1 uppercase tracking-widest">{stat.label}</span>
+                           <span className="text-lg font-black text-blue-950 tracking-tighter leading-none">{stat.val}</span>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+
+               {/* Contact Form Side */}
+               <div className="relative">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    className="bg-white rounded-[4rem] p-10 sm:p-16 shadow-3xl border border-slate-100 relative z-10"
+                  >
+                     <h3 className="text-4xl font-black text-blue-950 mb-4 tracking-tighter">Send A Secure Message</h3>
+                     <p className="text-slate-500 font-medium mb-10">We usually reply within 5 minutes for urgent bookings and queries.</p>
+
+                     {success && (
+                        <div className="mb-8 bg-green-50 text-green-700 p-6 rounded-3xl flex items-center gap-4 font-black text-xl border border-green-200">
+                           <CheckCircle size={32} /> MESSAGE SENT SUCCESSFULLY!
+                        </div>
+                     )}
+
+                     <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid sm:grid-cols-2 gap-6">
+                           <div className="space-y-2">
+                              <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-4">Full Name</label>
+                              <input name="name" required className="w-full bg-slate-50 rounded-2xl py-5 px-8 outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-transparent transition-all font-bold text-blue-950" placeholder="John Doe" />
+                           </div>
+                           <div className="space-y-2">
+                              <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-4">Phone Number</label>
+                              <input name="phone" required type="tel" className="w-full bg-slate-50 rounded-2xl py-5 px-8 outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-transparent transition-all font-bold text-blue-950" placeholder="+91" />
+                           </div>
+                        </div>
+
+                        <div className="space-y-2">
+                           <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-4">Email Address</label>
+                           <input name="email" required type="email" className="w-full bg-slate-50 rounded-2xl py-5 px-8 outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-transparent transition-all font-bold text-blue-950" placeholder="john@example.com" />
+                        </div>
+
+                        <div className="space-y-2">
+                           <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-4">Your Requirement</label>
+                           <textarea name="message" required rows={4} className="w-full bg-slate-50 rounded-3xl py-6 px-8 outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-transparent transition-all font-bold text-blue-950 resize-none" placeholder="How can our VIP team help you?"></textarea>
+                        </div>
+
+                        <motion.button 
+                           whileHover={{ scale: 1.02 }}
+                           whileTap={{ scale: 0.98 }}
+                           type="submit"
+                           disabled={loading}
+                           className="w-full bg-blue-950 text-white font-black text-2xl py-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(23,_37,_84,_0.3)] hover:bg-orange-500 transition-all flex items-center justify-center gap-4 group disabled:opacity-50"
+                        >
+                           {loading ? "SENDING..." : <><Send size={28} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" /> SUBMIT MESSAGE</>}
+                        </motion.button>
+                     </form>
+                  </motion.div>
+                  <div className="absolute inset-0 bg-blue-950 rounded-[5rem] translate-x-4 translate-y-4 -z-0"></div>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
+    </motion.main>
   );
 }

@@ -4,6 +4,8 @@ import './globals.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+import PageLoader from '../components/PageLoader'
+
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -21,15 +23,26 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${poppins.variable} font-sans bg-gray-50 text-gray-900 relative`}>
+    <html lang="en" className="scroll-smooth antialiased">
+      <body className={`${poppins.variable} font-sans bg-slate-50 text-slate-900 overflow-x-hidden selection:bg-orange-500 selection:text-white`}>
+        <PageLoader />
         <Navbar />
-        <main className="min-h-screen pt-20">{children}</main>
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer />
         
-        {/* WhatsApp Mobile Floating Button Overlay */}
-        <a href="tel:+919948924786" className="fixed bottom-6 left-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-[0_10px_25px_rgba(34,197,94,0.4)] hover:shadow-[0_15px_30px_rgba(34,197,94,0.5)] hover:scale-110 transition-all active:scale-95 duration-200">
-           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        {/* VIP Support Badge */}
+        <div className="fixed bottom-24 right-6 z-40 hidden md:block">
+           <div className="bg-white/80 backdrop-blur shadow-2xl p-4 rounded-3xl border border-white flex flex-col items-center gap-2 animate-bounce">
+              <span className="text-[10px] font-black text-blue-900 uppercase">Live Support</span>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+           </div>
+        </div>
+
+        {/* Floating Call Button Overlay */}
+        <a href="tel:+919948924786" className="fixed bottom-6 right-6 z-50 bg-orange-500 text-white p-5 rounded-full shadow-[0_20px_50px_rgba(249,115,22,0.5)] hover:shadow-[0_25px_60px_rgba(249,115,22,0.6)] hover:scale-110 active:scale-95 transition-all duration-300 group">
+           <svg className="w-8 h-8 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
         </a>
       </body>
     </html>

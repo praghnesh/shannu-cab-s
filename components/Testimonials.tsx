@@ -1,75 +1,86 @@
-import { Star } from 'lucide-react';
+"use client";
+import { motion } from 'framer-motion';
+import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
     id: 1,
     name: "Rajesh Kumar",
-    role: "Regular Customer",
-    content: "Booked an Innova for a family trip to Srisailam. The driver was very professional, car was spotless, and the driving was very safe. Highly recommend Fast Travels!",
+    role: "Premium Member",
+    content: "Booked an Innova for a family trip to Srisailam. The driver was exceptionally professional, the car was spotless, and the experience was truly VIP. Highly recommend Fast Travels!",
     rating: 5
   },
   {
     id: 2,
     name: "Sneha Reddy",
-    role: "Corporate Client",
-    content: "We use Fast Travels for all our corporate airport transfers in Hyderabad. They are always on time, even for 3 AM flights. Excellent service.",
+    role: "Corporate Executive",
+    content: "We use Fast Travels for all our urgent corporate airport transfers in Hyderabad. They are never late, even for 3 AM flights. The 24/7 support is a lifesaver.",
     rating: 5
   },
   {
     id: 3,
-    name: "Venkatesh Rao",
-    role: "Regular Traveler",
-    content: "Took the Vijayawada to Hyderabad route. The Swift Dzire was very comfortable and the AC worked perfectly throughout the summer trip. Fair pricing too.",
+    name: "Mohan Lal",
+    role: "Frequent Traveler",
+    content: "The Force Urbania we booked for our office outing was incredible. Spacious, clean, and the booking process was seamless. Best in the business!",
     rating: 5
   },
   {
     id: 4,
-    name: "Ananya Sharma",
-    role: "Tourist",
-    content: "Booked a group tour for Vizag and Araku. The Tempo Traveller was very spacious and the driver knew all the best viewpoints. Absolutely loved the experience!",
-    rating: 5
-  },
-  {
-    id: 5,
-    name: "Kiran Dev",
-    role: "Business Traveler",
-    content: "Most reliable cab service for long distances. I've tried many, but Fast Travels' punctuality and driver behavior are unmatched in the region.",
+    name: "Anitha Rao",
+    role: "Family Traveler",
+    content: "Most reliable cab service for long distances. I've tried many, but Fast Travels' punctuality and elite driver behavior are unmatched in South India.",
     rating: 5
   }
 ];
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-white">
+    <section id="testimonials" className="py-32 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-orange-500 font-semibold tracking-wide uppercase text-sm mb-2">Reviews</h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-blue-950 mb-4">What Our Riders Say</h3>
-          <p className="text-gray-600 text-lg">Trust comes from experience. Read what our satisfied customers have to say about their journeys.</p>
+        <div className="text-center mb-24 space-y-4">
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-orange-500 font-black tracking-[0.3em] uppercase text-xs block"
+          >
+            Client Reviews
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter"
+          >
+            Trusted by Thousands
+          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white rounded-3xl p-8 border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 relative group flex flex-col">
-              <div className="absolute top-0 right-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-sm">
-                <span className="text-4xl text-orange-500 font-serif leading-none opacity-20 group-hover:opacity-100 transition-opacity">“</span>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {testimonials.map((testimonial, idx) => (
+            <motion.div
+              key={testimonial.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -10 }}
+              className="bg-slate-50 p-10 rounded-[3rem] border border-slate-100 flex flex-col relative group hover:bg-blue-950 transition-all duration-500 shadow-xl shadow-slate-100"
+            >
+              <Quote className="absolute top-8 right-8 text-slate-200 group-hover:text-white/10 transition-colors" size={40} />
+              
               <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} fill={i < testimonial.rating ? "#f97316" : "none"} stroke={i < testimonial.rating ? "#f97316" : "#cbd5e1"} />
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} size={14} className="text-orange-500 group-hover:text-yellow-400" fill="currentColor" />
                 ))}
               </div>
-              <p className="text-gray-700 mb-8 font-medium leading-relaxed flex-grow">"{testimonial.content}"</p>
-              <div className="flex items-center pt-6 border-t border-gray-50">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center text-blue-900 font-bold text-lg mr-4 border border-blue-200/50">
-                  {testimonial.name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 tracking-tight">{testimonial.name}</h4>
-                  <p className="text-xs font-bold text-orange-500 uppercase tracking-widest">{testimonial.role}</p>
-                </div>
+
+              <p className="text-slate-600 group-hover:text-white/80 font-medium leading-relaxed mb-8 flex-grow italic">
+                "{testimonial.content}"
+              </p>
+
+              <div>
+                <p className="text-blue-950 group-hover:text-white font-black text-xl tracking-tight leading-none mb-1">{testimonial.name}</p>
+                <p className="text-slate-400 group-hover:text-orange-400 text-[10px] font-black uppercase tracking-widest">{testimonial.role}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
