@@ -80,8 +80,13 @@ export default function Fleet({ limit, hideViewAll }: FleetProps = {}) {
   const [viewIndex, setViewIndex] = useState<number | null>(null);
   const [selectedRoute, setSelectedRoute] = useState<string>("Hyderabad ⇄ Vijayawada");
 
-  // Filter logic: Filter by EXACT route match to ensure only 4 cars show
-  const filteredFleet = fleetData.filter(car => car.route === selectedRoute);
+  // Filter logic: Filter by route + append Buses for all city routes (avoid duplicates)
+  const filteredFleet = selectedRoute === "Buses & Group Travel"
+    ? fleetData.filter(car => car.route === "Buses & Group Travel")
+    : [
+        ...fleetData.filter(car => car.route === selectedRoute),
+        ...fleetData.filter(car => car.route === "Buses & Group Travel")
+      ];
 
   const activeItem = viewIndex !== null ? filteredFleet[viewIndex] : null;
 
@@ -119,11 +124,11 @@ export default function Fleet({ limit, hideViewAll }: FleetProps = {}) {
           <h2 className="text-orange-500 font-semibold tracking-wide uppercase text-sm mb-2">Our Vehicles</h2>
           <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-8">Choose Your Ride</h3>
           
-          {/* Centered & Enlarged Route Selector */}
-          <div className="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl border-2 border-blue-600/30 mx-auto max-w-2xl transition-all hover:border-blue-600/50">
+          {/* Centered & Responsive Route Selector */}
+          <div className="bg-white p-1 sm:p-3 rounded-2xl shadow-xl border-2 border-blue-600/30 mx-auto max-w-2xl transition-all hover:border-blue-600/50">
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
-              <div className="bg-blue-600 text-white px-8 py-5 rounded-xl flex items-center justify-center gap-3 font-bold whitespace-nowrap text-lg shadow-lg">
-                <span>📍</span> SELECT YOUR ROUTE
+              <div className="bg-blue-600 text-white px-4 sm:px-8 py-3 sm:py-5 rounded-xl flex items-center justify-center gap-2 sm:gap-3 font-bold whitespace-nowrap text-sm sm:text-lg shadow-lg">
+                <span>📍</span> <span className="hidden xs:inline">SELECT YOUR ROUTE</span><span className="xs:hidden">ROUTE</span>
               </div>
               <div className="relative flex-grow">
                 <select 
@@ -132,13 +137,13 @@ export default function Fleet({ limit, hideViewAll }: FleetProps = {}) {
                     setSelectedRoute(e.target.value);
                     setViewIndex(null); 
                   }}
-                  className="w-full bg-transparent px-8 py-5 text-gray-900 font-extrabold text-xl outline-none cursor-pointer appearance-none text-center sm:text-left"
+                  className="w-full bg-transparent px-4 sm:px-8 py-4 sm:py-5 text-gray-900 font-extrabold text-base sm:text-xl outline-none cursor-pointer appearance-none text-center sm:text-left"
                 >
                   {routes.map(r => (
                     <option key={r.value} value={r.value}>{r.label}</option>
                   ))}
                 </select>
-                <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600 font-bold scale-125">
+                <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600 font-bold scale-110 sm:scale-125">
                   ▼
                 </div>
               </div>
