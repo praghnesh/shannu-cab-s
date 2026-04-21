@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
-            <span className="text-3xl font-extrabold tracking-tight text-white mb-4 block">Fast<span className="text-orange-500">Travels</span></span>
+            <span className="text-4xl font-black tracking-tighter text-white mb-4 block">Fast <span className="text-orange-500">Travels</span></span>
             <p className="text-sm leading-relaxed mb-6">
               Premium car travel agency providing outstation cab booking, airport transfers, and corporate rentals across Hyderabad and Vijayawada.
             </p>
