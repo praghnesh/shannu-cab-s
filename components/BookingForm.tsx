@@ -80,8 +80,8 @@ export default function BookingForm() {
             onClick={() => setTripTab(tab)}
             className={`flex-1 min-w-max px-6 py-4 font-semibold whitespace-nowrap transition-colors flex items-center justify-center gap-2 first:rounded-tl-2xl last:rounded-tr-2xl relative
               ${tripTab === tab 
-                ? 'bg-white text-blue-600 border-t-2 border-t-blue-600 border-x border-gray-200 border-b-0 shadow-sm z-10 pb-[17px]' 
-                : 'text-gray-500 hover:text-blue-900 border-t-2 border-t-transparent border-x border-transparent border-b border-gray-200 bg-gray-50/80 hover:bg-gray-100'}`}
+                ? 'bg-white text-blue-950 border-t-2 border-t-orange-500 border-x border-gray-200 border-b-0 shadow-sm z-10 pb-[17px]' 
+                : 'text-gray-500 hover:text-blue-950 border-t-2 border-t-transparent border-x border-transparent border-b border-gray-200 bg-gray-50/80 hover:bg-gray-100'}`}
           >
             {tab.includes('Airport') ? <MapPin size={18} /> : <Car size={18} />}
             {tab}
@@ -101,7 +101,7 @@ export default function BookingForm() {
       >
         
         {/* Row 1: Locations & Date & Time */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_1fr_1fr] gap-4 mb-6 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] lg:grid-cols-[1fr_auto_1fr_1fr_1fr] gap-4 mb-6 items-center">
           
           <div className="border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
             <span className="text-xs font-bold text-gray-500 group-focus-within:text-blue-600 block mb-1">FROM</span>
@@ -153,18 +153,18 @@ export default function BookingForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pt-4 border-t border-gray-100">
 
           <div className="relative">
-            <label className="text-xs font-semibold text-gray-500 block mb-1">Contact Number</label>
-            <div className="flex items-center border-b border-gray-300 py-1 focus-within:border-blue-600 transition">
+            <label className="text-xs font-black uppercase tracking-tight text-slate-400 block mb-1">Contact Number</label>
+            <div className="flex items-center border-b border-gray-300 py-1 focus-within:border-orange-500 transition">
               <Phone size={18} className="text-gray-400 mr-2" />
-              <input name="phone" type="tel" required className="w-full bg-transparent outline-none text-gray-800" placeholder="+91" />
+              <input name="phone" type="tel" required className="w-full bg-transparent outline-none text-blue-950 font-bold" placeholder="+91" />
             </div>
           </div>
 
           <div className="relative">
-            <label className="text-xs font-semibold text-gray-500 block mb-1">Vehicle Class</label>
-            <div className="flex items-center border-b border-gray-300 py-1 focus-within:border-blue-600 transition">
+            <label className="text-xs font-black uppercase tracking-tight text-slate-400 block mb-1">Vehicle Class</label>
+            <div className="flex items-center border-b border-gray-300 py-1 focus-within:border-orange-500 transition">
               <Car size={18} className="text-gray-400 mr-2" />
-              <select name="vehicle" className="w-full bg-transparent outline-none text-gray-800 appearance-none font-medium">
+              <select name="vehicle" className="w-full bg-transparent outline-none text-blue-950 appearance-none font-bold">
                 <option value="Sedan">Sedan (Swift Dzire/Etios)</option>
                 <option value="SUV">SUV (Ertiga/Innova)</option>
                 <option value="Innova Crysta">Innova Crysta (Premium)</option>
@@ -178,15 +178,15 @@ export default function BookingForm() {
 
 
         {/* Big Search / Submit Button */}
-        <div className="text-center mt-6 relative z-20 flex justify-center">
+        <div className="text-center mt-10 relative z-20 flex justify-center">
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit" 
             disabled={loading} 
-            className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold text-xl uppercase tracking-wider py-4 px-16 rounded-full shadow-[0_10px_30px_rgba(37,_99,_235,_0.4)] hover:shadow-[0_15px_40px_rgba(37,_99,_235,_0.6)] flex items-center gap-3 transition-all"
+            className="bg-orange-500 text-white font-black text-lg md:text-xl uppercase tracking-tighter py-5 px-12 md:px-20 rounded-full shadow-[0_20px_40px_rgba(249,115,22,0.4)] hover:shadow-[0_25px_50px_rgba(249,115,22,0.6)] flex items-center gap-3 transition-all outline-none"
           >
-            {loading ? <span className="animate-pulse">Sending to Email...</span> : 'Book Trip Now'}
+            {loading ? <span className="animate-pulse">PROCESSING...</span> : 'BOOK TRIP NOW'}
           </motion.button>
         </div>
 
