@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
-            <span className="text-4xl font-black tracking-tighter text-white mb-4 block">Fast <span className="text-orange-500">Travels</span></span>
+            <span className="text-4xl font-black tracking-tighter text-white mb-4 block">Fast car <span className="text-orange-500">Travels</span></span>
             <p className="text-sm leading-relaxed mb-6">
               Premium car travel agency providing outstation cab booking, airport transfers, and corporate rentals across Hyderabad and Vijayawada.
             </p>
@@ -15,7 +15,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
-              <li><Link href="/" className="hover:text-orange-400 transition">About Fast Travels</Link></li>
+              <li><Link href="/" className="hover:text-orange-400 transition">About Fast car Travels</Link></li>
               <li><Link href="/services" className="hover:text-orange-400 transition">Premium Services</Link></li>
               <li><Link href="/fleet" className="hover:text-orange-400 transition">Elite Fleet Catalog</Link></li>
               <li><Link href="/guide" className="hover:text-orange-400 transition">City Travel Guide</Link></li>
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} Fast Travels. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Fast car Travels. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <span className="hover:text-white cursor-pointer">Facebook</span>
             <span className="hover:text-white cursor-pointer">Instagram</span>

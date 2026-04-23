@@ -158,7 +158,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
            <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
                  <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none">
-                    Every Ride is a <br /> <span className="text-orange-500 italic">Fast Travels</span> Promise.
+                    Every Ride is a <br /> <span className="text-orange-500 italic">Fast car Travels</span> Promise.
                  </h3>
                  <p className="text-blue-100/60 text-xl font-medium leading-relaxed">
                     We don't just provide cars; we provide peace of mind. All our vehicles are less than 2 years old, undergo 50+ safety checks daily, and are driven by certified professional chauffeurs.

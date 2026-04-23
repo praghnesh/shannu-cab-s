@@ -59,7 +59,7 @@ export default function ContactPage() {
                {/* Contact Info Side */}
                <div className="space-y-16">
                   <div className="space-y-4">
-                     <h2 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter leading-none">Fast Travels Headquarters</h2>
+                     <h2 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter leading-none">Fast car Travels Headquarters</h2>
                      <p className="text-slate-500 text-xl font-medium leading-relaxed">Serving the elite inter-city travel needs across Andhra Pradesh, Telangana, and the entire South India belt.</p>
                   </div>
 

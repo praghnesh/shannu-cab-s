@@ -66,7 +66,7 @@ export default function Services() {
             whileInView={{ opacity: 1 }}
             className="text-orange-500 font-black tracking-[0.4em] uppercase text-xs sm:text-sm block"
           >
-            The Fast Travels Standard
+            The Fast car Travels Standard
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}

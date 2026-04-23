@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center group relative z-[1001]">
               <span className={`text-2xl sm:text-3xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-blue-950' : 'text-white'}`}>
-                Fast <span className="text-orange-500">Travels</span>
+                Fast car <span className="text-orange-500">Travels</span>
               </span>
             </Link>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
               <div className="p-10 flex-grow">
                 <div className="flex justify-between items-start mb-12">
                    <div>
-                      <span className="text-3xl font-black text-blue-950 tracking-tighter">Fast <span className="text-orange-500">Travels</span></span>
+                      <span className="text-3xl font-black text-blue-950 tracking-tighter">Fast car <span className="text-orange-500">Travels</span></span>
                       <p className="text-slate-400 text-sm mt-2 font-medium">Your VIP Travel Partner</p>
                    </div>
                    <button 

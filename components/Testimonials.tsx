@@ -7,14 +7,14 @@ const testimonials = [
     id: 1,
     name: "Rajesh Kumar",
     role: "Premium Member",
-    content: "Booked an Innova for a family trip to Srisailam. The driver was exceptionally professional, the car was spotless, and the experience was truly VIP. Highly recommend Fast Travels!",
+    content: "Booked an Innova for a family trip to Srisailam. The driver was exceptionally professional, the car was spotless, and the experience was truly VIP. Highly recommend Fast car Travels!",
     rating: 5
   },
   {
     id: 2,
     name: "Sneha Reddy",
     role: "Corporate Executive",
-    content: "We use Fast Travels for all our urgent corporate airport transfers in Hyderabad. They are never late, even for 3 AM flights. The 24/7 support is a lifesaver.",
+    content: "We use Fast car Travels for all our urgent corporate airport transfers in Hyderabad. They are never late, even for 3 AM flights. The 24/7 support is a lifesaver.",
     rating: 5
   },
   {
@@ -28,7 +28,7 @@ const testimonials = [
     id: 4,
     name: "Anitha Rao",
     role: "Family Traveler",
-    content: "Most reliable cab service for long distances. I've tried many, but Fast Travels' punctuality and elite driver behavior are unmatched in South India.",
+    content: "Most reliable cab service for long distances. I've tried many, but Fast car Travels' punctuality and elite driver behavior are unmatched in South India.",
     rating: 5
   }
 ];

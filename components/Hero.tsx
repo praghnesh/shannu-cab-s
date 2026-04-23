@@ -31,7 +31,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10"
           >
-            FAST TRAVELS. <br />
+            FAST CAR TRAVELS. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-orange-500">
               WORLD CLASS RIDES.
             </span>

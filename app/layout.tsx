@@ -13,8 +13,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Fast Travels | Premium Cab Booking in Hyderabad & Vijayawada',
-  description: 'Book the best cab and tour services including airport transfer, outstation, corporate travel, and wedding cars with Fast Travels.',
+  title: 'Fast car Travels | Premium Cab Booking in Hyderabad & Vijayawada',
+  description: 'Book the best cab and tour services including airport transfer, outstation, corporate travel, and wedding cars with Fast car Travels.',
 }
 
 export default function RootLayout({

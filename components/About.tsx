@@ -14,7 +14,7 @@ export default function About() {
             className="lg:w-1/2 relative"
           >
             <div className="relative h-[600px] w-full rounded-[4rem] overflow-hidden shadow-3xl z-10">
-              <Image src="/banner.png" alt="Fast Travels Team" fill className="object-cover" />
+              <Image src="/banner.png" alt="Fast car Travels Team" fill className="object-cover" />
               <div className="absolute inset-0 bg-blue-950/20"></div>
             </div>
             <div className="absolute -bottom-10 -right-10 bg-orange-500 text-white p-12 rounded-[3rem] shadow-2xl z-20 hidden md:block">
@@ -33,7 +33,7 @@ export default function About() {
               More Than Just <br /> A Cab Service.
             </h2>
             <p className="text-slate-500 text-xl font-medium leading-relaxed">
-              Founded on the principles of <strong>Speed, Safety, and Sophistication</strong>, Fast Travels has grown into South India's premier choice for intercity mobility. We don't just move people; we move memories.
+              Founded on the principles of <strong>Speed, Safety, and Sophistication</strong>, Fast car Travels has grown into South India's premier choice for intercity mobility. We don't just move people; we move memories.
             </p>
             <div className="grid grid-cols-2 gap-8">
                <div className="space-y-4">

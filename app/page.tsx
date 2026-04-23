@@ -35,7 +35,7 @@ export default function Home() {
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} className="space-y-10">
                <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-[0.9]">
-                  WHY 50,000+ TRUST <br /> <span className="text-orange-500">FAST TRAVELS</span>
+                  WHY 50,000+ TRUST <br /> <span className="text-orange-500">FAST CAR TRAVELS</span>
                </h2>
                <div className="grid md:grid-cols-3 gap-12 mt-20">
                   <div className="p-10 bg-white/5 rounded-[3rem] border border-white/10 backdrop-blur-xl group hover:bg-white/10 transition-all">

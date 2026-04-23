@@ -27,7 +27,7 @@ export default function PageLoader() {
           >
             <div className="flex items-center gap-2 mb-8 justify-center">
               <span className="text-4xl md:text-6xl font-black tracking-tighter text-white">
-                Fast <span className="text-orange-500">Travels</span>
+                Fast car <span className="text-orange-500">Travels</span>
               </span>
             </div>
             
