@@ -190,7 +190,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] overflow-y-auto bg-blue-950/95 backdrop-blur-3xl p-4 sm:p-12 flex items-center justify-center pt-24 pb-12"
+            className="fixed inset-0 z-[200] overflow-y-auto bg-blue-950/95 backdrop-blur-3xl p-4 sm:p-12 flex items-start sm:items-center justify-center pt-32 pb-12"
           >
             <motion.div 
               initial={{ scale: 0.9, y: 100 }}
@@ -199,17 +199,17 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             >
               <button onClick={() => setViewIndex(null)} className="absolute top-6 right-6 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-2 rounded-xl transition-colors"><X size={24} /></button>
               
-              <div className={`lg:w-1/2 p-10 ${activeItem.bgColor} flex items-center justify-center relative h-[300px] lg:h-auto`}>
+              <div className={`lg:w-1/2 p-6 sm:p-10 ${activeItem.bgColor} flex items-center justify-center relative h-[200px] sm:h-[300px] lg:h-auto`}>
                  <Image src={activeItem.image} alt={activeItem.name} fill className="object-contain p-4 lg:p-8 drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]" />
               </div>
 
-              <div className="lg:w-1/2 p-8 flex flex-col justify-center">
+              <div className="lg:w-1/2 p-6 sm:p-8 flex flex-col justify-center">
                  <div className="mb-6 lg:mb-8">
                     <div className="flex gap-2 mb-4">
                        {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="#f97316" color="#f97316" />)}
                        <span className="ml-2 text-orange-500 font-extrabold text-[10px] uppercase tracking-widest">(5.0 Rating)</span>
                     </div>
-                    <h2 className="text-2xl md:text-5xl font-black text-blue-950 mb-3 tracking-tighter leading-none">{activeItem.name}</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-5xl font-black text-blue-950 mb-3 tracking-tighter leading-none">{activeItem.name}</h2>
                     <p className="text-slate-500 text-sm md:text-base leading-relaxed border-l-4 border-orange-500 pl-6 ml-2">
                        Premium {activeItem.type} for the {activeItem.route} route. Features ergonomic seating, climate control, and ample luggage space.
                     </p>
