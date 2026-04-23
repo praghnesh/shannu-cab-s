@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 @theme {
   --font-sans: var(--font-poppins);
   --color-blue-950: #172554;
@@ -7,12 +13,25 @@
 }
 
 @layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
+    overflow-x: clip !important;
+    background-color: #172554;
+    /* Match blue-950 to hide any gaps */
   }
+
   body {
+    overflow-x: clip !important;
+    max-width: 100% !important;
+    width: 100%;
+    position: relative;
     background-color: #ffffff;
-    overflow-x: hidden;
   }
 }
 
@@ -20,16 +39,22 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
-  
+
   .animate-marquee {
     animation: marquee 60s linear infinite;
   }

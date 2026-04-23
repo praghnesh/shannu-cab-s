@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth antialiased">
-      <body className={`${poppins.variable} font-sans bg-slate-50 text-slate-900 overflow-x-hidden selection:bg-orange-500 selection:text-white`}>
+    <html lang="en" className="scroll-smooth antialiased w-full max-w-full overflow-x-clip">
+      <body className={`${poppins.variable} font-sans bg-slate-50 text-slate-900 overflow-x-clip w-full max-w-full selection:bg-orange-500 selection:text-white`}>
         <PageLoader />
         <Navbar />
         <main className="min-h-screen">

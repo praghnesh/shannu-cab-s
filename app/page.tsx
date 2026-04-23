@@ -8,6 +8,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Star, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import Image from 'next/image';
 
+import About from '@/components/About';
+import CityExplorer from '@/components/CityExplorer';
+
 export default function Home() {
   return (
     <div className="bg-white">
@@ -15,7 +18,7 @@ export default function Home() {
       
       {/* Brand Trust Bar */}
       <div className="bg-slate-50 py-10 border-y border-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+        <div className="max-w-7xl auto px-4 flex flex-wrap justify-center gap-8 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
            {["Premium Standard", "Govt. Verified", "24/7 Security", "Top Rated 2024", "South India Expert"].map(brand => (
              <span key={brand} className="font-black text-xl tracking-tighter text-blue-950 uppercase italic">{brand}</span>
            ))}
@@ -23,7 +26,7 @@ export default function Home() {
       </div>
 
       <Process />
-      
+      <CityExplorer />
       <Services />
       
       {/* Massive Trust Reinforcement Section */}
@@ -86,14 +89,16 @@ export default function Home() {
       <Testimonials />
 
       {/* Destinations Marquee (Visual Page Feel) */}
-      <section className="py-12 md:py-20 bg-slate-50 overflow-hidden border-t border-slate-200">
-         <div className="flex gap-20 animate-marquee whitespace-nowrap">
-            {[
-              "HYDERABAD · VIJAYAWADA · VIZAG · GUNTUR · NELLORE · TIRUPATI · RAJAHMUNDRY · KAKINADA · TUNI · NELLORE · OOTY · ARAKU",
-              "HYDERABAD · VIJAYAWADA · VIZAG · GUNTUR · NELLORE · TIRUPATI · RAJAHMUNDRY · KAKINADA · TUNI · NELLORE · OOTY · ARAKU"
-            ].map((text, i) => (
-              <span key={i} className="text-7xl font-black text-slate-200 tracking-tighter uppercase">{text}</span>
-            ))}
+      <section className="py-12 md:py-20 bg-slate-50 border-t border-slate-200 overflow-hidden">
+         <div className="max-w-[100vw] overflow-hidden">
+            <div className="flex gap-20 animate-marquee whitespace-nowrap">
+               {[
+                 "HYDERABAD · VIJAYAWADA · VIZAG · GUNTUR · NELLORE · TIRUPATI · RAJAHMUNDRY · KAKINADA · TUNI · NELLORE · OOTY · ARAKU",
+                 "HYDERABAD · VIJAYAWADA · VIZAG · GUNTUR · NELLORE · TIRUPATI · RAJAHMUNDRY · KAKINADA · TUNI · NELLORE · OOTY · ARAKU"
+               ].map((text, i) => (
+                 <span key={i} className="text-7xl font-black text-slate-200 tracking-tighter uppercase">{text}</span>
+               ))}
+            </div>
          </div>
       </section>
     </div>

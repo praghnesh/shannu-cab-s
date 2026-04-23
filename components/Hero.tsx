@@ -6,48 +6,30 @@ import { Shield, Headphones, Star, Users, MapPin } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <div className="relative bg-blue-950 pt-20 lg:pt-32 pb-10 overflow-hidden">
-      {/* Dynamic Background Decor */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-900/80 to-blue-950 z-10"></div>
-        <Image 
-          src="/banner.png" 
-          alt="Luxury Travel Background" 
-          fill
-          priority
-          className="object-cover opacity-20 mix-blend-overlay scale-110"
-        />
-        <motion.div 
-          animate={{ 
-            opacity: [0.1, 0.2, 0.1],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent"
-        />
+    <div className="relative bg-blue-950 pt-20 lg:pt-32 pb-10 overflow-hidden w-full">
+      {/* Clean Solid Blue Background */}
+      <div className="absolute inset-0 z-0 bg-blue-950">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-950 to-blue-900 opacity-50 z-10"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center pt-8 pb-32 lg:pb-40">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center"
+            className="hidden lg:inline-flex items-center gap-4 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full text-white text-xs font-black uppercase tracking-widest mb-10"
           >
-            <div className="inline-flex items-center gap-4 py-2 px-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl text-white font-black text-xs mb-10 shadow-2xl">
-               <div className="flex -space-x-3">
-                  {[1,2,3].map(i => <div key={i} className={`w-8 h-8 rounded-full border-2 border-blue-950 bg-slate-400`} />)}
-               </div>
-               <span className="flex items-center gap-2"><Star size={14} className="text-orange-500" fill="currentColor" /> 50,000+ HAPPY TRAVELERS</span>
-            </div>
+             <div className="flex -space-x-3">
+                {[1,2,3].map(i => <div key={i} className={`w-8 h-8 rounded-full border-2 border-blue-950 bg-slate-400`} />)}
+             </div>
+             <span className="flex items-center gap-2"><Star size={14} className="text-orange-500" fill="currentColor" /> 50,000+ HAPPY TRAVELERS</span>
           </motion.div>
 
           <motion.h1 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10"
           >
             FAST TRAVELS. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-orange-500">

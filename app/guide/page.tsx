@@ -53,15 +53,14 @@ export default function GuidePage() {
       animate={{ opacity: 1 }}
       className="min-h-screen bg-white"
     >
-      <div className="pt-20">
-         <div className="bg-blue-950 py-32 sm:py-48 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/5 opacity-20 bg-[url('/banner.png')] bg-cover bg-center mix-blend-overlay"></div>
-            <div className="max-w-5xl mx-auto relative z-10 px-4">
-               <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-orange-500 font-black tracking-[0.5em] uppercase text-sm mb-6 block">The Ultimate Explorer</motion.span>
-               <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10">CITY TO CITY <br /> <span className="text-orange-500">EXPERIENCE</span></h1>
-               <p className="text-blue-100/60 text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">Forget just getting there. Our professional guides ensure you experience every mile with safety, comfort, and local insight.</p>
-            </div>
+      <div className="bg-blue-950 pt-32 pb-24 text-center relative overflow-hidden w-full">
+         <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-950 to-blue-900 opacity-50 z-0"></div>
+         <div className="max-w-5xl mx-auto relative z-10 px-4">
+            <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-orange-500 font-black tracking-[0.5em] uppercase text-sm mb-6 block">The Ultimate Explorer</motion.span>
+            <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10 uppercase">CITY TO CITY <br /> EXPERIENCE</h1>
+            <p className="text-blue-100/70 text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">Forget just getting there. Our professional guides ensure you experience every mile with safety, comfort, and local insight across South India.</p>
          </div>
+      </div>
 
          <div className="max-w-7xl mx-auto px-4 py-32">
             <div className="grid gap-24">
@@ -141,7 +140,6 @@ export default function GuidePage() {
                </div>
             </div>
          </div>
-      </div>
-    </motion.main>
-  );
+      </motion.main>
+   );
 }

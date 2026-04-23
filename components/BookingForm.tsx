@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from 'react';
 import { MapPin, Calendar, Clock, Car, Phone, ArrowLeftRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function BookingForm() {
   const [loading, setLoading] = useState(false);
@@ -10,18 +10,24 @@ export default function BookingForm() {
 
   const [fromLoc, setFromLoc] = useState("");
   const [toLoc, setToLoc] = useState("");
+  const [showFromSuggestions, setShowFromSuggestions] = useState(false);
+  const [showToSuggestions, setShowToSuggestions] = useState(false);
+
+  const cities = [
+    "Hyderabad", "Vijayawada", "Guntur", "Visakhapatnam (Vizag)", "Vizag", "Machilipatnam", 
+    "Rajahmundry", "Kakinada", "Tirupati", "Warangal", "Nizamabad", "Khammam", 
+    "Karimnagar", "Nellore", "Kurnool", "Anantapur", "Chittoor", "Eluru", "Ongole", 
+    "Bangalore", "Chennai", "Mumbai", "Pune", "Delhi", "Amaravati", "Srisailam", 
+    "Bhimavaram", "Tenali", "Proddatur", "Adoni", "Madanapalle"
+  ];
 
   const pickupRef = useRef<HTMLInputElement>(null);
   const dropRef = useRef<HTMLInputElement>(null);
 
   const handleSwap = () => {
-    if (pickupRef.current && dropRef.current) {
-      const temp = pickupRef.current.value;
-      pickupRef.current.value = dropRef.current.value;
-      dropRef.current.value = temp;
-      setFromLoc(pickupRef.current.value);
-      setToLoc(dropRef.current.value);
-    }
+    const temp = fromLoc;
+    setFromLoc(toLoc);
+    setToLoc(temp);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,22 +77,26 @@ export default function BookingForm() {
       transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.1)] w-full max-w-5xl mx-auto border border-gray-100"
     >
-      {/* MakeMyTrip / Trip.com style Tabs */}
-      <div className="flex overflow-x-auto bg-gray-50 no-scrollbar rounded-t-2xl">
-        {["Outstation One-Way", "Round Trip", "Airport Transfer", "Local Hourly"].map((tab) => (
-          <button 
-            key={tab}
-            type="button"
-            onClick={() => setTripTab(tab)}
-            className={`flex-1 min-w-max px-6 py-4 font-semibold whitespace-nowrap transition-colors flex items-center justify-center gap-2 first:rounded-tl-2xl last:rounded-tr-2xl relative
-              ${tripTab === tab 
-                ? 'bg-white text-blue-950 border-t-2 border-t-orange-500 border-x border-gray-200 border-b-0 shadow-sm z-10 pb-[17px]' 
-                : 'text-gray-500 hover:text-blue-950 border-t-2 border-t-transparent border-x border-transparent border-b border-gray-200 bg-gray-50/80 hover:bg-gray-100'}`}
-          >
-            {tab.includes('Airport') ? <MapPin size={18} /> : <Car size={18} />}
-            {tab}
-          </button>
-        ))}
+      {/* Smooth Horizontal Scrolling Tabs */}
+      <div className="bg-gray-50 rounded-t-2xl border-b border-gray-100 overflow-hidden">
+        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory px-4">
+          {["Outstation One-Way", "Round Trip", "Airport Transfer", "Local Hourly"].map((tab) => (
+            <button 
+              key={tab}
+              type="button"
+              onClick={() => setTripTab(tab)}
+              className={`flex-1 min-w-[200px] sm:min-w-max px-8 py-6 font-black text-xs uppercase tracking-tighter transition-all flex flex-col items-center justify-center gap-2 border-r last:border-r-0 snap-center
+                ${tripTab === tab 
+                  ? 'bg-white text-blue-950 border-t-4 border-t-orange-500 shadow-sm z-10' 
+                  : 'text-slate-400 hover:text-blue-950 bg-gray-50/50 hover:bg-gray-100 border-t-4 border-t-transparent'} last:pr-12`}
+            >
+              <div className={`p-2 rounded-xl transition-colors ${tripTab === tab ? 'bg-orange-100 text-orange-600' : 'bg-slate-100 text-slate-400'}`}>
+                 {tab.includes('Airport') ? <MapPin size={18} /> : <Car size={18} />}
+              </div>
+              <span className="whitespace-nowrap">{tab}</span>
+            </button>
+          ))}
+        </div>
       </div>
       
       {success && (
@@ -103,9 +113,51 @@ export default function BookingForm() {
         {/* Row 1: Locations & Date & Time */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] lg:grid-cols-[1fr_auto_1fr_1fr_1fr] gap-4 mb-6 items-center">
           
-          <div className="border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+          <div className="relative border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
             <span className="text-xs font-bold text-gray-500 group-focus-within:text-blue-600 block mb-1">FROM</span>
-            <input name="pickup" ref={pickupRef} required value={fromLoc} onChange={(e) => setFromLoc(e.target.value)} className="w-full bg-transparent text-xl font-bold text-gray-900 outline-none placeholder-gray-300" placeholder="City or Airport" />
+            <input 
+              name="pickup" 
+              ref={pickupRef} 
+              required 
+              value={fromLoc} 
+              onChange={(e) => {
+                setFromLoc(e.target.value);
+                setShowFromSuggestions(true);
+              }}
+              onFocus={() => setShowFromSuggestions(true)}
+              onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
+              className="w-full bg-transparent text-xl font-bold text-gray-900 outline-none placeholder-gray-300" 
+              placeholder="City or Airport" 
+              autoComplete="off"
+            />
+            
+            <AnimatePresence>
+              {showFromSuggestions && fromLoc.length > 0 && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar"
+                >
+                  {cities.filter(c => c.toLowerCase().includes(fromLoc.toLowerCase())).map((city) => (
+                    <button
+                      key={city}
+                      type="button"
+                      onClick={() => {
+                        setFromLoc(city);
+                        setShowFromSuggestions(false);
+                      }}
+                      className="w-full text-left px-6 py-4 hover:bg-blue-50 transition-colors font-bold text-blue-950 text-sm border-b border-gray-50 last:border-0"
+                    >
+                      <div className="flex items-center gap-3">
+                        <MapPin size={14} className="text-orange-500" />
+                        {city}
+                      </div>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Swap Icon */}
@@ -113,9 +165,51 @@ export default function BookingForm() {
             <ArrowLeftRight size={20} />
           </button>
 
-          <div className="border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+          <div className="relative border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
             <span className="text-xs font-bold text-gray-500 group-focus-within:text-blue-600 block mb-1">TO</span>
-            <input name="drop" ref={dropRef} required value={toLoc} onChange={(e) => setToLoc(e.target.value)} className="w-full bg-transparent text-xl font-bold text-gray-900 outline-none placeholder-gray-300" placeholder="Destination" />
+            <input 
+              name="drop" 
+              ref={dropRef} 
+              required 
+              value={toLoc} 
+              onChange={(e) => {
+                setToLoc(e.target.value);
+                setShowToSuggestions(true);
+              }}
+              onFocus={() => setShowToSuggestions(true)}
+              onBlur={() => setTimeout(() => setShowToSuggestions(false), 200)}
+              className="w-full bg-transparent text-xl font-bold text-gray-900 outline-none placeholder-gray-300" 
+              placeholder="Destination" 
+              autoComplete="off"
+            />
+
+            <AnimatePresence>
+              {showToSuggestions && toLoc.length > 0 && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar"
+                >
+                  {cities.filter(c => c.toLowerCase().includes(toLoc.toLowerCase())).map((city) => (
+                    <button
+                      key={city}
+                      type="button"
+                      onClick={() => {
+                        setToLoc(city);
+                        setShowToSuggestions(false);
+                      }}
+                      className="w-full text-left px-6 py-4 hover:bg-blue-50 transition-colors font-bold text-blue-950 text-sm border-b border-gray-50 last:border-0"
+                    >
+                      <div className="flex items-center gap-3">
+                        <MapPin size={14} className="text-orange-500" />
+                        {city}
+                      </div>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <div className="border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">

@@ -86,7 +86,7 @@ export default function Services() {
         </div>
 
         {/* Extended Why Choose Us / Trust Badges */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-40">
            {[
              { icon: <ShieldCheck className="text-blue-600" size={32} />, label: "Secured Mobility", desc: "SOS & Live Tracking" },
              { icon: <Clock className="text-orange-500" size={32} />, label: "Elite Punctuality", desc: "Drivers reach 15m early" },
@@ -193,6 +193,7 @@ export default function Services() {
               </div>
            </div>
         </div>
+
       </div>
 
       <AnimatePresence>
@@ -207,14 +208,14 @@ export default function Services() {
             >
               <button onClick={() => setViewIndex(null)} className="absolute top-6 right-6 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-2 rounded-xl transition-colors"><X size={24} /></button>
               
-              <div className="lg:w-1/2 bg-slate-50 flex items-center justify-center relative h-[250px] lg:h-auto">
-                 <Image src={activeItem.image} alt={activeItem.title} fill className="object-cover lg:object-contain p-0 lg:p-8" />
+              <div className="md:w-1/2 bg-slate-50 flex items-center justify-center relative h-[250px] md:h-auto">
+                 <Image src={activeItem.image} alt={activeItem.title} fill className="object-contain p-4 lg:p-8" />
               </div>
 
-              <div className="lg:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+              <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
                  <div className="mb-4 lg:mb-6">
-                    <span className="text-orange-500 font-black tracking-widest uppercase text-[10px] block mb-1">Official Service Tier</span>
-                    <h2 className="text-2xl md:text-5xl font-black text-blue-950 mb-3 tracking-tighter leading-none">{activeItem.title}</h2>
+                    <span className="text-orange-500 font-black tracking-widest uppercase text-[10px] block mb-2">Official Service Tier</span>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-blue-950 mb-4 tracking-tighter leading-none">{activeItem.title}</h2>
                     <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed border-l-4 border-orange-500 pl-6">
                       {activeItem.detail}
                     </p>

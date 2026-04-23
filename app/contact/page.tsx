@@ -42,19 +42,18 @@ export default function ContactPage() {
     <motion.main 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-slate-50"
+      className="min-h-screen bg-white"
     >
-      <div className="pt-20">
-         <div className="bg-blue-950 py-32 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-orange-500/10 blur-[150px] rounded-full -top-32 -left-32 animate-pulse"></div>
-            <div className="max-w-4xl mx-auto px-4 relative z-10">
-               <span className="text-orange-500 font-black tracking-[0.3em] uppercase text-xs mb-4 block">Get In Touch</span>
-               <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none mb-8">CONNECT <br /> WITH US.</h1>
-               <p className="text-blue-100/60 text-xl md:text-2xl font-medium max-w-2xl mx-auto">Have a specific travel requirement? Our VIP concierge team is ready to assist you 24/7/365.</p>
-            </div>
+      <div className="bg-blue-950 pt-32 pb-24 text-center relative overflow-hidden w-full">
+         <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-950 to-blue-900 opacity-50 z-0"></div>
+         <div className="max-w-4xl mx-auto px-4 relative z-10">
+            <span className="text-orange-500 font-black tracking-[0.3em] uppercase text-xs mb-4 block">Get In Touch</span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-none mb-8 uppercase">CONNECT <br /> WITH US</h1>
+            <p className="text-blue-100/70 text-xl md:text-2xl font-medium max-w-2xl mx-auto">Have a specific travel requirement? Our VIP concierge team is ready to assist you 24/7/365 across South India.</p>
          </div>
+      </div>
 
-         <div className="max-w-7xl mx-auto px-4 py-24">
+         <div className="max-w-7xl mx-auto px-4 py-24 overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-20">
                
                {/* Contact Info Side */}
@@ -165,7 +164,6 @@ export default function ContactPage() {
                </div>
             </div>
          </div>
-      </div>
-    </motion.main>
-  );
+      </motion.main>
+   );
 }

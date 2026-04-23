@@ -7,37 +7,38 @@ import { Phone, Users, ShieldCheck, Zap, ArrowRight, Star, X, MapPin, CheckCircl
 
 const fleetData = [
   // Hyderabad ⇄ Vijayawada
-  { id: 1, name: "Premium Sedan (Swift Dzire)", price: "₹5,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹12/Km", capacity: "4 Seats", image: "/sedan.png", type: "Executive", bgColor: "bg-blue-50" },
-  { id: 2, name: "Family SUV (Ertiga)", price: "₹6,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹15/Km", capacity: "6 Seats", image: "/suv.png", type: "Family", bgColor: "bg-blue-50" },
-  { id: 3, name: "Luxury SUV (Innova)", price: "₹8,000", route: "Hyderabad ⇄ Vijayawada", perKm: "₹19/Km", capacity: "7 Seats", image: "/innova.png", type: "VIP", bgColor: "bg-blue-50" },
-  { id: 4, name: "Innova Crysta Elite", price: "₹9,000", route: "Hyderabad ⇄ Vijayawada", perKm: "₹21/Km", capacity: "7 Seats", image: "/innova.png", type: "Ultra Luxury", bgColor: "bg-blue-50" },
-  { id: 5, name: "Force Urbania Premium", price: "On Request", route: "Hyderabad ⇄ Vijayawada", perKm: "On Request", capacity: "17 Seats", image: "/img.png", type: "Group", bgColor: "bg-blue-50" },
+  { id: 1, name: "Premium Sedan (Swift Dzire)", price: "₹5,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Executive", bgColor: "bg-blue-50" },
+  { id: 2, name: "Family SUV (Ertiga)", price: "₹6,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/suv.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 3, name: "Luxury SUV (Innova)", price: "₹8,000", route: "Hyderabad ⇄ Vijayawada", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "VIP", bgColor: "bg-blue-50" },
+  { id: 4, name: "Economy Sedan (Etios)", price: "₹4,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/economy.png", type: "Budget", bgColor: "bg-blue-50" },
+  { id: 5, name: "Force Urbania Premium", price: "On Request", route: "Hyderabad ⇄ Vijayawada", perKm: "On Request", capacity: "17 Seats", image: "/cars/urbania.png", type: "Group", bgColor: "bg-blue-50" },
 
   // Vijayawada ⇄ Guntur (New)
-  { id: 6, name: "Premium Sedan", price: "₹1,500", route: "Vijayawada ⇄ Guntur", perKm: "₹12/Km", capacity: "4 Seats", image: "/sedan.png", type: "Inter-City", bgColor: "bg-red-50" },
-  { id: 7, name: "Family SUV", price: "₹2,200", route: "Vijayawada ⇄ Guntur", perKm: "₹15/Km", capacity: "6 Seats", image: "/suv.png", type: "Family", bgColor: "bg-red-50" },
+  { id: 6, name: "Premium Sedan", price: "₹1,500", route: "Vijayawada ⇄ Guntur", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Inter-City", bgColor: "bg-red-50" },
+  { id: 7, name: "Family SUV", price: "₹2,200", route: "Vijayawada ⇄ Guntur", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/suv.png", type: "Family", bgColor: "bg-red-50" },
 
   // Vijayawada ⇄ Machilipatnam (New)
-  { id: 8, name: "Premium Sedan", price: "₹2,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹12/Km", capacity: "4 Seats", image: "/sedan.png", type: "Coastal", bgColor: "bg-cyan-50" },
-  { id: 9, name: "Luxury SUV", price: "₹3,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹19/Km", capacity: "7 Seats", image: "/innova.png", type: "VIP", bgColor: "bg-cyan-50" },
+  { id: 8, name: "Premium Sedan", price: "₹2,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Coastal", bgColor: "bg-cyan-50" },
+  { id: 9, name: "Luxury SUV", price: "₹3,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "VIP", bgColor: "bg-cyan-50" },
 
   // Hyderabad ⇄ Vizag (New City)
-  { id: 10, name: "Luxury Sedan", price: "₹12,000", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4 Seats", image: "/sedan.png", type: "Long Distance", bgColor: "bg-orange-50" },
-  { id: 11, name: "Premium SUV", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹19/Km", capacity: "7 Seats", image: "/innova.png", type: "VIP", bgColor: "bg-orange-50" },
-  { id: 12, name: "Tempo Traveller", price: "On Request", route: "Hyderabad ⇄ Vizag", perKm: "₹24/Km", capacity: "12-17 Seats", image: "/tempo.png", type: "Group", bgColor: "bg-orange-50" },
+  { id: 10, name: "Luxury Sedan", price: "₹12,000", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Long Distance", bgColor: "bg-orange-50" },
+  { id: 11, name: "Premium SUV", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "VIP", bgColor: "bg-orange-50" },
+  { id: 12, name: "Tempo Traveller", price: "On Request", route: "Hyderabad ⇄ Vizag", perKm: "₹24/Km", capacity: "12-17 Seats", image: "/cars/tempo.png", type: "Group", bgColor: "bg-orange-50" },
 
   // Hyderabad ⇄ Rajahmundry & Kakinada
-  { id: 20, name: "Swift Dzire", price: "₹8,500", route: "Hyderabad ⇄ Rajahmundry", perKm: "₹12/Km", capacity: "4 Seats", image: "/sedan.png", type: "Executive", bgColor: "bg-teal-50" },
-  { id: 21, name: "Innova Crysta", price: "₹11,500", route: "Hyderabad ⇄ Kakinada", perKm: "₹21/Km", capacity: "7 Seats", image: "/innova.png", type: "Luxury", bgColor: "bg-teal-50" },
+  { id: 20, name: "Swift Dzire", price: "₹8,500", route: "Hyderabad ⇄ Rajahmundry", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Executive", bgColor: "bg-teal-50" },
+  { id: 21, name: "Innova Crysta", price: "₹11,500", route: "Hyderabad ⇄ Kakinada", perKm: "₹21/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "Luxury", bgColor: "bg-teal-50" },
+  { id: 22, name: "Economy Sedan", price: "₹7,500", route: "Hyderabad ⇄ Rajahmundry", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/economy.png", type: "Budget", bgColor: "bg-teal-50" },
 
   // Hyderabad ⇄ Tirupati (Pilgrimage Special)
-  { id: 30, name: "Pilgrimage SUV", price: "₹13,500", route: "Hyderabad ⇄ Tirupati", perKm: "₹18/Km", capacity: "7 Seats", image: "/suv.png", type: "Spiritual", bgColor: "bg-yellow-50" },
-  { id: 31, name: "Mini Bus (26 Seater)", price: "On Request", route: "Hyderabad ⇄ Tirupati", perKm: "On Request", capacity: "26 Seats", image: "/bus.png", type: "Group", bgColor: "bg-yellow-50" },
+  { id: 30, name: "Pilgrimage SUV", price: "₹13,500", route: "Hyderabad ⇄ Tirupati", perKm: "₹18/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "Spiritual", bgColor: "bg-yellow-50" },
+  { id: 31, name: "Mini Bus (26 Seater)", price: "On Request", route: "Hyderabad ⇄ Tirupati", perKm: "On Request", capacity: "26 Seats", image: "/cars/bus.png", type: "Group", bgColor: "bg-yellow-50" },
 
   // Heavy Vehicles & Buses
-  { id: 301, name: "Force Urbania Gold", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "17 Seats", image: "/img.png", type: "Premium Van", bgColor: "bg-gray-100" },
-  { id: 302, name: "40 Seater Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/bus.png", type: "Heavy Vehicle", bgColor: "bg-gray-100" },
-  { id: 303, name: "Non-AC Economy Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/bus.png", type: "Economy", bgColor: "bg-gray-100" },
+  { id: 301, name: "Force Urbania Gold", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "17 Seats", image: "/cars/urbania.png", type: "Premium Van", bgColor: "bg-gray-100" },
+  { id: 302, name: "40 Seater Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/cars/bus.png", type: "Heavy Vehicle", bgColor: "bg-gray-100" },
+  { id: 303, name: "Non-AC Economy Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/cars/bus.png", type: "Economy", bgColor: "bg-gray-100" },
 ];
 
 const routes = [
@@ -115,12 +116,13 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                 whileHover={{ y: -15 }}
                 className="bg-white rounded-[4rem] overflow-hidden shadow-2xl hover:shadow-orange-500/10 transition-all duration-700 flex flex-col group border border-slate-50 h-full p-2"
               >
-                <div className={`relative h-64 sm:h-72 ${car.bgColor} rounded-[3.5rem] p-8 flex items-center justify-center overscroll-none`}>
-                   <Image src={car.image} alt={car.name} fill className="object-contain p-10 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-700" />
-                   <div className="absolute top-8 left-8 bg-blue-950 text-white text-[12px] font-black px-5 py-2 rounded-2xl uppercase tracking-widest shadow-xl">{car.type}</div>
+                <div className={`relative h-72 sm:h-80 md:h-96 ${car.bgColor} rounded-[3.5rem] p-4 flex items-center justify-center overflow-hidden`}>
+                   <Image src={car.image} alt={car.name} fill className="object-contain p-2 lg:p-6 transform group-hover:scale-125 group-hover:translate-x-4 transition-all duration-1000 ease-out" />
+                   <div className="absolute top-8 left-8 bg-blue-950 text-white text-[12px] font-black px-5 py-2 rounded-2xl uppercase tracking-widest shadow-xl z-20">{car.type}</div>
+                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
-                <div className="p-10 flex flex-col flex-grow">
-                  <h4 className="text-3xl font-black text-blue-950 mb-3 leading-tight tracking-tighter">{car.name}</h4>
+                <div className="p-6 md:p-10 flex flex-col flex-grow">
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-blue-950 mb-3 leading-tight tracking-tighter">{car.name}</h4>
                   <div className="flex items-center gap-6 text-sm font-bold text-slate-400 mb-8 border-b border-slate-100 pb-8">
                     <span className="flex items-center gap-2"><Users size={18} className="text-blue-500" /> {car.capacity}</span>
                     <span className="flex items-center gap-2 font-black text-blue-950 tracking-widest">
@@ -198,7 +200,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               <button onClick={() => setViewIndex(null)} className="absolute top-6 right-6 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-2 rounded-xl transition-colors"><X size={24} /></button>
               
               <div className={`lg:w-1/2 p-10 ${activeItem.bgColor} flex items-center justify-center relative h-[300px] lg:h-auto`}>
-                 <Image src={activeItem.image} alt={activeItem.name} fill className="object-contain p-8 drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]" />
+                 <Image src={activeItem.image} alt={activeItem.name} fill className="object-contain p-4 lg:p-8 drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]" />
               </div>
 
               <div className="lg:w-1/2 p-8 flex flex-col justify-center">
