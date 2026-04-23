@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, ArrowRight, History, Info, Sparkles, Navigation } from 'lucide-react';
+import { MapPin, ArrowRight, History, Info, Sparkles, Navigation, Clock } from 'lucide-react';
 import Image from 'next/image';
 
 const cityData = {
@@ -54,6 +54,16 @@ const cityData = {
          { name: "Kalamkari Hub", desc: "The source of ancient block-printing.", img: "/places/kalamkari_hub.png" },
          { name: "Panduranga Temple", desc: "Magnificent temple with spiritual aura.", img: "/places/panduranga_temple.png" }
       ]
+   },
+   "Amaravati": {
+      history: "The emerging world-class capital city of Andhra Pradesh, built on the banks of the Krishna River with a vision for the future.",
+      glance: "A masterpiece of modern urban planning meeting ancient spiritual roots. Explore the magnificent Assembly buildings and the massive Dhyana Buddha statue.",
+      places: [
+         { name: "Dhyana Buddha", desc: "Colossal 125ft statue of Lord Buddha.", img: "/places/amaravati_stupa.png" },
+         { name: "AP Secretariat", desc: "Modern administrative architecture.", img: "/places/guntur.png" },
+         { name: "Krishna Riverfront", desc: "Beautifully developed river walkways.", img: "/places/bhavani_island.png" },
+         { name: "Ancient Stupa", desc: "2000-year-old Buddhist heritage site.", img: "/places/amaravati_stupa.png" }
+      ]
    }
 };
 
@@ -72,6 +82,9 @@ export default function CityExplorer() {
                   <h2 className="text-5xl md:text-7xl font-black text-blue-950 tracking-tighter leading-tight">
                      Explore <br /> <span className="text-orange-500">The Heartland.</span>
                   </h2>
+                  <div className="flex items-center gap-3 bg-orange-100 text-orange-600 px-6 py-3 rounded-2xl w-fit font-black text-xs uppercase tracking-widest shadow-sm">
+                     <Clock size={16} /> 24/7 Intercity Support Active
+                  </div>
                </div>
 
                <div className="w-full lg:w-[400px]">

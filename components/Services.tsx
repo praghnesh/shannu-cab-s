@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, ArrowRight, X, Clock, ShieldCheck, MapPin, Headphones, Heart, Star, Briefcase, Sparkles, Navigation, CheckCircle } from 'lucide-react';
+import { Phone, ArrowRight, ArrowLeft, X, Clock, ShieldCheck, MapPin, Headphones, Heart, Star, Briefcase, Sparkles, Navigation, CheckCircle } from 'lucide-react';
 
 const services = [
   {
@@ -22,16 +22,16 @@ const services = [
   {
     id: 3,
     title: "Hill Station Getaways",
-    description: "Experience the cool breeze of Ooty and Araku Valley. Perfect weekend escapes with hill-expert drivers.",
+    description: "Experience the cool breeze of Ooty, Coorg, and Araku Valley. Perfect weekend escapes with hill-expert drivers starting at ₹18/Km.",
     image: "/ooty_hills.png",
-    detail: "Navigate winding mountain roads safely with our experienced hill-station drivers. Enjoy panoramic views while we handle the terrain."
+    detail: "Our mountain-specialist drivers ensure a smooth ride through steep inclines and sharp hairpin bends. We offer customized 3-day and 5-day packages for all major South Indian hill stations with 24/7 roadside assistance."
   },
   {
     id: 4,
     title: "Airport Transfers",
-    description: "Extremely punctual 24/7 pickups and drops to all metropolitan airports with real-time flight tracking.",
+    description: "Extremely punctual 24/7 pickups and drops starting at ₹12/Km with real-time flight tracking and zero wait-time fees.",
     image: "/airport.png",
-    detail: "Never miss a flight again. Our drivers track your flight in real-time to ensure they are waiting for you, regardless of delays. VIP luggage assistance included."
+    detail: "We cover Hyderabad (RGIA), Vijayawada (HIA), and Vizag airports. Includes 'Meet & Greet' service where our driver waits with a personalized placard. We guarantee punctuality or your next ride is 50% off."
   },
   {
     id: 5,
@@ -46,12 +46,46 @@ const services = [
     description: "Fixed long-term monthly rentals for executives and staff with dedicated drivers and GPS tracking.",
     image: "/outstation.png",
     detail: "Cost-effective mobility solutions for businesses. Includes detailed trip logs, monthly invoicing, and priority fleet availability for corporate needs."
+  },
+  {
+    id: 7,
+    title: "24/7 VIP Concierge",
+    description: "Round-the-clock dedicated support for all your travel emergencies and custom itinerary planning.",
+    image: "/city.png",
+    detail: "Our VIP desk is active 24 hours a day, 7 days a week. Whether it's a last-minute 3 AM booking or a change in travel plans, our coordinators are just one call away to ensure your journey never stops."
+  },
+  {
+    id: 8,
+    title: "Luxury Wedding Rentals",
+    description: "Make your special day unforgettable with our elite fleet of luxury sedans and premium convertibles.",
+    image: "/luxarycars/image copy 7.png",
+    gallery: [
+      "/luxarycars/image.png", "/luxarycars/image copy.png", "/luxarycars/image copy 2.png",
+      "/luxarycars/image copy 3.png", "/luxarycars/image copy 4.png", "/luxarycars/image copy 5.png",
+      "/luxarycars/image copy 6.png", "/luxarycars/image copy 7.png", "/luxarycars/image copy 8.png",
+      "/luxarycars/image copy 9.png", "/luxarycars/image copy 10.png", "/luxarycars/image copy 11.png",
+      "/luxarycars/image copy 12.png"
+    ],
+    detail: "Our wedding collection features the finest luxury vehicles, perfectly maintained and professionally driven. We provide custom decorations, coordinated fleet arrivals, and red-carpet treatment for the couple and guests."
   }
 ];
 
 export default function Services() {
   const [viewIndex, setViewIndex] = useState<number | null>(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const activeItem = viewIndex !== null ? services[viewIndex] : null;
+
+  const handleNext = () => {
+    if (activeItem?.gallery) {
+      setGalleryIndex((prev) => (prev + 1) % activeItem.gallery!.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (activeItem?.gallery) {
+      setGalleryIndex((prev) => (prev - 1 + activeItem.gallery!.length) % activeItem.gallery!.length);
+    }
+  };
 
   return (
     <section id="services" className="py-32 bg-slate-50 relative overflow-hidden">
@@ -200,16 +234,57 @@ export default function Services() {
         {viewIndex !== null && activeItem && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] overflow-y-auto bg-blue-950/98 backdrop-blur-3xl p-4 sm:p-12 flex items-center justify-center pt-24 pb-12"
+            className="fixed inset-0 z-[2000] overflow-y-auto bg-blue-950/98 backdrop-blur-3xl p-4 sm:p-12 flex items-center justify-center pt-24 pb-12"
           >
             <motion.div 
               initial={{ scale: 0.9, rotate: -1 }} animate={{ scale: 1, rotate:0 }}
-              className="bg-white rounded-[2.5rem] w-full max-w-4xl shadow-2xl relative overflow-hidden flex flex-col md:flex-row border-[8px] border-white/10"
+              className="bg-white rounded-[2.5rem] w-[85%] sm:w-full max-w-4xl shadow-2xl relative overflow-hidden flex flex-col md:flex-row border-[4px] sm:border-[8px] border-white/10"
             >
-              <button onClick={() => setViewIndex(null)} className="absolute top-6 right-6 text-slate-400 hover:text-orange-500 z-50 bg-slate-100 p-2 rounded-xl transition-colors"><X size={24} /></button>
+              <button onClick={() => { setViewIndex(null); setGalleryIndex(0); }} className="absolute top-4 right-4 text-slate-400 hover:text-orange-500 z-50 bg-white/90 backdrop-blur-md p-2 rounded-xl transition-colors shadow-lg border border-slate-100"><X size={20} /></button>
               
-              <div className="md:w-1/2 bg-slate-50 flex items-center justify-center relative h-[250px] md:h-auto">
-                 <Image src={activeItem.image} alt={activeItem.title} fill className="object-contain p-4 lg:p-8" />
+              <div className="md:w-1/2 bg-slate-100 flex items-center justify-center relative h-[200px] md:h-auto overflow-hidden">
+                 <AnimatePresence mode="wait">
+                    <motion.div
+                       key={activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image}
+                       initial={{ opacity: 0, scale: 0.95 }}
+                       animate={{ opacity: 1, scale: 1 }}
+                       exit={{ opacity: 0, scale: 1.05 }}
+                       className="absolute inset-0"
+                    >
+                       <Image 
+                          src={activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image} 
+                          alt={activeItem.title} 
+                          fill 
+                          className="object-contain p-4" 
+                       />
+                    </motion.div>
+                 </AnimatePresence>
+
+                 {activeItem.gallery && (
+                    <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
+                       <button 
+                          onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                          className="bg-white/20 backdrop-blur-md p-3 rounded-2xl text-white hover:bg-white/40 transition-all border border-white/20"
+                       >
+                          <ArrowLeft size={24} />
+                       </button>
+                       <button 
+                          onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                          className="bg-white/20 backdrop-blur-md p-3 rounded-2xl text-white hover:bg-white/40 transition-all border border-white/20"
+                       >
+                          <ArrowRight size={24} />
+                       </button>
+
+                       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                          {activeItem.gallery.map((_, i) => (
+                             <div 
+                                key={i}
+                                className={`h-1.5 rounded-full transition-all ${galleryIndex === i ? 'bg-orange-500 w-8' : 'bg-white/50 w-2'}`}
+                             />
+                          ))}
+                       </div>
+                    </div>
+                 )}
               </div>
 
               <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
