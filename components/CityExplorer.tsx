@@ -42,7 +42,7 @@ const cityData = {
          { name: "RK Beach", desc: "The pulse of the city's coastline.", img: "/places/rk_beach.png" },
          { name: "Araku Valley", desc: "Mist-covered hills and coffee plantations.", img: "/araku_valley.png" },
          { name: "Kursura Submarine", desc: "Unique museum inside a real submarine.", img: "/places/kursura_submarine.png" },
-         { name: "Simhachalam Temple", desc: "11th-century architectural marvel.", img: "/places/simhachalam_temple.png" }
+         { name: "Simhachalam Temple", desc: "11th-century architectural marvel.", img: "/places/simhachalam_v2.png" }
       ]
    },
    "Machilipatnam": {
