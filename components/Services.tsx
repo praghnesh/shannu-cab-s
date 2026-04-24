@@ -51,11 +51,11 @@ const services = [
     id: 8,
     title: "Luxury Wedding Rentals",
     description: "Make your special day unforgettable with our elite fleet of luxury sedans and premium convertibles.",
-    image: "/luxarycars/image copy 7.png",
+    image: "/luxarycars/lux7.png",
     gallery: [
-      "/luxarycars/image copy 5.png",
-      "/luxarycars/image copy 6.png", "/luxarycars/image copy 7.png", "/luxarycars/image copy 8.png",
-      "/luxarycars/image copy 9.png", "/luxarycars/image copy 10.png", "/luxarycars/image copy 11.png"
+      "/cars/BENZ.png", "/cars/BMW.png", "/cars/AUDI.png", "/cars/FERRARI.png",
+      "/luxarycars/lux5.png", "/luxarycars/lux6.png", "/luxarycars/lux7.png", 
+      "/luxarycars/lux8.png", "/luxarycars/lux9.png", "/luxarycars/lux10.png", "/luxarycars/lux11.png"
     ],
     detail: "Our wedding collection features the finest luxury vehicles, perfectly maintained and professionally driven. We provide custom decorations, coordinated fleet arrivals, and red-carpet treatment for the couple and guests."
   }
@@ -173,7 +173,7 @@ export default function Services() {
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      onClick={() => setViewIndex(idx)}
-                     className="bg-slate-900 text-white font-black px-10 py-5 rounded-3xl hover:bg-blue-950 transition-all flex items-center justify-center gap-3 group/btn text-sm tracking-widest shadow-xl"
+                     className="bg-blue-600 text-white font-black px-10 py-5 rounded-3xl hover:bg-blue-950 transition-all flex items-center justify-center gap-3 group/btn text-sm tracking-widest shadow-xl"
                    >
                      DETAILS <Navigation size={18} className="group-hover/btn:translate-x-1" />
                    </motion.button>
@@ -259,13 +259,13 @@ export default function Services() {
                     <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
                        <button 
                           onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                          className="bg-white/20 backdrop-blur-md p-3 rounded-2xl text-white hover:bg-white/40 transition-all border border-white/20"
+                          className="bg-blue-600 p-3 rounded-2xl text-white hover:bg-blue-700 transition-all shadow-lg border border-blue-500/50"
                        >
                           <ArrowLeft size={24} />
                        </button>
                        <button 
                           onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                          className="bg-white/20 backdrop-blur-md p-3 rounded-2xl text-white hover:bg-white/40 transition-all border border-white/20"
+                          className="bg-blue-600 p-3 rounded-2xl text-white hover:bg-blue-700 transition-all shadow-lg border border-blue-500/50"
                        >
                           <ArrowRight size={24} />
                        </button>

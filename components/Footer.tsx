@@ -24,32 +24,34 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Popular Routes</h3>
-            <ul className="grid grid-cols-1 gap-2 text-sm">
-              <li className="hover:text-white transition">Hyderabad ⇄ Vijayawada Cab</li>
-              <li className="hover:text-white transition">Vijayawada ⇄ Hyderabad Taxi</li>
-              <li className="hover:text-white transition">Hyderabad ⇄ Guntur Cabs</li>
-              <li className="hover:text-white transition">Hyderabad ⇄ Bengaluru Cabs</li>
-              <li className="hover:text-white transition">Hyderabad ⇄ Tirupati Taxi</li>
-              <li className="hover:text-white transition">Vijayawada ⇄ Rajahmundry Cab</li>
-              <li className="hover:text-white transition">Vijayawada ⇄ Chennai Cabs</li>
-              <li className="hover:text-white transition">Hyderabad ⇄ Srisailam Cabs</li>
-              <li className="hover:text-white transition">Guntur ⇄ Hyderabad Taxi</li>
+            <h3 className="text-white text-lg font-black uppercase tracking-widest mb-6">Popular Routes</h3>
+            <ul className="grid grid-cols-1 gap-4 text-xl font-black">
+              {[
+                "Hyderabad ⇄ Vijayawada Cab", "Vijayawada ⇄ Hyderabad Taxi", "Hyderabad ⇄ Guntur Cabs",
+                "Hyderabad ⇄ Bengaluru Cabs", "Hyderabad ⇄ Tirupati Taxi", "Vijayawada ⇄ Rajahmundry Cab",
+                "Vijayawada ⇄ Chennai Cabs", "Hyderabad ⇄ Srisailam Cabs", "Guntur ⇄ Hyderabad Taxi"
+              ].map(route => (
+                <li key={route} className="text-white hover:text-orange-500 transition cursor-pointer flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
+                  {route}
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Our Services</h3>
-            <ul className="grid grid-cols-1 gap-2 text-sm">
-              <li className="hover:text-white transition">Taxi service Vijayawada</li>
-              <li className="hover:text-white transition">Car travels Vijayawada</li>
-              <li className="hover:text-white transition">Hyderabad taxi service</li>
-              <li className="hover:text-white transition">Guntur car travels</li>
-              <li className="hover:text-white transition">Tempo traveller Vijayawada</li>
-              <li className="hover:text-white transition">Mini bus Vijayawada</li>
-              <li className="hover:text-white transition">Taxi service near me</li>
-              <li className="hover:text-white transition">Car travels near me</li>
-              <li className="hover:text-white transition">Best car travels Vijayawada</li>
+            <h3 className="text-white text-lg font-black uppercase tracking-widest mb-6">Our Services</h3>
+            <ul className="grid grid-cols-1 gap-4 text-xl font-black">
+              {[
+                "Taxi service Vijayawada", "Car travels Vijayawada", "Hyderabad taxi service",
+                "Guntur car travels", "Tempo traveller Vijayawada", "Mini bus Vijayawada",
+                "Taxi service near me", "Car travels near me", "Best car travels Vijayawada"
+              ].map(service => (
+                <li key={service} className="text-white hover:text-orange-500 transition cursor-pointer flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
+                  {service}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -75,7 +77,7 @@ export default function Footer() {
         {/* SEO Keywords Section */}
         <div className="border-t border-slate-800 py-12 mb-8">
           <h4 className="text-white text-sm font-black uppercase tracking-[0.3em] mb-8 opacity-50 text-center">Comprehensive Service Network & Popular Searches</h4>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] text-slate-500 font-medium">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-slate-300 font-bold">
             {[
               "Hyderabad to vijayawada", "Vijayawada to Hyderabad cab", "Vijayawada to Hyderabad Cabs", "Vijayawada to Hyderabad taxi", 
               "Hyderabad to Vijayawada cab", "Hyderabad to Vijayawada Cabs", "Hyderabad to Vijayawada taxi", "Guntur to Hyderabad taxi", 
@@ -98,7 +100,7 @@ export default function Footer() {
               "Car travels machilipatnam", "Urbaniya tempo travellels"
             ].map((keyword, idx) => (
               <span key={idx} className="hover:text-orange-500 transition cursor-default flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-slate-800"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></span>
                 {keyword}
               </span>
             ))}
