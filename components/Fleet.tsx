@@ -298,18 +298,18 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
           >
             <button 
               onClick={() => setViewIndex(null)} 
-              className="fixed top-6 right-6 sm:top-12 sm:right-12 z-[1000] bg-orange-500 text-white p-5 rounded-full shadow-3xl hover:bg-white hover:text-orange-500 transition-all active:scale-90 border-4 border-white/20"
+              className="fixed top-24 right-4 sm:top-12 sm:right-12 z-[1000] bg-orange-500 text-white p-3 sm:p-5 rounded-full shadow-3xl hover:bg-white hover:text-orange-500 transition-all active:scale-90 border-4 border-white/20"
             >
-              <X size={36} strokeWidth={4} />
+              <X size={24} strokeWidth={4} className="sm:w-9 sm:h-9" />
             </button>
 
             <motion.div 
               initial={{ scale: 0.9, y: 100 }}
               animate={{ scale: 1, y: 0 }}
-              className="bg-white rounded-[1.5rem] sm:rounded-[2rem] w-[95%] sm:w-[92%] md:w-[85%] max-w-4xl shadow-2xl relative flex flex-col lg:flex-row border-[4px] sm:border-[6px] border-white/20"
+              className="bg-white rounded-[1.5rem] sm:rounded-[2rem] w-[95%] sm:w-[92%] md:w-[85%] max-w-4xl shadow-2xl relative flex flex-col lg:flex-row border-[2px] sm:border-[6px] border-white/20"
             >
               
-              <div className={`${showInteriorModal ? 'lg:w-full' : 'lg:w-1/2'} p-3 sm:p-6 ${activeItem.bgColor} flex flex-col items-center justify-center relative h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden transition-all duration-500`}>
+              <div className={`${showInteriorModal ? 'lg:w-full' : 'lg:w-1/2'} p-1 sm:p-6 ${activeItem.bgColor} flex flex-col items-center justify-center relative h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden transition-all duration-500`}>
                  <AnimatePresence mode="wait">
                     <motion.div 
                        key={galleryIndex}
@@ -328,14 +328,14 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                        )}
                        
                        {showInteriorModal && (
-                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-10">
+                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex items-end p-6 sm:p-10">
                             <motion.div 
                               initial={{ y: 20, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
-                              className="text-white space-y-2"
+                              className="text-white space-y-1 sm:space-y-2 mb-4 sm:mb-0"
                             >
-                               <span className="text-orange-500 font-black text-xs uppercase tracking-[0.3em]">Premium Feature</span>
-                               <h3 className="text-lg sm:text-3xl font-black tracking-tighter">
+                               <span className="text-orange-500 font-black text-[8px] sm:text-xs uppercase tracking-[0.3em]">Premium Feature</span>
+                               <h3 className="text-base sm:text-3xl font-black tracking-tighter">
                                   {galleryIndex === 0 && "Executive Cabin Layout"}
                                   {galleryIndex === 1 && "Luxury Seating & Space"}
                                   {galleryIndex === 2 && "Premium Entertainment"}
@@ -343,7 +343,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                                   {galleryIndex === 4 && "VIP Leather Interior"}
                                   {galleryIndex === 5 && "Smart Storage Solutions"}
                                </h3>
-                               <p className="text-blue-100/70 font-medium text-[10px] sm:text-base leading-tight">
+                               <p className="text-blue-100/70 font-medium text-[8px] sm:text-base leading-tight max-w-[90%] sm:max-w-none">
                                   {galleryIndex === 0 && "Ergonomic layout with premium fabric seats and individual armrests. Perfect for long-distance group travel with maximum comfort."}
                                   {galleryIndex === 1 && "Spacious cabin design with ample legroom and high-quality upholstery. Designed to provide a first-class experience for every passenger."}
                                   {galleryIndex === 2 && "State-of-the-art entertainment system with LED ceiling lighting and wide-screen TV. Enjoy movies and music on the go."}
@@ -365,22 +365,22 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                              <button 
                                 key={i} 
                                 onClick={() => setGalleryIndex(i)}
-                                className={`h-1.5 rounded-full transition-all ${galleryIndex === i ? 'bg-orange-500 w-12' : 'bg-white/30 w-4 hover:bg-white/50'}`}
+                                className={`h-1.5 rounded-full transition-all ${galleryIndex === i ? 'bg-orange-500 w-8 sm:w-12' : 'bg-white/30 w-3 sm:w-4 hover:bg-white/50'}`}
                              />
                           ))}
                        </div>
                        <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-10 flex gap-2 sm:gap-3 z-[300]">
                           <button 
                              onClick={() => setGalleryIndex(prev => (prev - 1 + (showInteriorModal ? activeItem.gallery!.length - 1 : activeItem.gallery!.length)) % (showInteriorModal ? activeItem.gallery!.length - 1 : activeItem.gallery!.length))}
-                             className="bg-blue-600 hover:bg-blue-700 p-4 rounded-2xl text-white transition-all shadow-lg border border-blue-500/50"
+                             className="bg-blue-600 hover:bg-blue-700 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl text-white transition-all shadow-lg border border-blue-500/50"
                           >
-                             <ArrowRight size={20} className="rotate-180" />
+                             <ArrowRight size={16} className="rotate-180 sm:w-5 sm:h-5" />
                           </button>
                           <button 
                              onClick={() => setGalleryIndex(prev => (prev + 1) % (showInteriorModal ? activeItem.gallery!.length - 1 : activeItem.gallery!.length))}
-                             className="bg-blue-600 hover:bg-blue-700 p-4 rounded-2xl text-white transition-all shadow-lg border border-blue-500/50"
+                             className="bg-blue-600 hover:bg-blue-700 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl text-white transition-all shadow-lg border border-blue-500/50"
                           >
-                             <ArrowRight size={20} />
+                             <ArrowRight size={16} className="sm:w-5 sm:h-5" />
                           </button>
                        </div>
                     </>
