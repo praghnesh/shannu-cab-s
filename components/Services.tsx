@@ -34,13 +34,6 @@ const services = [
     detail: "We cover Hyderabad (RGIA), Vijayawada (HIA), and Vizag airports. Includes 'Meet & Greet' service where our driver waits with a personalized placard. We guarantee punctuality or your next ride is 50% off."
   },
   {
-    id: 5,
-    title: "Wedding & Events",
-    description: "Premium decorated luxury cars for weddings and large events to make your special day grand.",
-    image: "/img.png",
-    detail: "Elegant transportation for couples and guests. We provide coordinated arrivals, professionally dressed chauffeurs, and customized car decorations."
-  },
-  {
     id: 6,
     title: "Monthly Corporate",
     description: "Fixed long-term monthly rentals for executives and staff with dedicated drivers and GPS tracking.",
@@ -60,11 +53,9 @@ const services = [
     description: "Make your special day unforgettable with our elite fleet of luxury sedans and premium convertibles.",
     image: "/luxarycars/image copy 7.png",
     gallery: [
-      "/luxarycars/image.png", "/luxarycars/image copy.png", "/luxarycars/image copy 2.png",
-      "/luxarycars/image copy 3.png", "/luxarycars/image copy 4.png", "/luxarycars/image copy 5.png",
+      "/luxarycars/image copy 5.png",
       "/luxarycars/image copy 6.png", "/luxarycars/image copy 7.png", "/luxarycars/image copy 8.png",
-      "/luxarycars/image copy 9.png", "/luxarycars/image copy 10.png", "/luxarycars/image copy 11.png",
-      "/luxarycars/image copy 12.png"
+      "/luxarycars/image copy 9.png", "/luxarycars/image copy 10.png", "/luxarycars/image copy 11.png"
     ],
     detail: "Our wedding collection features the finest luxury vehicles, perfectly maintained and professionally driven. We provide custom decorations, coordinated fleet arrivals, and red-carpet treatment for the couple and guests."
   }
@@ -159,12 +150,14 @@ export default function Services() {
                 className="relative h-72 overflow-hidden bg-slate-950 cursor-pointer"
                 onClick={() => setViewIndex(idx)}
               >
-                <Image 
-                  src={service.image} 
-                  alt={service.title} 
-                  fill
-                  className="object-cover group-hover:scale-110 transition-all duration-1000 group-hover:rotate-1" 
-                />
+                {service.image && (
+                  <Image 
+                    src={service.image} 
+                    alt={service.title} 
+                    fill
+                    className="object-cover group-hover:scale-110 transition-all duration-1000 group-hover:rotate-1" 
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-transparent to-transparent"></div>
                 <div className="absolute bottom-8 left-8 text-white">
                    <span className="text-[10px] font-black tracking-widest uppercase bg-orange-500 px-3 py-1 rounded-full mb-2 inline-block">Best Seller</span>
@@ -251,12 +244,14 @@ export default function Services() {
                        exit={{ opacity: 0, scale: 1.05 }}
                        className="absolute inset-0"
                     >
-                       <Image 
-                          src={activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image} 
-                          alt={activeItem.title} 
-                          fill 
-                          className="object-contain p-4" 
-                       />
+                       {(activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image) && (
+                          <Image 
+                             src={activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image} 
+                             alt={activeItem.title} 
+                             fill 
+                             className="object-contain p-4" 
+                          />
+                       )}
                     </motion.div>
                  </AnimatePresence>
 

@@ -120,26 +120,100 @@ export default function GuidePage() {
             </div>
          </div>
 
-         {/* General Travel Security Section */}
-         <div className="bg-slate-50 py-32 border-y border-slate-100">
-            <div className="max-w-7xl mx-auto px-4 text-center">
-               <h3 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter mb-16">TRAVELING WITH CONFIDENCE</h3>
-               <div className="grid md:grid-cols-4 gap-8">
-                  {[
-                    { icon: <Shield />, label: "Safety Protocols", desc: "Rigorous driver vetting" },
-                    { icon: <Navigation />, label: "Live Hub", desc: "Real-time dispatch team" },
-                    { icon: <Fuel />, label: "Vehicle Check", desc: "Before every long trip" },
-                    { icon: <Shield />, label: "SOS Link", desc: "In-app safety triggers" },
-                  ].map((f, i) => (
-                    <div key={i} className="flex flex-col items-center bg-white p-10 rounded-[3rem] shadow-xl border border-slate-200/50">
-                       <div className="text-orange-500 mb-4 scale-150">{f.icon}</div>
-                       <p className="font-black text-blue-950 mb-2 uppercase tracking-tighter">{f.label}</p>
-                       <p className="text-slate-400 text-xs font-bold">{f.desc}</p>
-                    </div>
-                  ))}
-               </div>
-            </div>
-         </div>
-      </motion.main>
-   );
+          {/* General Travel Security Section */}
+          <div className="bg-slate-50 py-32 border-y border-slate-100">
+             <div className="max-w-7xl mx-auto px-4 text-center">
+                <h3 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter mb-16 uppercase">Traveling with Confidence</h3>
+                <div className="grid md:grid-cols-4 gap-8 mb-24">
+                   {[
+                     { icon: <Shield />, label: "Safety Protocols", desc: "Rigorous driver vetting" },
+                     { icon: <Navigation />, label: "Live Hub", desc: "Real-time dispatch team" },
+                     { icon: <Fuel />, label: "Vehicle Check", desc: "Before every long trip" },
+                     { icon: <Shield />, label: "SOS Link", desc: "In-app safety triggers" },
+                   ].map((f, i) => (
+                     <div key={i} className="flex flex-col items-center bg-white p-10 rounded-[3rem] shadow-xl border border-slate-200/50">
+                        <div className="text-orange-500 mb-4 scale-150">{f.icon}</div>
+                        <p className="font-black text-blue-950 mb-2 uppercase tracking-tighter">{f.label}</p>
+                        <p className="text-slate-400 text-xs font-bold">{f.desc}</p>
+                     </div>
+                   ))}
+                </div>
+
+                {/* Expansive Network Section */}
+                <div className="bg-blue-950 rounded-[4rem] p-16 md:p-24 text-left relative overflow-hidden">
+                   <div className="absolute top-0 right-0 w-96 h-96 bg-blue-900 rounded-full -mr-48 -mt-48 opacity-50"></div>
+                   <div className="relative z-10">
+                      <span className="text-orange-500 font-black tracking-widest uppercase text-sm mb-6 block">Our Expansive Network</span>
+                      <h3 className="text-4xl md:text-7xl font-black text-white tracking-tighter mb-12 uppercase leading-none">Covering Every <br />Major Destination</h3>
+                      
+                      <div className="grid md:grid-cols-3 gap-12">
+                         <div>
+                            <h4 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
+                               <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                               MAJOR HUBS
+                            </h4>
+                            <div className="flex flex-wrap gap-3">
+                               {["Hyderabad", "Vijayawada", "Guntur", "Bengaluru", "Chennai", "Tirupati", "Vizag", "Rajahmundry"].map(city => (
+                                  <span key={city} className="bg-white/10 text-white px-4 py-2 rounded-full text-sm font-bold border border-white/10">{city}</span>
+                               ))}
+                            </div>
+                         </div>
+                         
+                         <div className="md:col-span-2">
+                            <h4 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
+                               <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                               SERVICEABLE LOCATIONS
+                            </h4>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                               {[
+                                 "Ongole", "Bhimavaram", "Eluru", "Tadepalligudem", "Tanuku", "Srisailam", 
+                                 "Tenali", "Bapatla", "Machilipatnam", "Gudivada", "Suryapet", "Nandigama",
+                                 "Kurnool", "Nandyal", "Tuni", "Mangalagiri", "Amravati"
+                               ].map(city => (
+                                  <span key={city} className="text-blue-200 text-sm font-medium hover:text-orange-400 transition cursor-default">
+                                     • {city}
+                                  </span>
+                               ))}
+                            </div>
+                         </div>
+                      </div>
+
+                {/* Comprehensive Directory Section */}
+                <div className="mt-24 pt-16 border-t border-white/10">
+                   <h4 className="text-white text-sm font-black uppercase tracking-[0.4em] mb-12 opacity-50 text-center">Comprehensive Route & Service Directory</h4>
+                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4 text-xs">
+                      {[
+                        "Hyderabad to vijayawada", "Vijayawada to Hyderabad cab", "Vijayawada to Hyderabad Cabs", "Vijayawada to Hyderabad taxi", 
+                        "Hyderabad to Vijayawada cab", "Hyderabad to Vijayawada Cabs", "Hyderabad to Vijayawada taxi", "Guntur to Hyderabad taxi", 
+                        "Guntur to Hyderabad Cabs", "Guntur to Hyderabad cab", "Hyderabad to Guntur cab", "Hyderabad to Guntur taxi", 
+                        "Hyderabad to Guntur Cabs", "Hyderabad to Bengaluru Cabs", "Hyderaba to Bengaluru taxi", "Hyderabad to Tirupati Cabs", 
+                        "Hyderaba to Chennai cabs", "Hyderabad to Bengaluru taxi", "Vijayawada to Ongole taxi", "Vijayawada to Ongole cab", 
+                        "Vijayawada to Rajahmundry cab", "Vijayawada to Rajahmundry Cabs", "Vijayawada to Tirupati cab", "Vijayawada to Tirupati Cabs", 
+                        "Vijayawada to Tirupati taxi", "Vijayawada to Chennai cab", "Vijayawada to Chennai taxi", "Vijayawada to Bhimavaram Cabs", 
+                        "Vijayawada to Eluru Cabs", "Vijayawada to Tadepalligudem Cabs", "Vijayawada to Tanuku Cabs", "Vijayawada to Srisailam cabs", 
+                        "Ongole to Vijayawada Cabs", "Tirupati to Vijayawada Cabs", "Chennai to Hyderabad taxi", "Chennai to Hyderabad cab", 
+                        "Hyderabad to Rajahmundry cab", "Hyderabad to Rajahmundry taxi", "Hyderabad to Eluru cab", "Hyderabad to Eluru taxi", 
+                        "Hyderabad to Tenali cab", "Hyderabad to Tenali taxi", "Hyderabad to Bapatla cab", "Hyderabad to Bapatla taxi", 
+                        "Hyderabad to Ongole taxi", "Hyderabad to Ongole Cab", "Hyderabad to Tirupati taxi", "Hyderaba to Tanuku cabs", 
+                        "Hyderaba to Tadepalligudem Cabs", "Hyderaba to machilipatnam cabs", "Hyderaba to gudivada cabs", "Hyderaba to srisailam cabs", 
+                        "Taxi service Vijayawada", "Car travels Vijayawada", "Taxi service near me", "Car travels near me", "Vijayawada taxi service", 
+                        "Vijayawada car travels", "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Mini bus Vijayawada", 
+                        "Tempo traveller hire Vijayawada", "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderaba taxi service", 
+                        "Hyderaba car travels", "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", 
+                        "Guntur taxi service", "Guntur car travels", "Car travels tenali", "Taxi service tenali", "Taxi service machilipatnam", 
+                        "Car travels machilipatnam", "Urbaniya tempo travellels"
+                      ].map((item, i) => (
+                        <div key={i} className="text-blue-300/60 hover:text-orange-400 transition cursor-default flex items-center gap-2 border-b border-white/5 pb-2">
+                           <div className="w-1 h-1 rounded-full bg-orange-500/50"></div>
+                           {item}
+                        </div>
+                      ))}
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</motion.main>
+  );
 }

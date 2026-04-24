@@ -6,48 +6,89 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Users, ShieldCheck, Zap, ArrowRight, Star, X, MapPin, CheckCircle, Sparkles } from 'lucide-react';
 
 const fleetData = [
-  // Hyderabad ⇄ Vijayawada
-  { id: 1, name: "Premium Sedan (Swift Dzire)", price: "₹5,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", gallery: ["/cars/sedan.png", "/cars/sedan_interior_1.png"], type: "Executive", bgColor: "bg-blue-50" },
-  { id: 2, name: "Family SUV (Ertiga)", price: "₹6,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/suv.png", gallery: ["/cars/suv.png", "/cars/suv_interior_1.png"], type: "Family", bgColor: "bg-blue-50" },
-  { id: 3, name: "Luxury SUV (Innova)", price: "₹8,000", route: "Hyderabad ⇄ Vijayawada", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/suv.png", gallery: ["/cars/suv.png", "/cars/suv_interior_1.png"], type: "VIP", bgColor: "bg-blue-50" },
-  { id: 4, name: "Economy Sedan (Etios)", price: "₹4,500", route: "Hyderabad ⇄ Vijayawada", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/economy.png", gallery: ["/cars/economy.png", "/cars/sedan_interior_1.png"], type: "Budget", bgColor: "bg-blue-50" },
-  { id: 5, name: "Force Urbania Premium", price: "On Request", route: "Hyderabad ⇄ Vijayawada", perKm: "On Request", capacity: "12 Seats", image: "/cars/urbania.png", gallery: ["/cars/urbania.png", "/cars/urbania_interior_5.png", "/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/suv_interior_1.png", "/cars/sedan_interior_1.png"], type: "Group", bgColor: "bg-blue-50" },
+  // Vijayawada ⇄ Hyderabad (Etios Base: ₹5000)
+  { id: 101, name: "Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
+  { id: 102, name: "Swift Dzire", price: "₹5,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
+  { id: 103, name: "Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 104, name: "Innova", price: "₹9,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-blue-50" },
 
-  // Vijayawada ⇄ Guntur (New)
-  { id: 6, name: "Premium Sedan", price: "₹1,500", route: "Vijayawada ⇄ Guntur", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Inter-City", bgColor: "bg-red-50" },
-  { id: 7, name: "Family SUV", price: "₹2,200", route: "Vijayawada ⇄ Guntur", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/suv.png", type: "Family", bgColor: "bg-red-50" },
+  // Vijayawada ⇄ Hyderabad Airport (Etios Base: ₹5000)
+  { id: 111, name: "Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
+  { id: 112, name: "Swift Dzire", price: "₹5,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
+  { id: 113, name: "Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 114, name: "Innova", price: "₹9,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-blue-50" },
 
-  // Vijayawada ⇄ Machilipatnam (New)
-  { id: 8, name: "Premium Sedan", price: "₹2,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Coastal", bgColor: "bg-cyan-50" },
-  { id: 9, name: "Luxury SUV", price: "₹3,500", route: "Vijayawada ⇄ Machilipatnam", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "VIP", bgColor: "bg-cyan-50" },
+  // Guntur ⇄ Hyderabad (Etios Base: ₹5500)
+  { id: 121, name: "Etios", price: "₹5,500", route: "Guntur ⇄ Hyderabad", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-red-50" },
+  { id: 122, name: "Swift Dzire", price: "₹6,000", route: "Guntur ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
+  { id: 123, name: "Ertiga", price: "₹8,000", route: "Guntur ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-red-50" },
+  { id: 124, name: "Innova", price: "₹10,000", route: "Guntur ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-red-50" },
 
-  // Hyderabad ⇄ Vizag (New City)
-  { id: 10, name: "Luxury Sedan", price: "₹12,000", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Long Distance", bgColor: "bg-orange-50" },
-  { id: 11, name: "Premium SUV", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "VIP", bgColor: "bg-orange-50" },
-  { id: 12, name: "Tempo Traveller", price: "On Request", route: "Hyderabad ⇄ Vizag", perKm: "₹24/Km", capacity: "12 Seats", image: "/cars/tempo.png", gallery: ["/cars/tempo.png", "/cars/urbania_interior_5.png", "/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/suv_interior_1.png", "/cars/sedan_interior_1.png"], type: "Group", bgColor: "bg-orange-50" },
+  // Hyderabad ⇄ Guntur (Etios Base: ₹5500)
+  { id: 131, name: "Etios", price: "₹5,500", route: "Hyderabad ⇄ Guntur", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-red-50" },
+  { id: 132, name: "Swift Dzire", price: "₹6,000", route: "Hyderabad ⇄ Guntur", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
+  { id: 133, name: "Ertiga", price: "₹8,000", route: "Hyderabad ⇄ Guntur", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-red-50" },
+  { id: 134, name: "Innova", price: "₹10,000", route: "Hyderabad ⇄ Guntur", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-red-50" },
 
-  // Hyderabad ⇄ Rajahmundry & Kakinada
-  { id: 20, name: "Swift Dzire", price: "₹8,500", route: "Hyderabad ⇄ Rajahmundry", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/sedan.png", type: "Executive", bgColor: "bg-teal-50" },
-  { id: 21, name: "Innova Crysta", price: "₹11,500", route: "Hyderabad ⇄ Kakinada", perKm: "₹21/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "Luxury", bgColor: "bg-teal-50" },
-  { id: 22, name: "Economy Sedan", price: "₹7,500", route: "Hyderabad ⇄ Rajahmundry", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/economy.png", type: "Budget", bgColor: "bg-teal-50" },
+  // Hyderabad ⇄ Tenali (Etios Base: ₹6000)
+  { id: 141, name: "Etios", price: "₹6,000", route: "Hyderabad ⇄ Tenali", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-teal-50" },
+  { id: 142, name: "Swift Dzire", price: "₹6,500", route: "Hyderabad ⇄ Tenali", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-teal-50" },
+  { id: 143, name: "Ertiga", price: "₹8,500", route: "Hyderabad ⇄ Tenali", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-teal-50" },
+  { id: 144, name: "Innova", price: "₹11,000", route: "Hyderabad ⇄ Tenali", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-teal-50" },
 
-  // Hyderabad ⇄ Tirupati (Pilgrimage Special)
-  { id: 30, name: "Pilgrimage SUV", price: "₹13,500", route: "Hyderabad ⇄ Tirupati", perKm: "₹18/Km", capacity: "7 Seats", image: "/cars/suv.png", type: "Spiritual", bgColor: "bg-yellow-50" },
-  { id: 31, name: "Mini Bus (26 Seater)", price: "On Request", route: "Hyderabad ⇄ Tirupati", perKm: "On Request", capacity: "26 Seats", image: "/cars/bus.png", type: "Group", bgColor: "bg-yellow-50" },
+  // Hyderabad ⇄ Tirupati (Etios Base: ₹12000)
+  { id: 151, name: "Etios", price: "₹12,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-yellow-50" },
+  { id: 152, name: "Swift Dzire", price: "₹13,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-yellow-50" },
+  { id: 153, name: "Ertiga", price: "₹16,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-yellow-50" },
+  { id: 154, name: "Innova", price: "₹19,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-yellow-50" },
+
+  // Hyderabad ⇄ Bangalore (Etios Base: ₹12000)
+  { id: 161, name: "Etios", price: "₹12,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-orange-50" },
+  { id: 162, name: "Swift Dzire", price: "₹13,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-orange-50" },
+  { id: 163, name: "Ertiga", price: "₹16,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-orange-50" },
+  { id: 164, name: "Innova", price: "₹19,500", route: "Hyderabad ⇄ Bangalore", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-orange-50" },
+
+  // Bangalore ⇄ Hyderabad (Etios Base: ₹12000)
+  { id: 171, name: "Etios", price: "₹12,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-orange-50" },
+  { id: 172, name: "Swift Dzire", price: "₹13,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-orange-50" },
+  { id: 173, name: "Ertiga", price: "₹16,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-orange-50" },
+  { id: 174, name: "Innova", price: "₹19,500", route: "Bangalore ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-orange-50" },
+
+  // Hyderabad ⇄ Srisailam (Etios Base: ₹7000)
+  { id: 181, name: "Etios", price: "₹7,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-green-50" },
+  { id: 182, name: "Swift Dzire", price: "₹7,500", route: "Hyderabad ⇄ Srisailam", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-green-50" },
+  { id: 183, name: "Ertiga", price: "₹9,500", route: "Hyderabad ⇄ Srisailam", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-green-50" },
+  { id: 184, name: "Innova", price: "₹12,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-green-50" },
+
+  // Hyderabad ⇄ Vizag (Etios Base: ₹15000)
+  { id: 191, name: "Etios", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-cyan-50" },
+  { id: 192, name: "Swift Dzire", price: "₹16,500", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-cyan-50" },
+  { id: 193, name: "Ertiga", price: "₹20,000", route: "Hyderabad ⇄ Vizag", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-cyan-50" },
+  { id: 194, name: "Innova", price: "₹24,000", route: "Hyderabad ⇄ Vizag", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-cyan-50" },
+
+  // Hyderabad ⇄ Bhimavaram (Etios Base: ₹8000)
+  { id: 201, name: "Etios", price: "₹8,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹11/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-indigo-50" },
+  { id: 202, name: "Swift Dzire", price: "₹8,500", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-indigo-50" },
+  { id: 203, name: "Ertiga", price: "₹11,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹15/Km", capacity: "6 Seats", image: "/cars/EARTIGA.png", type: "Family", bgColor: "bg-indigo-50" },
+  { id: 204, name: "Innova", price: "₹13,500", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹19/Km", capacity: "7 Seats", image: "/cars/INNOVA.png", type: "VIP", bgColor: "bg-indigo-50" },
 
   // Heavy Vehicles & Buses
-  { id: 301, name: "Force Urbania Gold", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "12 Seats", image: "/cars/urbania.png", gallery: ["/cars/urbania.png", "/cars/urbania_interior_5.png", "/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/suv_interior_1.png", "/cars/sedan_interior_1.png"], type: "Premium Van", bgColor: "bg-gray-100" },
-  { id: 302, name: "40 Seater Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/cars/bus.png", gallery: ["/cars/bus.png", "/bus/bus1.png", "/bus/bus2.png", "/bus/bus3.png", "/bus/bus4.png"], type: "Heavy Vehicle", bgColor: "bg-gray-100" },
-  { id: 303, name: "Non-AC Economy Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/cars/bus.png", gallery: ["/cars/bus.png", "/cars/bus_interior_1.png"], type: "Economy", bgColor: "bg-gray-100" },
+  { id: 302, name: "Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/cars/bus.png", gallery: ["/image copy 2.png", "/bus/bus1.png", "/bus/bus2.png", "/bus/bus3.png", "/bus/bus4.png"], type: "Heavy Vehicle", bgColor: "bg-gray-100" },
+  { id: 303, name: "Tempo Traveller", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "12 Seats", image: "/cars/urbania.png", gallery: ["/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/urbania_interior_5.png", "/image copy 3.png", "/image copy 4.png", "/image copy 5.png"], type: "Group", bgColor: "bg-gray-100" },
 ];
 
 const routes = [
-  { label: "Vijayawada ⇄ Hyderabad", value: "Hyderabad ⇄ Vijayawada" },
-  { label: "Vijayawada ⇄ Guntur", value: "Vijayawada ⇄ Guntur" },
-  { label: "Vijayawada ⇄ Machilipatnam", value: "Vijayawada ⇄ Machilipatnam" },
-  { label: "Hyderabad ⇄ Vizag", value: "Hyderabad ⇄ Vizag" },
-  { label: "Hyderabad ⇄ Rajahmundry", value: "Hyderabad ⇄ Rajahmundry" },
+  { label: "Vijayawada ⇄ Hyderabad", value: "Vijayawada ⇄ Hyderabad" },
+  { label: "Vijayawada ⇄ Hyderabad Airport", value: "Vijayawada ⇄ Hyderabad Airport" },
+  { label: "Guntur ⇄ Hyderabad", value: "Guntur ⇄ Hyderabad" },
+  { label: "Hyderabad ⇄ Guntur", value: "Hyderabad ⇄ Guntur" },
+  { label: "Hyderabad ⇄ Tenali", value: "Hyderabad ⇄ Tenali" },
   { label: "Hyderabad ⇄ Tirupati", value: "Hyderabad ⇄ Tirupati" },
+  { label: "Hyderabad ⇄ Bangalore", value: "Hyderabad ⇄ Bangalore" },
+  { label: "Bangalore ⇄ Hyderabad", value: "Bangalore ⇄ Hyderabad" },
+  { label: "Hyderabad ⇄ Srisailam", value: "Hyderabad ⇄ Srisailam" },
+  { label: "Hyderabad ⇄ Vizag", value: "Hyderabad ⇄ Vizag" },
+  { label: "Hyderabad ⇄ Bhimavaram", value: "Hyderabad ⇄ Bhimavaram" },
   { label: "Group Travel & Buses", value: "Buses & Group Travel" }
 ];
 
@@ -55,7 +96,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
   const [viewIndex, setViewIndex] = useState<number | null>(null);
   const [showInteriorModal, setShowInteriorModal] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState<number>(0);
-  const [selectedRoute, setSelectedRoute] = useState<string>("Hyderabad ⇄ Vijayawada");
+  const [selectedRoute, setSelectedRoute] = useState<string>("Vijayawada ⇄ Hyderabad");
 
   const filteredFleet = selectedRoute === "Buses & Group Travel"
     ? fleetData.filter(car => car.route === "Buses & Group Travel")
@@ -126,7 +167,9 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                 className="bg-white rounded-[4rem] overflow-hidden shadow-2xl hover:shadow-orange-500/10 transition-all duration-700 flex flex-col group border border-slate-50 h-full p-2"
               >
                 <div className={`relative h-72 sm:h-80 md:h-96 ${car.bgColor} rounded-[3.5rem] p-4 flex items-center justify-center overflow-hidden`}>
-                   <Image src={car.image} alt={car.name} fill className="object-contain p-2 lg:p-6 transform group-hover:scale-125 group-hover:translate-x-4 transition-all duration-1000 ease-out" />
+                   {car.image && (
+                     <Image src={car.image} alt={car.name} fill className="object-contain p-2 lg:p-6 transform group-hover:scale-125 group-hover:translate-x-4 transition-all duration-1000 ease-out" />
+                   )}
                    <div className="absolute top-8 left-8 bg-blue-950 text-white text-[12px] font-black px-5 py-2 rounded-2xl uppercase tracking-widest shadow-xl z-20">{car.type}</div>
                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
@@ -147,7 +190,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   </div>
                   
                   <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                    {(car.id === 5 || car.id === 301 || car.id === 12 || car.id === 302) && (
+                    {(car.id === 5 || car.id === 301 || car.id === 12 || car.id === 302 || car.id === 303) && (
                       <button 
                         onClick={() => {
                           setViewIndex(idx);
@@ -234,12 +277,14 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                        exit={{ opacity: 0, scale: 0.9 }}
                        className="relative w-full h-full"
                     >
-                       <Image 
-                          src={showInteriorModal && activeItem.gallery ? activeItem.gallery[galleryIndex + 1] : (activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image)} 
-                          alt={activeItem.name} 
-                          fill 
-                          className="object-cover rounded-[1.5rem] shadow-2xl" 
-                       />
+                       {(showInteriorModal && activeItem.gallery ? activeItem.gallery[galleryIndex + 1] : (activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image)) && (
+                         <Image 
+                            src={showInteriorModal && activeItem.gallery ? activeItem.gallery[galleryIndex + 1] : (activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image)} 
+                            alt={activeItem.name} 
+                            fill 
+                            className="object-cover rounded-[1.5rem] shadow-2xl" 
+                         />
+                       )}
                        
                        {showInteriorModal && (
                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-10">
@@ -255,6 +300,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                                   {galleryIndex === 2 && "Premium Entertainment"}
                                   {galleryIndex === 3 && "Climate Control Systems"}
                                   {galleryIndex === 4 && "VIP Leather Interior"}
+                                  {galleryIndex === 5 && "Smart Storage Solutions"}
                                </h3>
                                <p className="text-blue-100/70 font-medium text-[10px] sm:text-base leading-tight">
                                   {galleryIndex === 0 && "Ergonomic layout with premium fabric seats and individual armrests. Perfect for long-distance group travel with maximum comfort."}
@@ -262,6 +308,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                                   {galleryIndex === 2 && "State-of-the-art entertainment system with LED ceiling lighting and wide-screen TV. Enjoy movies and music on the go."}
                                   {galleryIndex === 3 && "Full climate control with roof-mounted AC vents and mood lighting for night travel. Maintains perfect temperature in all seasons."}
                                   {galleryIndex === 4 && "Executive cabin experience with extra legroom and reclining leather seats. The pinnacle of luxury for our VIP group travelers."}
+                                  {galleryIndex === 5 && "Safe and secure luggage space with easy accessibility. Ample storage for all your travel essentials and more."}
                                </p>
                             </motion.div>
                          </div>
