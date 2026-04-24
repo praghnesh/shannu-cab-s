@@ -97,7 +97,23 @@ export default function Footer() {
               "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderabad taxi service", "Hyderabad car travels", 
               "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", "Guntur taxi service", 
               "Guntur car travels", "Car travels Tenali", "Taxi service Tenali", "Taxi service Machilipatnam", "Car travels Machilipatnam", 
-              "Urbaniya Tempo Traveller", "Best car travels"
+              "Urbaniya Tempo Traveller", "Best car travels", "Fast Car Travels", "Best car travels in Vijayawada", "Best car travels in Hyderabad",
+              "Outstation cab booking", "Intercity cab service", "Premium car rental South India", "Reliable taxi service Hyderabad",
+              "Cab booking Vijayawada", "Hyderabad to Vijayawada outstation cabs", "Vizag to Hyderabad cabs", "Rajahmundry to Vijayawada taxi",
+              "Kakinada to Hyderabad cab", "Nellore to Vijayawada cabs", "Tuni outstation cab routes", "Innova Crysta hire Hyderabad",
+              "Innova cab booking Vijayawada", "Swift Dzire rental Hyderabad", "Ertiga taxi service Vijayawada", "Tempo Traveller hire Vijayawada",
+              "Tempo Traveller rent Hyderabad", "Luxury AC Bus rental Vijayawada", "Force Urbania Tempo Traveller hire", "Urbania rent Hyderabad",
+              "Etios taxi service South India", "Luxury car rental for wedding Hyderabad", "Premium wedding cars Vijayawada",
+              "7 seater cab booking Hyderabad", "Mini bus rental Vijayawada", "Group travel bus booking", "Hire 12 seater tempo traveller",
+              "Outstation Innova hire", "VIP luxury car rental", "Sedan cab booking", "SUV taxi service Hyderabad", "Airport transfer cabs Hyderabad",
+              "Vijayawada airport taxi service", "One-way drop taxi service", "Outstation round trip cab", "Monthly corporate car rental",
+              "Hourly local cab service", "24/7 airport cab pickup", "Executive corporate cab rentals", "Temple pilgrimage tour packages",
+              "Srisailam tour cab package", "Tirupati darshan cab booking", "Hill station getaways cab", "Araku valley tour taxi",
+              "Ooty tour cab service", "City tour packages Hyderabad", "Cab service in Hyderabad", "Cab service in Vijayawada",
+              "Vizag taxi service", "Nellore outstation cabs", "Book cab online Hyderabad to Vijayawada", "Cheapest taxi from Vijayawada to Hyderabad",
+              "Best cab service for family trip in Andhra Pradesh", "Safe outstation cab service near me", "Luxury car rental with professional driver",
+              "24/7 intercity taxi service near me", "Book Innova for outstation trip online", "Corporate car hire services in Hyderabad",
+              "Wedding car rental service in Vijayawada", "VIP cab service South India"
             ].map((keyword, idx) => (
               <span key={idx} className="hover:text-orange-500 transition cursor-default flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></span>
@@ -108,8 +124,13 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} Fast car Travels. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="space-y-4 text-center md:text-left">
+            <p>© {new Date().getFullYear()} Fast car Travels. All rights reserved.</p>
+            <p className="max-w-3xl text-[10px] leading-relaxed opacity-40">
+              Disclaimer: Fast Car Travels is an independent travel service provider. We are not affiliated with any government transport department. All vehicle images and brand names are property of their respective owners and are used here for representational purposes only. Toll taxes, parking fees, and interstate permits are extra as per actuals.
+            </p>
+          </div>
+          <div className="flex space-x-6 mt-6 md:mt-0">
             <span className="hover:text-white cursor-pointer">Facebook</span>
             <span className="hover:text-white cursor-pointer">Instagram</span>
             <span className="hover:text-white cursor-pointer">Twitter</span>

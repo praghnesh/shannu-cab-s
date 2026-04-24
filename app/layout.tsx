@@ -16,12 +16,15 @@ export const metadata: Metadata = {
   title: 'Fast Car Travels | Best Cab & Taxi Service in Hyderabad & Vijayawada',
   description: 'Book premium cab services for Hyderabad to Vijayawada, Guntur, Tirupati, and more. We offer reliable airport transfers, outstation cabs, and tempo travellers with 24/7 support. Best car travels in Vijayawada and Hyderabad.',
   keywords: [
-    "Hyderabad to Vijayawada cab", "Vijayawada to Hyderabad taxi", "Hyderabad to Guntur cab",
-    "Guntur to Hyderabad taxi", "Hyderabad to Bengaluru Cabs", "Hyderabad to Tirupati Cabs",
-    "Hyderabad to Chennai cabs", "Vijayawada to Ongole taxi", "Vijayawada to Rajahmundry cab",
-    "Vijayawada to Chennai taxi", "Vijayawada to Tirupati Cabs", "Vijayawada to Srisailam cabs",
-    "Taxi service Vijayawada", "Car travels Vijayawada", "Hyderabad taxi service",
-    "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Cab service Hyderabad"
+    "Fast Car Travels", "Best car travels in Vijayawada", "Best car travels in Hyderabad",
+    "Outstation cab booking", "Intercity cab service", "Taxi service near me",
+    "Premium car rental South India", "Reliable taxi service Hyderabad",
+    "Hyderabad to Vijayawada cab", "Vijayawada to Hyderabad taxi",
+    "Innova Crysta hire Hyderabad", "Tempo Traveller rental Vijayawada",
+    "Force Urbania hire", "Wedding car rental Hyderabad",
+    "Airport transfer cabs Hyderabad", "One-way drop taxi service",
+    "Temple pilgrimage tour packages", "Srisailam tour cab package",
+    "Tirupati darshan cab booking", "Araku valley tour taxi"
   ]
 }
 

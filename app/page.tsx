@@ -97,17 +97,17 @@ export default function Home() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                {[
-                  { route: "Hyderabad to Vijayawada", price: "Starts from ₹3,499", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Vijayawada to Hyderabad", price: "Starts from ₹3,499", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Hyderabad to Guntur", price: "Starts from ₹3,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Vijayawada", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Hyderabad", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Guntur", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
                   { route: "Vijayawada to Tirupati", price: "Starts from ₹8,999", icon: <MapPin className="text-orange-500" /> },
                   { route: "Hyderabad to Bengaluru", price: "Starts from ₹12,999", icon: <MapPin className="text-orange-500" /> },
                   { route: "Vijayawada to Chennai", price: "Starts from ₹9,499", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Hyderabad to Srisailam", price: "Starts from ₹4,999", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Vijayawada to Rajahmundry", price: "Starts from ₹4,499", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Hyderabad to Ongole", price: "Starts from ₹5,499", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Vijayawada to Bhimavaram", price: "Starts from ₹2,999", icon: <MapPin className="text-orange-500" /> },
-                  { route: "Guntur to Hyderabad", price: "Starts from ₹3,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Srisailam", price: "Starts from ₹7,000", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Rajahmundry", price: "Starts from ₹4,000", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Ongole", price: "Starts from ₹7,000", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Bhimavaram", price: "Starts from ₹3,500", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Guntur to Hyderabad", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
                   { route: "Hyderabad to Tirupati", price: "Starts from ₹9,999", icon: <MapPin className="text-orange-500" /> }
                ].map((item, idx) => (
                   <motion.div 
@@ -133,6 +133,53 @@ export default function Home() {
                <a href="tel:+919948924786" className="bg-orange-500 hover:bg-orange-600 text-white font-black px-10 py-5 rounded-2xl transition-all shadow-xl whitespace-nowrap">
                   GET A CUSTOM QUOTE
                </a>
+            </div>
+         </div>
+      </section>
+
+      {/* Specialized Services SEO Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-20">
+               <div className="max-w-2xl">
+                  <h2 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter mb-6">
+                     PREMIUM FLEET & <br /> <span className="text-orange-500">EXECUTIVE SERVICES</span>
+                  </h2>
+                  <p className="text-slate-500 text-xl font-medium">
+                     From luxury wedding cars to corporate fleet rentals, we provide the most reliable transportation solutions in South India.
+                  </p>
+               </div>
+               <div className="flex gap-4">
+                  <div className="px-8 py-4 bg-white rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center">
+                     <span className="text-3xl font-black text-blue-950">24/7</span>
+                     <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest">Support</span>
+                  </div>
+                  <div className="px-8 py-4 bg-white rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center">
+                     <span className="text-3xl font-black text-blue-950">Elite</span>
+                     <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest">Drivers</span>
+                  </div>
+               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+               {[
+                  { title: "Luxury Wedding Cars", desc: "Premium wedding car rentals in Hyderabad & Vijayawada for your special day.", tags: ["Innova Crysta", "Audi", "BMW"] },
+                  { title: "Corporate Rentals", desc: "Monthly corporate car rental and executive cab services for businesses.", tags: ["Sedan", "SUV", "Executive"] },
+                  { title: "Group Travel", desc: "Tempo Traveller hire & mini bus rental for family trips and tours.", tags: ["12 Seater", "Urbania", "Bus"] },
+                  { title: "Airport Transfers", desc: "24/7 reliable airport taxi service for Hyderabad & Vijayawada airports.", tags: ["One-Way", "Pickup", "Drop"] },
+                  { title: "Pilgrimage Tours", desc: "Temple tour packages to Tirupati, Srisailam, and other sacred sites.", tags: ["Darshan", "Package", "Guide"] },
+                  { title: "Hill Station Tours", desc: "Expert hill station getaway services to Araku Valley and Ooty.", tags: ["Araku", "Ooty", "Vacation"] }
+               ].map((service, idx) => (
+                  <div key={idx} className="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 hover:shadow-2xl transition-all">
+                     <h4 className="text-2xl font-black text-blue-950 mb-4">{service.title}</h4>
+                     <p className="text-slate-500 font-medium mb-8 leading-relaxed">{service.desc}</p>
+                     <div className="flex flex-wrap gap-2">
+                        {service.tags.map(tag => (
+                           <span key={tag} className="px-4 py-2 bg-slate-50 text-slate-400 rounded-xl text-[10px] font-black uppercase tracking-widest">{tag}</span>
+                        ))}
+                     </div>
+                  </div>
+               ))}
             </div>
          </div>
       </section>

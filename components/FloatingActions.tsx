@@ -102,7 +102,7 @@ export default function FloatingActions() {
                 </a>
                <a 
                   href="tel:+919948924786" 
-                  className="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600 transition-all shadow-lg active:scale-90 flex items-center gap-2 group px-6"
+                  className="bg-red-600 text-white p-4 rounded-full hover:bg-red-700 transition-all shadow-lg active:scale-90 flex items-center gap-2 group px-6"
                >
                   <Phone size={20} className="animate-pulse" />
                   <span className="hidden md:block font-black text-xs uppercase tracking-widest">Call Now</span>
