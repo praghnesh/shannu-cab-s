@@ -72,11 +72,12 @@ export default function Hero() {
       </div>
 
       {/* Floating Booking Card */}
-      <div id="main-booking-form" className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mt-[-60px] lg:mt-[-80px] mb-8 pb-10 max-w-6xl mx-auto">
+      <div id="main-booking-form" className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mt-[-60px] lg:mt-[-80px] mb-8 pb-10 max-w-6xl mx-auto flex justify-center">
         <motion.div
            initial={{ opacity: 0, y: 50 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8, delay: 0.8 }}
+           className="w-full"
         >
           <BookingForm />
         </motion.div>

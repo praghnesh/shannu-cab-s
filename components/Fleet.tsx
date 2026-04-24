@@ -10,29 +10,29 @@ const fleetData = [
   { id: 101, name: "Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
   { id: 102, name: "Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
   { id: 103, name: "Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
-  { id: 104, name: "Innova", price: "₹9,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
-  { id: 105, name: "Innova Crysta Luxury", price: "₹11,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
+  { id: 104, name: "Innova", price: "₹8,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
+  { id: 105, name: "Innova Crysta Luxury", price: "₹8,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
 
   // Vijayawada ⇄ Hyderabad Airport (Etios Base: ₹5000)
   { id: 111, name: "Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
   { id: 112, name: "Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
   { id: 113, name: "Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
-  { id: 114, name: "Innova", price: "₹9,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
-  { id: 115, name: "Innova Crysta Luxury", price: "₹11,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
+  { id: 114, name: "Innova", price: "₹8,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
+  { id: 115, name: "Innova Crysta Luxury", price: "₹8,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
 
   // Guntur ⇄ Hyderabad (Etios Base: ₹5500)
   { id: 121, name: "Etios", price: "₹5,500", route: "Guntur ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-red-50" },
   { id: 122, name: "Swift Dzire", price: "₹5,500", route: "Guntur ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
   { id: 123, name: "Ertiga", price: "₹8,000", route: "Guntur ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-red-50" },
-  { id: 124, name: "Innova", price: "₹10,000", route: "Guntur ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-red-50" },
-  { id: 125, name: "Innova Crysta Luxury", price: "₹12,000", route: "Guntur ⇄ Hyderabad", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-red-50" },
+  { id: 124, name: "Innova", price: "₹8,000", route: "Guntur ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-red-50" },
+  { id: 125, name: "Innova Crysta Luxury", price: "₹8,500", route: "Guntur ⇄ Hyderabad", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-red-50" },
 
   // Hyderabad ⇄ Guntur (Etios Base: ₹5500)
   { id: 131, name: "Etios", price: "₹5,500", route: "Hyderabad ⇄ Guntur", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-red-50" },
   { id: 132, name: "Swift Dzire", price: "₹5,500", route: "Hyderabad ⇄ Guntur", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
   { id: 133, name: "Ertiga", price: "₹8,000", route: "Hyderabad ⇄ Guntur", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-red-50" },
-  { id: 134, name: "Innova", price: "₹10,000", route: "Hyderabad ⇄ Guntur", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-red-50" },
-  { id: 135, name: "Innova Crysta Luxury", price: "₹12,000", route: "Hyderabad ⇄ Guntur", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-red-50" },
+  { id: 134, name: "Innova", price: "₹8,000", route: "Hyderabad ⇄ Guntur", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-red-50" },
+  { id: 135, name: "Innova Crysta Luxury", price: "₹8,500", route: "Hyderabad ⇄ Guntur", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-red-50" },
 
   // Hyderabad ⇄ Tenali (Etios Base: ₹6000)
   { id: 141, name: "Etios", price: "₹6,000", route: "Hyderabad ⇄ Tenali", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-teal-50" },
