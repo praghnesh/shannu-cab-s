@@ -46,7 +46,7 @@ export default function BookingForm() {
     };
 
     try {
-      await fetch("https://formsubmit.co/ajax/hassanbabushaik1786@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/fastcartravels4@gmail.com", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json',
@@ -58,6 +58,10 @@ export default function BookingForm() {
         })
       });
       setSuccess(true);
+      
+      // WhatsApp Redirection
+      const message = `*New Booking Request*%0A%0A*Phone:* ${data.phone}%0A*Trip:* ${data.tripType}%0A*From:* ${data.pickup}%0A*To:* ${data.drop}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`;
+      window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
     } catch (error) {
       console.error("Email failed:", error);
     }

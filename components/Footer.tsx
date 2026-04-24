@@ -68,7 +68,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-orange-500">✉️</span>
-                <span>hassanbabushaik1786@gmail.com</span>
+                <span>fastcartravels4@gmail.com</span>
               </li>
             </ul>
           </div>

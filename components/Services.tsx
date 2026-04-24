@@ -79,13 +79,13 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-32 bg-slate-50 relative overflow-hidden">
+    <section id="services" className="py-12 bg-slate-50 relative overflow-hidden">
       {/* Abstract Background Shapes */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-white rounded-[10rem] rotate-[-5deg] mt-[-100px] z-0"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center max-w-4xl mx-auto mb-24 space-y-6">
+        <div className="text-center max-w-4xl mx-auto mb-12 space-y-6">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -111,7 +111,7 @@ export default function Services() {
         </div>
 
         {/* Extended Why Choose Us / Trust Badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16">
            {[
              { icon: <ShieldCheck className="text-blue-600" size={32} />, label: "Secured Mobility", desc: "SOS & Live Tracking" },
              { icon: <Clock className="text-orange-500" size={32} />, label: "Elite Punctuality", desc: "Drivers reach 15m early" },
@@ -187,7 +187,7 @@ export default function Services() {
         </div>
 
         {/* Global Delivery Cities List - Page like feel */}
-        <div className="mt-40 border-t border-slate-200 pt-20">
+        <div className="mt-16 border-t border-slate-200 pt-12">
            <div className="grid lg:grid-cols-3 gap-16">
               <div className="lg:col-span-1">
                  <h4 className="text-4xl font-black text-blue-950 tracking-tighter mb-6 leading-none">Serving Major <br /> Intercity Links.</h4>

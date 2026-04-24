@@ -20,7 +20,7 @@ export default function ContactPage() {
     };
 
     try {
-      await fetch("https://formsubmit.co/ajax/hassanbabushaik1786@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/fastcartravels4@gmail.com", {
         method: "POST",
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -80,7 +80,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                            <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Email Support</p>
-                           <p className="text-2xl font-black text-blue-950 tracking-tighter break-all">hassanbabushaik1786@gmail.com</p>
+                           <p className="text-2xl font-black text-blue-950 tracking-tighter break-all">fastcartravels4@gmail.com</p>
                         </div>
                      </div>
 

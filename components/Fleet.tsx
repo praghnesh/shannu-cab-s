@@ -85,7 +85,7 @@ const fleetData = [
 
   // Heavy Vehicles & Buses
   { id: 302, name: "Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/BUSBANNER.png", gallery: ["/image copy 2.png", "/bus/bus1.png", "/bus/bus2.png", "/bus/bus3.png", "/bus/bus4.png"], type: "Heavy Vehicle", bgColor: "bg-gray-100" },
-  { id: 303, name: "Tempo Traveller", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "12 Seats", image: "/cars/urbania.png", gallery: ["/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/urbania_interior_5.png", "/image copy 3.png", "/image copy 4.png", "/image copy 5.png"], type: "Group", bgColor: "bg-gray-100" },
+  { id: 303, name: "Tempo Traveller", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "12 Seats", image: "/cars/urbania.png", gallery: ["/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/urbania_interior_5.png", "/image copy 3.png", "/image copy 4.png", "/image copy 5.png", "/tempo/tempo1.png", "/tempo/tempo2.png", "/tempo/tempo3.png", "/tempo/tempo4.png"], type: "Group", bgColor: "bg-gray-100" },
 
   // Elite Luxury Collection
   { id: 401, name: "Mercedes-Benz S-Class", price: "On Request", route: "Elite Luxury Collection", perKm: "On Request", capacity: "4 Seats", image: "/cars/BENZ.png", type: "Elite Luxury", bgColor: "bg-slate-50" },
@@ -136,9 +136,9 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
   };
 
   return (
-    <section id="fleet" className="py-32 bg-white overflow-hidden relative">
+    <section id="fleet" className="py-12 bg-white overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 space-y-6">
+        <div className="text-center mb-12 space-y-6">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
             <span className="text-orange-500 font-black tracking-widest uppercase text-sm px-4 py-2 bg-orange-50 rounded-full">Explore Our Elite Catalog</span>
           </motion.div>
@@ -257,7 +257,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
         </div>
 
         {/* Global Fleet Promise */}
-        <div className="mt-32 bg-blue-950 rounded-[4rem] p-12 sm:p-20 relative overflow-hidden">
+        <div className="mt-16 bg-blue-950 rounded-[4rem] p-12 sm:p-20 relative overflow-hidden">
            <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 rounded-full blur-[150px] opacity-20 -mr-48 -mt-48"></div>
            <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">

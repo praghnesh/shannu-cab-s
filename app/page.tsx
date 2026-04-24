@@ -30,7 +30,7 @@ export default function Home() {
       <Services />
       
       {/* Massive Trust Reinforcement Section */}
-      <section className="py-20 md:py-32 bg-blue-950 relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-blue-950 relative overflow-hidden">
          <div className="absolute inset-0 bg-[url('/banner.png')] opacity-5 bg-cover bg-fixed"></div>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} className="space-y-10">
@@ -59,7 +59,7 @@ export default function Home() {
       </section>
 
       {/* VIP Premium Offer Section */}
-      <section className="bg-orange-500 py-16 md:py-24 relative overflow-hidden">
+      <section className="bg-orange-500 py-10 md:py-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="text-center md:text-left text-white">
@@ -89,7 +89,7 @@ export default function Home() {
       <Testimonials />
 
       {/* Destinations Marquee (Visual Page Feel) */}
-      <section className="py-12 md:py-20 bg-slate-50 border-t border-slate-200 overflow-hidden">
+      <section className="py-8 md:py-10 bg-slate-50 border-t border-slate-200 overflow-hidden">
          <div className="max-w-[100vw] overflow-hidden">
             <div className="flex gap-20 animate-marquee whitespace-nowrap">
                {[

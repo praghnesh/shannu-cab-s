@@ -61,16 +61,16 @@ export default function BookingNotification() {
           initial={{ x: -100, opacity: 0, scale: 0.8 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           exit={{ x: -100, opacity: 0, scale: 0.8 }}
-          className="fixed bottom-32 left-4 sm:left-6 z-[2000] w-[260px] sm:w-[380px]"
+          className="fixed bottom-32 left-4 sm:left-6 z-[2000] w-[320px] sm:w-[380px]"
         >
-          <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-slate-100 p-3 sm:p-5 relative overflow-hidden flex items-center gap-3 sm:gap-5">
+          <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-slate-100 p-4 sm:p-5 relative overflow-hidden flex items-center gap-4 sm:gap-5">
             {/* Close Button */}
             <button onClick={() => setIsVisible(false)} className="absolute top-2 right-2 sm:top-3 sm:right-3 text-slate-300 hover:text-slate-500 transition-colors">
               <X size={14} className="sm:w-4 sm:h-4" />
             </button>
 
             {/* Left Side: Car Image */}
-            <div className="w-16 h-16 sm:w-24 sm:h-24 bg-slate-50 rounded-xl sm:rounded-[1.5rem] relative overflow-hidden shrink-0 border border-slate-100 p-1 sm:p-2">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-slate-50 rounded-xl sm:rounded-[1.5rem] relative overflow-hidden shrink-0 border border-slate-100 p-1 sm:p-2">
                <Image 
                   src={activeBooking.image} 
                   alt={activeBooking.name} 
@@ -81,31 +81,38 @@ export default function BookingNotification() {
 
             {/* Right Side: Content */}
             <div className="flex flex-col flex-grow min-w-0">
-               <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1.5">
+               <div className="flex items-center gap-1 sm:gap-1.5 mb-1 sm:mb-1.5">
                   <CheckCircle size={10} className="text-green-500 sm:w-3 sm:h-3" />
-                  <span className="text-[8px] sm:text-[10px] font-black text-green-600 uppercase tracking-widest">CONFIRMED</span>
+                  <span className="text-[9px] sm:text-[10px] font-black text-green-600 uppercase tracking-widest">CONFIRMED</span>
                </div>
                
-               <h4 className="text-xs sm:text-lg font-black text-blue-950 leading-none mb-0.5 sm:mb-1">
+               <h4 className="text-sm sm:text-lg font-black text-blue-950 leading-none mb-1 sm:mb-1">
                   {activeBooking.name} <span className="text-orange-500 sm:ml-1">@{activeBooking.price}</span>
                </h4>
                
-               <p className="text-[9px] sm:text-[11px] font-bold text-slate-500 leading-tight sm:leading-snug mb-1.5 sm:mb-3">
+               <p className="text-[10px] sm:text-[11px] font-bold text-slate-500 leading-tight sm:leading-snug mb-2 sm:mb-3">
                   {activeBooking.route}
                </p>
 
                <div className="flex items-center justify-between gap-2 sm:gap-3 mt-auto">
                   <div className="flex flex-col">
-                     <span className="text-[7px] sm:text-[9px] font-black text-slate-400 uppercase tracking-tighter">Status</span>
-                     <span className="text-[8px] sm:text-[10px] font-bold text-blue-600 italic truncate max-w-[60px] sm:max-w-none">{activeBooking.userLocation}</span>
+                     <span className="text-[8px] sm:text-[9px] font-black text-slate-400 uppercase tracking-tighter">Status</span>
+                     <span className="text-[10px] sm:text-[10px] font-bold text-blue-600 italic truncate max-w-[80px] sm:max-w-none">{activeBooking.userLocation}</span>
                   </div>
-                  <a 
-                    href="tel:+919948924786"
-                    className="bg-blue-950 text-white text-[8px] sm:text-[11px] font-black px-2 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl hover:bg-orange-500 transition-all shadow-lg flex flex-col items-center leading-none shrink-0"
-                  >
-                    <span className="flex items-center gap-1 mb-0.5 sm:mb-1 text-[7px] sm:text-[8px]"><Phone size={8} /> BOOK</span>
-                    <span className="text-[9px] sm:text-xs">CALL</span>
-                  </a>
+                  <div className="flex gap-2">
+                    <a 
+                      href="tel:+919948924786"
+                      className="bg-blue-950 text-white text-[9px] sm:text-[11px] font-black px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl hover:bg-orange-500 transition-all shadow-lg flex items-center gap-1.5 shrink-0 uppercase tracking-widest"
+                    >
+                      <Phone size={12} /> BOOK
+                    </a>
+                    <button 
+                      onClick={() => setIsVisible(false)}
+                      className="bg-red-600 text-white text-[9px] sm:text-[11px] font-black px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl hover:bg-red-700 transition-all shadow-lg flex items-center gap-1.5 shrink-0 uppercase tracking-widest"
+                    >
+                      <CheckCircle size={12} /> DONE
+                    </button>
+                  </div>
                </div>
             </div>
 

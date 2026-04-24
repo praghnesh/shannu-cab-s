@@ -22,7 +22,10 @@ const cityData = {
          { name: "Prakasam Barrage", desc: "Modern engineering marvel over Krishna.", img: "/places/prakasam_barrage.png" },
          { name: "Undavalli Caves", desc: "Monolithic rock-cut temple architecture.", img: "/places/undavalli_caves.png" },
          { name: "Bhavani Island", desc: "Serene river island for recreation.", img: "/places/bhavani_island.png" },
-         { name: "Kanaka Durga Temple", desc: "Sacred shrine on Indrakeeladri hill.", img: "/places/kanaka_durga.png" }
+         { name: "Kanaka Durga Temple", desc: "Sacred shrine on Indrakeeladri hill.", img: "/places/kanaka_durga.png" },
+         { name: "Mopidevi Temple", desc: "Sacred shrine of Lord Subrahmanya Swamy.", img: "/mopidevi.png" },
+         { name: "Dwaraka Tirumala", desc: "Famous temple of Lord Venkateswara.", img: "/dwarakatirumala.png" },
+         { name: "Hamsala Devi", desc: "Where the Krishna River meets the Bay of Bengal.", img: "/hamsaladevi.png" }
       ]
    },
    "Guntur": {
@@ -72,7 +75,7 @@ export default function CityExplorer() {
    const [showHistory, setShowHistory] = useState(false);
 
    return (
-      <section id="explore" className="py-24 bg-slate-50 overflow-hidden">
+      <section id="explore" className="py-12 bg-slate-50 overflow-hidden">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-16">
                <div className="space-y-4">

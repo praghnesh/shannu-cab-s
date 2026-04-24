@@ -86,15 +86,20 @@ export default function FloatingActions() {
 
             {/* Action Buttons - Right */}
             <div className="flex gap-2">
-               <a 
+                <a 
                   href="https://wa.me/919948924786" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-green-500 text-white p-4 rounded-full hover:bg-green-600 transition-all shadow-lg active:scale-90 flex items-center gap-2 group px-6"
-               >
+                  className="bg-green-500 text-white p-4 rounded-full hover:bg-green-600 transition-all shadow-lg active:scale-90 flex items-center gap-2 group px-6 relative"
+                >
                   <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
                   <span className="hidden md:block font-black text-xs uppercase tracking-widest">WhatsApp</span>
-               </a>
+                  {/* Notification Dot */}
+                  <span className="absolute top-2 right-4 flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                  </span>
+                </a>
                <a 
                   href="tel:+919948924786" 
                   className="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600 transition-all shadow-lg active:scale-90 flex items-center gap-2 group px-6"
