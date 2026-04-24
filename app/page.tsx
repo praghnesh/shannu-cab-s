@@ -83,6 +83,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Popular Routes SEO Section */}
+      <section className="py-24 bg-white relative">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+               <h2 className="text-4xl md:text-6xl font-black text-blue-950 tracking-tighter mb-4">
+                  POPULAR <span className="text-orange-500">INTERCITY ROUTES</span>
+               </h2>
+               <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">
+                  Experience premium travel across Andhra Pradesh and Telangana with our most booked intercity cab services.
+               </p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+               {[
+                  { route: "Hyderabad to Vijayawada", price: "Starts from ₹3,499", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Hyderabad", price: "Starts from ₹3,499", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Guntur", price: "Starts from ₹3,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Tirupati", price: "Starts from ₹8,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Bengaluru", price: "Starts from ₹12,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Chennai", price: "Starts from ₹9,499", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Srisailam", price: "Starts from ₹4,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Rajahmundry", price: "Starts from ₹4,499", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Ongole", price: "Starts from ₹5,499", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Vijayawada to Bhimavaram", price: "Starts from ₹2,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Guntur to Hyderabad", price: "Starts from ₹3,999", icon: <MapPin className="text-orange-500" /> },
+                  { route: "Hyderabad to Tirupati", price: "Starts from ₹9,999", icon: <MapPin className="text-orange-500" /> }
+               ].map((item, idx) => (
+                  <motion.div 
+                     key={idx}
+                     whileHover={{ y: -10 }}
+                     className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-orange-200 transition-all group"
+                  >
+                     <div className="mb-4">{item.icon}</div>
+                     <h4 className="text-xl font-black text-blue-950 mb-2 group-hover:text-orange-500 transition-colors">{item.route}</h4>
+                     <p className="text-slate-500 font-bold text-sm mb-4">{item.price}</p>
+                     <div className="flex items-center gap-2 text-orange-500 font-black text-xs uppercase tracking-widest">
+                        Book Now <ArrowRight size={14} />
+                     </div>
+                  </motion.div>
+               ))}
+            </div>
+            
+            <div className="mt-16 p-10 rounded-[3rem] bg-blue-950 text-white flex flex-col md:flex-row items-center justify-between gap-8">
+               <div>
+                  <h3 className="text-2xl font-black mb-2">Need a custom route?</h3>
+                  <p className="text-blue-200">We provide taxi services to any destination across South India.</p>
+               </div>
+               <a href="tel:+919948924786" className="bg-orange-500 hover:bg-orange-600 text-white font-black px-10 py-5 rounded-2xl transition-all shadow-xl whitespace-nowrap">
+                  GET A CUSTOM QUOTE
+               </a>
+            </div>
+         </div>
+      </section>
+
       <Fleet limit={30} />
       
       {/* Testimonials */}

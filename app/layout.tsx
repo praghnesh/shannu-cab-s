@@ -13,8 +13,16 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Fast car Travels | Premium Cab Booking in Hyderabad & Vijayawada',
-  description: 'Book the best cab and tour services including airport transfer, outstation, corporate travel, and wedding cars with Fast car Travels.',
+  title: 'Fast Car Travels | Best Cab & Taxi Service in Hyderabad & Vijayawada',
+  description: 'Book premium cab services for Hyderabad to Vijayawada, Guntur, Tirupati, and more. We offer reliable airport transfers, outstation cabs, and tempo travellers with 24/7 support. Best car travels in Vijayawada and Hyderabad.',
+  keywords: [
+    "Hyderabad to Vijayawada cab", "Vijayawada to Hyderabad taxi", "Hyderabad to Guntur cab",
+    "Guntur to Hyderabad taxi", "Hyderabad to Bengaluru Cabs", "Hyderabad to Tirupati Cabs",
+    "Hyderabad to Chennai cabs", "Vijayawada to Ongole taxi", "Vijayawada to Rajahmundry cab",
+    "Vijayawada to Chennai taxi", "Vijayawada to Tirupati Cabs", "Vijayawada to Srisailam cabs",
+    "Taxi service Vijayawada", "Car travels Vijayawada", "Hyderabad taxi service",
+    "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Cab service Hyderabad"
+  ]
 }
 
 import FloatingActions from '../components/FloatingActions'

@@ -79,25 +79,25 @@ export default function Footer() {
           <h4 className="text-white text-sm font-black uppercase tracking-[0.3em] mb-8 opacity-50 text-center">Comprehensive Service Network & Popular Searches</h4>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-slate-300 font-bold">
             {[
-              "Hyderabad to vijayawada", "Vijayawada to Hyderabad cab", "Vijayawada to Hyderabad Cabs", "Vijayawada to Hyderabad taxi", 
+              "Hyderabad to Vijayawada", "Vijayawada to Hyderabad cab", "Vijayawada to Hyderabad Cabs", "Vijayawada to Hyderabad taxi", 
               "Hyderabad to Vijayawada cab", "Hyderabad to Vijayawada Cabs", "Hyderabad to Vijayawada taxi", "Guntur to Hyderabad taxi", 
               "Guntur to Hyderabad Cabs", "Guntur to Hyderabad cab", "Hyderabad to Guntur cab", "Hyderabad to Guntur taxi", 
-              "Hyderabad to Guntur Cabs", "Hyderabad to Bengaluru Cabs", "Hyderaba to Bengaluru taxi", "Hyderabad to Tirupati Cabs", 
-              "Hyderaba to Chennai cabs", "Hyderabad to Bengaluru taxi", "Vijayawada to Ongole taxi", "Vijayawada to Ongole cab", 
-              "Vijayawada to Rajahmundry cab", "Vijayawada to Rajahmundry Cabs", "Vijayawada to Tirupati cab", "Vijayawada to Tirupati Cabs", 
-              "Vijayawada to Tirupati taxi", "Vijayawada to Chennai cab", "Vijayawada to Chennai taxi", "Vijayawada to Bhimavaram Cabs", 
-              "Vijayawada to Eluru Cabs", "Vijayawada to Tadepalligudem Cabs", "Vijayawada to Tanuku Cabs", "Vijayawada to Srisailam cabs", 
-              "Ongole to Vijayawada Cabs", "Tirupati to Vijayawada Cabs", "Chennai to Hyderabad taxi", "Chennai to Hyderabad cab", 
-              "Hyderabad to Rajahmundry cab", "Hyderabad to Rajahmundry taxi", "Hyderabad to Eluru cab", "Hyderabad to Eluru taxi", 
-              "Hyderabad to Tenali cab", "Hyderabad to Tenali taxi", "Hyderabad to Bapatla cab", "Hyderabad to Bapatla taxi", 
-              "Hyderabad to Ongole taxi", "Hyderabad to Ongole Cab", "Hyderabad to Tirupati taxi", "Hyderaba to Tanuku cabs", 
-              "Hyderaba to Tadepalligudem Cabs", "Hyderaba to machilipatnam cabs", "Hyderaba to gudivada cabs", "Hyderaba to srisailam cabs", 
-              "Taxi service Vijayawada", "Car travels Vijayawada", "Taxi service near me", "Car travels near me", "Vijayawada taxi service", 
-              "Vijayawada car travels", "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Mini bus Vijayawada", 
-              "Tempo traveller hire Vijayawada", "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderaba taxi service", 
-              "Hyderaba car travels", "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", 
-              "Guntur taxi service", "Guntur car travels", "Car travels tenali", "Taxi service tenali", "Taxi service machilipatnam", 
-              "Car travels machilipatnam", "Urbaniya tempo travellels"
+              "Hyderabad to Guntur Cabs", "Hyderabad to Bengaluru Cabs", "Hyderabad to Bengaluru taxi", "Hyderabad to Tirupati Cabs", 
+              "Hyderabad to Chennai cabs", "Vijayawada to Ongole taxi", "Vijayawada to Ongole cab", "Vijayawada to Rajahmundry cab", 
+              "Vijayawada to Rajahmundry Cabs", "Vijayawada to Tirupati cab", "Vijayawada to Tirupati Cabs", "Vijayawada to Tirupati taxi", 
+              "Vijayawada to Chennai cab", "Vijayawada to Chennai taxi", "Vijayawada to Bhimavaram Cabs", "Vijayawada to Eluru Cabs", 
+              "Vijayawada to Tadepalligudem Cabs", "Vijayawada to Tanuku Cabs", "Vijayawada to Srisailam cabs", "Ongole to Vijayawada Cabs", 
+              "Tirupati to Vijayawada Cabs", "Chennai to Hyderabad taxi", "Chennai to Hyderabad cab", "Hyderabad to Rajahmundry cab", 
+              "Hyderabad to Rajahmundry taxi", "Hyderabad to Eluru cab", "Hyderabad to Eluru taxi", "Hyderabad to Tenali cab", 
+              "Hyderabad to Tenali taxi", "Hyderabad to Bapatla cab", "Hyderabad to Bapatla taxi", "Hyderabad to Ongole taxi", 
+              "Hyderabad to Ongole Cab", "Hyderabad to Tirupati taxi", "Hyderabad to Tanuku cabs", "Hyderabad to Tadepalligudem Cabs", 
+              "Hyderabad to Machilipatnam cabs", "Hyderabad to Gudivada cabs", "Hyderabad to Srisailam cabs", "Taxi service Vijayawada", 
+              "Car travels Vijayawada", "Taxi service near me", "Car travels near me", "Vijayawada taxi service", "Vijayawada car travels", 
+              "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Mini bus Vijayawada", "Tempo traveller hire Vijayawada", 
+              "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderabad taxi service", "Hyderabad car travels", 
+              "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", "Guntur taxi service", 
+              "Guntur car travels", "Car travels Tenali", "Taxi service Tenali", "Taxi service Machilipatnam", "Car travels Machilipatnam", 
+              "Urbaniya Tempo Traveller", "Best car travels"
             ].map((keyword, idx) => (
               <span key={idx} className="hover:text-orange-500 transition cursor-default flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></span>
