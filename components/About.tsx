@@ -5,8 +5,14 @@ import Image from 'next/image';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-slate-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-4 sm:py-12 bg-slate-50 overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -66,7 +72,7 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

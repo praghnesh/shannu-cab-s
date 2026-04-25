@@ -15,6 +15,16 @@ const cityData = {
          { name: "Salar Jung Museum", desc: "One of the world's largest art collections.", img: "/places/salarjung.png" }
       ]
    },
+   "Shamshabad Airport": {
+      history: "Rajiv Gandhi International Airport (RGIA) opened in 2008, replacing the old Begumpet Airport to handle Hyderabad's growing global status.",
+      glance: "Consistently ranked among the best airports globally, RGIA Shamshabad is the premier gateway to South India with 24/7 world-class connectivity.",
+      places: [
+         { name: "RGIA Terminal", desc: "Award-winning global travel hub.", img: "/airport.png" },
+         { name: "Aero Plaza", desc: "The ultimate airport lifestyle destination.", img: "/city.png" },
+         { name: "Shamshabad Hub", desc: "Central node for intercity travel.", img: "/places/hyd_vja_highway.png" },
+         { name: "Elite Lounges", desc: "Luxury waiting zones for VIPs.", img: "/places/chowmahalla.png" }
+      ]
+   },
    "Vijayawada": {
       history: "The commercial powerhouse of Andhra Pradesh, strategically located on the banks of the Krishna River.",
       glance: "A bustling hub of trade and spirituality, Vijayawada offers a unique blend of modern infrastructure, ancient rock-cut caves, and serene riverfront views.",
@@ -75,8 +85,14 @@ export default function CityExplorer() {
    const [showHistory, setShowHistory] = useState(false);
 
    return (
-      <section id="explore" className="py-12 bg-slate-50 overflow-hidden">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="explore" className="py-4 bg-slate-50 overflow-hidden">
+         <motion.div 
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+         >
             <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-16">
                <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-600 font-black text-xs uppercase tracking-widest">
@@ -193,7 +209,7 @@ export default function CityExplorer() {
                   </AnimatePresence>
                </div>
             </div>
-         </div>
+         </motion.div>
       </section>
    );
 }

@@ -8,7 +8,9 @@ const routes = [
   "VIJAYAWADA ⇄ HYDERABAD",
   "GUNTUR ⇄ HYDERABAD",
   "HYDERABAD ⇄ BENGALURU",
-  "VIJAYAWADA ⇄ TIRUPATI"
+  "VIJAYAWADA ⇄ TIRUPATI",
+  "ELURU ⇄ HYDERABAD",
+  "HYDERABAD ⇄ GUDIVADA"
 ];
 
 export default function FloatingActions() {

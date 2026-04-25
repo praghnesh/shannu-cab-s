@@ -82,6 +82,20 @@ const fleetData = [
   { id: 203, name: "Ertiga", price: "₹11,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-indigo-50" },
   { id: 204, name: "Innova", price: "₹13,500", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-indigo-50" },
   { id: 205, name: "Innova Crysta Luxury", price: "₹15,500", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-indigo-50" },
+  
+  // Eluru ⇄ Hyderabad (Etios Base: ₹6500)
+  { id: 211, name: "Etios", price: "₹6,500", route: "Eluru ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-purple-50" },
+  { id: 212, name: "Swift Dzire", price: "₹6,500", route: "Eluru ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-purple-50" },
+  { id: 213, name: "Ertiga", price: "₹9,500", route: "Eluru ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-purple-50" },
+  { id: 214, name: "Innova", price: "₹12,000", route: "Eluru ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-purple-50" },
+  { id: 215, name: "Innova Crysta Luxury", price: "₹14,000", route: "Eluru ⇄ Hyderabad", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-purple-50" },
+
+  // Hyderabad ⇄ Gudivada (Etios Base: ₹6500)
+  { id: 221, name: "Etios", price: "₹6,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-pink-50" },
+  { id: 222, name: "Swift Dzire", price: "₹6,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹12/Km", capacity: "4 Seats", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-pink-50" },
+  { id: 223, name: "Ertiga", price: "₹9,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹15/Km", capacity: "6 Seats", image: "/EART.png", type: "Family", bgColor: "bg-pink-50" },
+  { id: 224, name: "Innova", price: "₹12,000", route: "Hyderabad ⇄ Gudivada", perKm: "₹19/Km", capacity: "7 Seats", image: "/INNO.png", type: "VIP", bgColor: "bg-pink-50" },
+  { id: 225, name: "Innova Crysta Luxury", price: "₹14,000", route: "Hyderabad ⇄ Gudivada", perKm: "₹21/Km", capacity: "7 Seats", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-pink-50" },
 
   // Heavy Vehicles & Buses
   { id: 302, name: "Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/BUSBANNER.png", gallery: ["/image copy 2.png", "/bus/bus1.png", "/bus/bus2.png", "/bus/bus3.png", "/bus/bus4.png"], type: "Heavy Vehicle", bgColor: "bg-gray-100" },
@@ -107,6 +121,8 @@ const routes = [
   { label: "Hyderabad ⇄ Srisailam", value: "Hyderabad ⇄ Srisailam" },
   { label: "Hyderabad ⇄ Vizag", value: "Hyderabad ⇄ Vizag" },
   { label: "Hyderabad ⇄ Bhimavaram", value: "Hyderabad ⇄ Bhimavaram" },
+  { label: "Eluru ⇄ Hyderabad", value: "Eluru ⇄ Hyderabad" },
+  { label: "Hyderabad ⇄ Gudivada", value: "Hyderabad ⇄ Gudivada" },
   { label: "Elite Luxury Collection", value: "Elite Luxury Collection" },
   { label: "Group Travel & Buses", value: "Buses & Group Travel" }
 ];
@@ -136,8 +152,14 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
   };
 
   return (
-    <section id="fleet" className="py-12 bg-white overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="fleet" className="py-4 sm:py-12 bg-white overflow-hidden relative">
+      <motion.div 
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+      >
         <div className="text-center mb-12 space-y-6">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
             <span className="text-orange-500 font-black tracking-widest uppercase text-sm px-4 py-2 bg-orange-50 rounded-full">Explore Our Elite Catalog</span>
@@ -180,8 +202,9 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               <motion.div 
                 layout
                 key={car.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -15 }}
                 className="bg-white rounded-[4rem] overflow-hidden shadow-2xl hover:shadow-orange-500/10 transition-all duration-700 flex flex-col group border border-slate-50 h-full p-2"
               >
@@ -286,7 +309,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               </div>
            </div>
         </div>
-      </div>
+      </motion.div>
 
       <AnimatePresence>
         {viewIndex !== null && activeItem && (

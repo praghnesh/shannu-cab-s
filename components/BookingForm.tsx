@@ -14,7 +14,7 @@ export default function BookingForm() {
   const [showToSuggestions, setShowToSuggestions] = useState(false);
 
   const cities = [
-    "Hyderabad", "Vijayawada", "Guntur", "Visakhapatnam (Vizag)", "Vizag", "Machilipatnam", 
+    "Hyderabad", "Shamshabad Airport", "Vijayawada", "Guntur", "Visakhapatnam (Vizag)", "Vizag", "Machilipatnam", 
     "Rajahmundry", "Kakinada", "Tirupati", "Warangal", "Nizamabad", "Khammam", 
     "Karimnagar", "Nellore", "Kurnool", "Anantapur", "Chittoor", "Eluru", "Ongole", 
     "Bangalore", "Chennai", "Mumbai", "Pune", "Delhi", "Amaravati", "Srisailam", 
@@ -89,7 +89,7 @@ export default function BookingForm() {
               key={tab}
               type="button"
               onClick={() => setTripTab(tab)}
-              className={`flex-1 min-w-[200px] sm:min-w-max px-8 py-6 font-black text-xs uppercase tracking-tighter transition-all flex flex-col items-center justify-center gap-2 border-r last:border-r-0 snap-center
+              className={`flex-1 min-w-[200px] sm:min-w-max px-4 sm:px-8 py-4 sm:py-6 font-black text-[10px] sm:text-xs uppercase tracking-tighter transition-all flex flex-col items-center justify-center gap-2 border-r last:border-r-0 snap-center
                 ${tripTab === tab 
                   ? 'bg-white text-blue-950 border-t-4 border-t-orange-500 shadow-sm z-10' 
                   : 'text-slate-400 hover:text-blue-950 bg-gray-50/50 hover:bg-gray-100 border-t-4 border-t-transparent'} last:pr-12`}
@@ -111,7 +111,7 @@ export default function BookingForm() {
 
       <form 
         onSubmit={handleSubmit} 
-        className="p-6 sm:p-8"
+        className="p-4 sm:p-8"
       >
         
         {/* Row 1: Locations & Date & Time */}
@@ -130,7 +130,7 @@ export default function BookingForm() {
               }}
               onFocus={() => setShowFromSuggestions(true)}
               onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
-              className="w-full bg-transparent text-xl font-bold text-gray-900 outline-none placeholder-gray-300" 
+              className="w-full bg-transparent text-lg sm:text-xl font-bold text-gray-900 outline-none placeholder-gray-300" 
               placeholder="City or Airport" 
               autoComplete="off"
             />
@@ -182,7 +182,7 @@ export default function BookingForm() {
               }}
               onFocus={() => setShowToSuggestions(true)}
               onBlur={() => setTimeout(() => setShowToSuggestions(false), 200)}
-              className="w-full bg-transparent text-xl font-bold text-gray-900 outline-none placeholder-gray-300" 
+              className="w-full bg-transparent text-lg sm:text-xl font-bold text-gray-900 outline-none placeholder-gray-300" 
               placeholder="Destination" 
               autoComplete="off"
             />
@@ -218,12 +218,12 @@ export default function BookingForm() {
 
           <div className="border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
             <span className="text-xs font-bold text-gray-500 group-focus-within:text-blue-600 block mb-1 flex items-center gap-1"><Calendar size={12}/> DEPARTURE</span>
-            <input name="date" type="date" required className="w-full bg-transparent text-lg font-bold text-gray-800 outline-none" />
+            <input name="date" type="date" required className="w-full bg-transparent text-base sm:text-lg font-bold text-gray-800 outline-none" />
           </div>
 
           <div className="border border-gray-200 rounded-xl p-3 hover:bg-blue-50/50 transition cursor-text group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
             <span className="text-xs font-bold text-gray-500 group-focus-within:text-blue-600 block mb-1 flex items-center gap-1"><Clock size={12}/> PICKUP TIME</span>
-            <input name="time" type="time" required className="w-full bg-transparent text-lg font-bold text-gray-800 outline-none" />
+            <input name="time" type="time" required className="w-full bg-transparent text-base sm:text-lg font-bold text-gray-800 outline-none" />
           </div>
 
         </div>
@@ -248,7 +248,7 @@ export default function BookingForm() {
         )}
 
         {/* Row 2: Customer Details */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pt-4 border-t border-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8 pt-4 border-t border-gray-100">
 
           <div className="relative">
             <label className="text-xs font-black uppercase tracking-tight text-slate-400 block mb-1">Contact Number</label>
@@ -276,13 +276,13 @@ export default function BookingForm() {
 
 
         {/* Big Search / Submit Button */}
-        <div className="text-center mt-10 relative z-20 flex justify-center">
+        <div className="text-center mt-6 sm:mt-10 relative z-20 flex justify-center">
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit" 
             disabled={loading} 
-            className="bg-orange-500 text-white font-black text-lg md:text-xl uppercase tracking-tighter py-5 px-12 md:px-20 rounded-full shadow-[0_20px_40px_rgba(249,115,22,0.4)] hover:shadow-[0_25px_50px_rgba(249,115,22,0.6)] flex items-center gap-3 transition-all outline-none"
+            className="bg-orange-500 text-white font-black text-base md:text-xl uppercase tracking-tighter py-4 md:py-5 px-10 md:px-20 rounded-full shadow-[0_20px_40px_rgba(249,115,22,0.4)] hover:shadow-[0_25px_50px_rgba(249,115,22,0.6)] flex items-center gap-3 transition-all outline-none"
           >
             {loading ? <span className="animate-pulse">PROCESSING...</span> : 'BOOK TRIP NOW'}
           </motion.button>

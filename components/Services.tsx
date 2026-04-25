@@ -79,11 +79,17 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-12 bg-slate-50 relative overflow-hidden">
+    <section id="services" className="py-4 sm:py-12 bg-slate-50 relative overflow-hidden">
       {/* Abstract Background Shapes */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-white rounded-[10rem] rotate-[-5deg] mt-[-100px] z-0"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+      >
         
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-6">
           <motion.span 
@@ -111,7 +117,7 @@ export default function Services() {
         </div>
 
         {/* Extended Why Choose Us / Trust Badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-16">
            {[
              { icon: <ShieldCheck className="text-blue-600" size={32} />, label: "Secured Mobility", desc: "SOS & Live Tracking" },
              { icon: <Clock className="text-orange-500" size={32} />, label: "Elite Punctuality", desc: "Drivers reach 15m early" },
@@ -123,21 +129,23 @@ export default function Services() {
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ delay: i * 0.1 }}
-               className="bg-white p-10 rounded-[3.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 flex flex-col items-center text-center gap-6 hover:scale-105 transition-all group relative overflow-hidden"
+               className="bg-white p-5 sm:p-10 rounded-[2rem] sm:rounded-[3.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 flex flex-col items-center text-center gap-4 sm:gap-6 hover:scale-105 transition-all group relative overflow-hidden"
              >
                <div className="absolute inset-0 bg-blue-950 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-               <div className="bg-slate-50 p-6 rounded-[2rem] group-hover:bg-white/10 transition-colors relative z-10">
-                  {item.icon}
+               <div className="bg-slate-50 p-3 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] group-hover:bg-white/10 transition-colors relative z-10">
+                  <div className="scale-75 sm:scale-100">
+                    {item.icon}
+                  </div>
                </div>
                <div className="relative z-10">
-                  <p className="font-black text-xl tracking-tighter mb-2 group-hover:text-white transition-colors">{item.label}</p>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-white/50 transition-colors leading-tight">{item.desc}</p>
+                  <p className="font-black text-sm sm:text-xl tracking-tighter mb-1 sm:mb-2 group-hover:text-white transition-colors leading-none">{item.label}</p>
+                  <p className="text-[8px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-white/50 transition-colors leading-tight">{item.desc}</p>
                </div>
              </motion.div>
            ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12">
           {services.map((service, idx) => (
             <motion.div 
               key={service.id}
@@ -187,7 +195,7 @@ export default function Services() {
         </div>
 
         {/* Global Delivery Cities List - Page like feel */}
-        <div className="mt-16 border-t border-slate-200 pt-12">
+        <div className="mt-8 border-t border-slate-200 pt-8">
            <div className="grid lg:grid-cols-3 gap-16">
               <div className="lg:col-span-1">
                  <h4 className="text-4xl font-black text-blue-950 tracking-tighter mb-6 leading-none">Serving Major <br /> Intercity Links.</h4>
@@ -221,7 +229,7 @@ export default function Services() {
            </div>
         </div>
 
-      </div>
+      </motion.div>
 
       <AnimatePresence>
         {viewIndex !== null && activeItem && (

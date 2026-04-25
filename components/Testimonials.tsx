@@ -35,8 +35,14 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-12 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-4 sm:py-8 bg-white overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center mb-12 space-y-4">
           <motion.span 
             initial={{ opacity: 0 }}
@@ -54,7 +60,7 @@ export default function Testimonials() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {testimonials.map((testimonial, idx) => (
             <motion.div
               key={testimonial.id}
@@ -62,7 +68,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: idx * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-slate-50 p-10 rounded-[3rem] border border-slate-100 flex flex-col relative group hover:bg-blue-950 transition-all duration-500 shadow-xl shadow-slate-100"
+              className="bg-slate-50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] border border-slate-100 flex flex-col relative group hover:bg-blue-950 transition-all duration-500 shadow-xl shadow-slate-100"
             >
               <Quote className="absolute top-8 right-8 text-slate-200 group-hover:text-white/10 transition-colors" size={40} />
               
@@ -83,7 +89,7 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

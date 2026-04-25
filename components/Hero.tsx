@@ -6,7 +6,7 @@ import { Shield, Headphones, Star, Users, MapPin } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <div className="relative bg-blue-950 pt-20 lg:pt-32 pb-10 overflow-hidden w-full">
+    <div className="relative bg-blue-950 pt-20 lg:pt-32 pb-0 overflow-hidden w-full">
       {/* Clean Solid Blue Background */}
       <div className="absolute inset-0 z-0 bg-blue-950">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-950 to-blue-900 opacity-50 z-10"></div>
@@ -72,7 +72,7 @@ export default function Hero() {
       </div>
 
       {/* Floating Booking Card */}
-      <div id="main-booking-form" className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mt-[-60px] lg:mt-[-80px] mb-8 pb-10 max-w-6xl mx-auto flex justify-center">
+      <div id="main-booking-form" className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mt-[-60px] lg:mt-[-80px] mb-0 pb-2 sm:pb-10 max-w-6xl mx-auto flex justify-center">
         <motion.div
            initial={{ opacity: 0, y: 50 }}
            animate={{ opacity: 1, y: 0 }}
