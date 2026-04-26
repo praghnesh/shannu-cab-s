@@ -102,12 +102,21 @@ export default function FloatingActions() {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                   </span>
                 </a>
+               {/* Desktop: Red Call Button */}
                <a 
                   href="tel:+919948924786" 
-                  className="bg-red-600 text-white p-4 rounded-full hover:bg-red-700 transition-all shadow-lg active:scale-90 flex items-center gap-2 group px-6"
+                  className="hidden md:flex bg-red-600 text-white p-4 rounded-full hover:bg-red-700 transition-all shadow-lg active:scale-90 items-center gap-2 group px-6"
                >
                   <Phone size={20} className="animate-pulse" />
-                  <span className="hidden md:block font-black text-xs uppercase tracking-widest">Call Now</span>
+                  <span className="font-black text-xs uppercase tracking-widest">Call Now</span>
+               </a>
+               
+               {/* Mobile: Phone Number Text */}
+               <a 
+                  href="tel:+919948924786" 
+                  className="md:hidden flex items-center justify-center text-white font-black text-xs sm:text-sm tracking-wider px-1 sm:px-2 whitespace-nowrap"
+               >
+                  +91 9948924786
                </a>
             </div>
 

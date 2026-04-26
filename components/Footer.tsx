@@ -127,8 +127,8 @@ export default function Footer() {
         <div className="border-t border-slate-800 py-12 mb-8">
            <h3 className="text-white text-lg font-black uppercase tracking-widest mb-8 text-center">Visit Our Main Terminal</h3>
            <div className="w-full h-[300px] rounded-[2rem] overflow-hidden border-4 border-slate-800 shadow-2xl relative">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.437255140518!2d80.63691071164998!3d16.50043149999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fab739818815%3A0x86915b223c34614d!2s16%C2%B030&#39;01.6%22N+80%C2%B038&#39;22.2%22E!5e0!3m2!1sen!2sin!4v1714082260846!5m2!1sen!2sin" 
+               <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.008973975938!2d78.3582555!3d17.507085049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9273e58effef%3A0x8b7f69422df2b50f!2sJaya%20Prakash%20Narayan%20Nagar%2C%20Miyapur%2C%20Hyderabad%2C%20Telangana%20500049!5e0!3m2!1sen!2sin!4v1777205761866!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
@@ -138,8 +138,8 @@ export default function Footer() {
                 className="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
               ></iframe>
               <div className="absolute top-6 left-6 bg-blue-950/90 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 hidden sm:block">
-                 <p className="text-white font-black text-xs uppercase tracking-widest">Vijayawada Hub</p>
-                 <p className="text-blue-200 text-[10px]">Headquarters Terminal</p>
+                 <p className="text-white font-black text-xs uppercase tracking-widest">Hyderabad Hub</p>
+                 <p className="text-blue-200 text-[10px]">Miyapur Terminal</p>
               </div>
            </div>
         </div>
