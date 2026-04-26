@@ -18,7 +18,7 @@ const fleetData = [
 ];
 
 const locations = ["Hyderabad", "Vijayawada", "Guntur", "Vizag", "Tirupati", "Bangalore", "Tenali", "Ongole"];
-const supportNumbers = ["+91 99489 24786", "+91 95155 57731", "+91 93902 51694"];
+const supportNumbers = ["+91 9948924786"];
 
 export default function BookingNotification() {
   const [activeNotification, setActiveNotification] = useState<any>(null);
