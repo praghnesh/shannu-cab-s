@@ -66,7 +66,7 @@ export default function FloatingActions() {
             exit={{ y: 100, opacity: 0 }}
             className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[2000] w-[95%] max-w-2xl px-4"
           >
-            <div className="bg-blue-950/90 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-2 flex items-center justify-between gap-4">
+            <div className="bg-blue-950/90 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] py-4 px-2 sm:p-2 flex items-center justify-between gap-4">
               
               {/* Route Label - Left */}
               <div className="hidden sm:flex items-center gap-3 pl-4">
@@ -93,13 +93,13 @@ export default function FloatingActions() {
 
               {/* Mobile Route - Small */}
               <div className="sm:hidden pl-4 flex flex-col">
-                 <span className="text-[8px] font-black text-orange-500 uppercase tracking-widest leading-none">Popular Route</span>
+                 <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest leading-none mb-1">Popular Route</span>
                  <AnimatePresence mode="wait">
                     <motion.span 
                        key={routeIndex}
                        initial={{ opacity: 0 }}
                        animate={{ opacity: 1 }}
-                       className="text-[11px] font-black text-white"
+                       className="text-sm font-black text-white"
                     >
                        {routes[routeIndex].split(' ⇄ ')[1]}
                     </motion.span>
@@ -134,7 +134,7 @@ export default function FloatingActions() {
                  {/* Mobile: Phone Number Text */}
                  <a 
                     href="tel:+919948924786" 
-                    className="md:hidden flex items-center justify-center text-white font-black text-xs sm:text-sm tracking-wider px-1 sm:px-2 whitespace-nowrap"
+                    className="md:hidden flex items-center justify-center text-white font-black text-base sm:text-lg tracking-wider px-2 sm:px-4 whitespace-nowrap"
                  >
                     +91 9948924786
                  </a>
