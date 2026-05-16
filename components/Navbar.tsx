@@ -42,13 +42,20 @@ export default function Navbar() {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 flex flex-col ${
           scrolled 
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] py-3 border-b border-slate-100' 
-            : 'bg-transparent py-6'
+            ? 'bg-white/90 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border-b border-slate-100' 
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        {/* Top Green Banner */}
+        <div className="bg-green-600 text-white py-2 w-full text-center text-base sm:text-lg font-black tracking-widest flex justify-center items-center relative shadow-sm">
+           <a href="tel:+919948924786" className="hover:text-green-100 transition-colors flex items-center justify-center gap-2">
+              <PhoneCall size={16} className="animate-pulse" /> +91 9948924786
+           </a>
+        </div>
+
+        <div className={`max-w-7xl mx-auto w-full px-6 sm:px-8 transition-all duration-500 ${scrolled ? 'py-2' : 'py-4 sm:py-5'}`}>
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center group relative z-[1001]">
               <span className={`text-2xl sm:text-3xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-blue-950' : 'text-white'}`}>

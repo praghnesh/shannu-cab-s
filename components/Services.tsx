@@ -53,8 +53,8 @@ const services = [
     description: "Make your special day unforgettable with our elite fleet of luxury sedans and premium convertibles.",
     image: "/luxarycars/lux7.png",
     gallery: [
-      "/cars/BENZ.png", "/cars/BMW.png", "/cars/AUDI.png", "/cars/FERRARI.png",
-      "/luxarycars/lux5.png", "/luxarycars/lux6.png", "/luxarycars/lux7.png", 
+      "/luxarycars/lux7.png", "/cars/BENZ.png", "/cars/BMW.png", "/cars/AUDI.png", "/cars/FERRARI.png",
+      "/luxarycars/lux5.png", "/luxarycars/lux6.png", 
       "/luxarycars/lux8.png", "/luxarycars/lux9.png", "/luxarycars/lux10.png", "/luxarycars/lux11.png"
     ],
     detail: "Our wedding collection features the finest luxury vehicles, perfectly maintained and professionally driven. We provide custom decorations, coordinated fleet arrivals, and red-carpet treatment for the couple and guests."
@@ -243,7 +243,7 @@ export default function Services() {
             >
               <button onClick={() => { setViewIndex(null); setGalleryIndex(0); }} className="absolute top-4 right-4 text-slate-400 hover:text-orange-500 z-50 bg-white/90 backdrop-blur-md p-2 rounded-xl transition-colors shadow-lg border border-slate-100"><X size={20} /></button>
               
-              <div className="md:w-1/2 bg-slate-100 flex items-center justify-center relative h-[200px] md:h-auto overflow-hidden">
+              <div className="w-full md:w-1/2 bg-slate-100 flex items-center justify-center relative h-[85vh] md:h-auto overflow-hidden">
                  <AnimatePresence mode="wait">
                     <motion.div
                        key={activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image}
@@ -257,55 +257,60 @@ export default function Services() {
                              src={activeItem.gallery ? activeItem.gallery[galleryIndex] : activeItem.image} 
                              alt={activeItem.title} 
                              fill 
-                             className="object-contain p-4" 
+                             className="object-cover" 
                           />
                        )}
                     </motion.div>
                  </AnimatePresence>
 
-                 {activeItem.gallery && (
-                    <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
-                       <button 
-                          onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                          className="bg-blue-600 p-3 rounded-2xl text-white hover:bg-blue-700 transition-all shadow-lg border border-blue-500/50"
-                       >
-                          <ArrowLeft size={24} />
-                       </button>
-                       <button 
-                          onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                          className="bg-blue-600 p-3 rounded-2xl text-white hover:bg-blue-700 transition-all shadow-lg border border-blue-500/50"
-                       >
-                          <ArrowRight size={24} />
-                       </button>
+                 {/* Gradient overlay for mobile/tablet only */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent md:hidden pointer-events-none z-[5]"></div>
 
-                       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                 {activeItem.gallery && (
+                    <>
+                       <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-10 flex gap-2 z-10">
                           {activeItem.gallery.map((_, i) => (
-                             <div 
-                                key={i}
-                                className={`h-1.5 rounded-full transition-all ${galleryIndex === i ? 'bg-orange-500 w-8' : 'bg-white/50 w-2'}`}
+                             <button 
+                                key={i} 
+                                onClick={(e) => { e.stopPropagation(); setGalleryIndex(i); }}
+                                className={`h-1.5 rounded-full transition-all ${galleryIndex === i ? 'bg-orange-500 w-8 sm:w-12' : 'bg-white/50 w-3 sm:w-4 hover:bg-white/80'}`}
                              />
                           ))}
                        </div>
-                    </div>
+                       <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-10 flex gap-2 sm:gap-3 z-[300]">
+                          <button 
+                             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                             className="bg-blue-600 hover:bg-blue-700 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl text-white transition-all shadow-lg border border-blue-500/50"
+                          >
+                             <ArrowRight size={16} className="rotate-180 sm:w-5 sm:h-5" />
+                          </button>
+                          <button 
+                             onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                             className="bg-blue-600 hover:bg-blue-700 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl text-white transition-all shadow-lg border border-blue-500/50"
+                          >
+                             <ArrowRight size={16} className="sm:w-5 sm:h-5" />
+                          </button>
+                       </div>
+                    </>
                  )}
               </div>
 
-              <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
-                 <div className="mb-4 lg:mb-6">
-                    <span className="text-orange-500 font-black tracking-widest uppercase text-[10px] block mb-2">Official Service Tier</span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-blue-950 mb-4 tracking-tighter leading-none">{activeItem.title}</h2>
-                    <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed border-l-4 border-orange-500 pl-6">
+              <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col justify-end p-6 pb-24 pointer-events-none md:pointer-events-auto md:static md:w-1/2 md:p-10 md:justify-center md:bg-white">
+                 <div className="mb-4 lg:mb-6 pointer-events-auto">
+                    <span className="text-orange-500 font-black tracking-widest uppercase text-[10px] block mb-2 drop-shadow-md md:drop-shadow-none">Official Service Tier</span>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white md:text-blue-950 mb-4 tracking-tighter leading-none drop-shadow-lg md:drop-shadow-none">{activeItem.title}</h2>
+                    <p className="hidden md:block text-slate-200 md:text-slate-600 text-sm md:text-base font-medium leading-relaxed border-l-4 border-orange-500 pl-4 md:pl-6 drop-shadow-md md:drop-shadow-none">
                       {activeItem.detail}
                     </p>
                  </div>
                  
-                 <div className="space-y-2 mb-6">
+                 <div className="space-y-2 mb-6 hidden sm:block pointer-events-auto">
                     {[
                       "Professional Uniformed Chauffeur",
                       "Free Cancellation up to 2 hours",
                       "Real-time GPS Trip Sharing"
                     ].map(f => (
-                      <div key={f} className="flex items-center gap-3 text-blue-950 font-black text-xs md:text-sm">
+                      <div key={f} className="flex items-center gap-3 text-white md:text-blue-950 font-black text-xs md:text-sm drop-shadow-md md:drop-shadow-none">
                          <CheckCircle size={16} className="text-green-500 shrink-0" /> {f}
                       </div>
                     ))}
@@ -314,7 +319,7 @@ export default function Services() {
                  <motion.a 
                     whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                     href="tel:+919948924786" 
-                    className="mt-8 flex w-full bg-blue-950 text-white font-black text-base py-4 rounded-[1rem] hover:bg-orange-500 transition-all items-center justify-center gap-2 shadow-2xl"
+                    className="mt-2 md:mt-8 flex w-full bg-orange-500 md:bg-blue-950 text-white font-black text-base py-4 rounded-[1rem] hover:bg-orange-600 md:hover:bg-orange-500 transition-all items-center justify-center gap-2 shadow-2xl pointer-events-auto"
                  >
                     <Star size={16} fill="currentColor" /> BOOK THIS SERVICE
                  </motion.a>

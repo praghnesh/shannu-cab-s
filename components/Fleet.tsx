@@ -99,7 +99,7 @@ const fleetData = [
 
   // Heavy Vehicles & Buses
   { id: 302, name: "Luxury AC Bus", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "40 Seats", image: "/BUSBANNER.png", gallery: ["/image copy 2.png", "/bus/bus1.png", "/bus/bus2.png", "/bus/bus3.png", "/bus/bus4.png"], type: "Heavy Vehicle", bgColor: "bg-gray-100" },
-  { id: 303, name: "Tempo Traveller", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "12 Seats", image: "/cars/urbania.png", gallery: ["/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/cars/urbania_interior_5.png", "/image copy 3.png", "/image copy 4.png", "/image copy 5.png", "/tempo/tempo1.png", "/tempo/tempo2.png", "/tempo/tempo3.png", "/tempo/tempo4.png"], type: "Group", bgColor: "bg-gray-100" },
+  { id: 303, name: "Tempo Traveller", price: "On Request", route: "Buses & Group Travel", perKm: "On Request", capacity: "12 to 16 Seats", image: "/cars/urbania.png", gallery: ["/tempo/t1.jpg", "/tempo/t2.jpg", "/tempo/t3.jpg", "/tempo/t4.jpg", "/tempo/t5.jpg", "/cars/bus_interior_1.png", "/cars/bus_interior_2.png", "/tempo/t6.jpg", "/tempo/t7.jpg", "/tempo/t8.jpg", "/tempo/t9.png", "/tempo/t10.png", "/cars/urbania_interior_5.png", "/image copy 3.png", "/image copy 4.png", "/image copy 5.png", "/tempo/tempo1.png", "/tempo/tempo2.png", "/tempo/tempo3.png", "/tempo/tempo4.png"], type: "Group", bgColor: "bg-gray-100" },
 
   // Elite Luxury Collection
   { id: 401, name: "Mercedes-Benz S-Class", price: "On Request", route: "Elite Luxury Collection", perKm: "On Request", capacity: "4 Seats", image: "/cars/BENZ.png", type: "Elite Luxury", bgColor: "bg-slate-50" },
@@ -332,7 +332,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               className="bg-white rounded-[1.5rem] sm:rounded-[2rem] w-[95%] sm:w-[92%] md:w-[85%] max-w-4xl shadow-2xl relative flex flex-col lg:flex-row border-[2px] sm:border-[6px] border-white/20"
             >
               
-              <div className={`${showInteriorModal ? 'lg:w-full' : 'lg:w-1/2'} p-1 sm:p-6 ${activeItem.bgColor} flex flex-col items-center justify-center relative h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden transition-all duration-500`}>
+              <div className={`${showInteriorModal ? 'lg:w-full' : 'lg:w-1/2'} p-1 sm:p-6 ${activeItem.bgColor} flex flex-col items-center justify-center relative h-[450px] sm:h-[600px] lg:h-[700px] overflow-hidden transition-all duration-500`}>
                  <AnimatePresence mode="wait">
                     <motion.div 
                        key={galleryIndex}
