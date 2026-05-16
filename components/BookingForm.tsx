@@ -24,12 +24,57 @@ export default function BookingForm() {
     "Bhimavaram", "Tenali", "Proddatur", "Adoni", "Madanapalle"
   ];
 
-  const handleSubmit = (e: any) => {
-    // Open WhatsApp in a new tab first
-    const message = `*New Booking Request*%0A%0A*Phone:* ${e.target.phone.value}%0A*From:* ${fromLoc}%0A*To:* ${toLoc}%0A*Date:* ${e.target.date.value}%0A*Time:* ${e.target.time.value}%0A*Vehicle:* ${e.target.vehicle.value}`;
-    window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
     
-    // The form will now naturally submit to the 'action' URL (FormSubmit)
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      phone: formData.get('phone'),
+      pickup: fromLoc,
+      drop: toLoc,
+      mainCategory: mainTab,
+      tripType: tripType,
+      date: formData.get('date'),
+      time: formData.get('time'),
+      vehicle: formData.get('vehicle')
+    };
+
+    // Prepare WhatsApp message
+    const message = `*New Booking Request*%0A%0A*Phone:* ${data.phone}%0A*Category:* ${data.mainCategory}%0A*Trip:* ${data.tripType}%0A*From:* ${data.pickup}%0A*To:* ${data.drop}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`;
+
+    try {
+      // 1. Submit to Email (Web3Forms)
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
+          subject: `NEW BOOKING: ${data.pickup} to ${data.drop}`,
+          from_name: "Fast Car Travels Website",
+          ...data
+        })
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        // 2. Open WhatsApp
+        window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+      } else {
+        // Fallback to WhatsApp even if email fails
+        window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+      }
+      
+    } catch (error) {
+      console.error("Submission error:", error);
+      window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+    }
+
+    setLoading(false);
+    setTimeout(() => setSuccess(false), 8000);
   };
 
   return (
@@ -42,20 +87,11 @@ export default function BookingForm() {
         {/* Form Container */}
         <div className="w-full max-w-[420px] bg-black rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative border border-white/10 z-20">
           <div className="p-6">
-            <form 
-              action="https://formsubmit.co/fastcartravels4@gmail.com" 
-              method="POST" 
-              onSubmit={handleSubmit}
-              className="space-y-4"
-            >
-              {/* FormSubmit Config */}
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_subject" value={`NEW BOOKING: ${fromLoc} to ${toLoc}`} />
-              <input type="hidden" name="mainCategory" value={mainTab} />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input type="hidden" name="fromLoc" value={fromLoc} />
+              <input type="hidden" name="toLoc" value={toLoc} />
+              <input type="hidden" name="mainTab" value={mainTab} />
               <input type="hidden" name="tripType" value={tripType} />
-              <input type="hidden" name="fromLocation" value={fromLoc} />
-              <input type="hidden" name="toLocation" value={toLoc} />
 
               {/* Location Inputs Block */}
               <div className="relative bg-[#f3f3f3] rounded-2xl flex flex-col p-1.5 z-50">
