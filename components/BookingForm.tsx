@@ -24,44 +24,12 @@ export default function BookingForm() {
     "Bhimavaram", "Tenali", "Proddatur", "Adoni", "Madanapalle"
   ];
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+  const handleSubmit = (e: any) => {
+    // Open WhatsApp in a new tab first
+    const message = `*New Booking Request*%0A%0A*Phone:* ${e.target.phone.value}%0A*From:* ${fromLoc}%0A*To:* ${toLoc}%0A*Date:* ${e.target.date.value}%0A*Time:* ${e.target.time.value}%0A*Vehicle:* ${e.target.vehicle.value}`;
+    window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
     
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      phone: formData.get('phone'),
-      pickup: fromLoc,
-      drop: toLoc,
-      mainCategory: mainTab,
-      tripType: tripType,
-      date: formData.get('date'),
-      time: formData.get('time'),
-      vehicle: formData.get('vehicle')
-    };
-
-    try {
-      await fetch("https://formsubmit.co/ajax/fastcartravels4@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New Cab Booking from ${data.phone}`,
-          ...data
-        })
-      });
-      setSuccess(true);
-      
-      const message = `*New Booking Request*%0A%0A*Phone:* ${data.phone}%0A*Category:* ${data.mainCategory}%0A*Trip:* ${data.tripType}%0A*From:* ${data.pickup}%0A*To:* ${data.drop}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`;
-      window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
-    } catch (error) {
-      console.error("Email failed:", error);
-    }
-
-    setLoading(false);
-    setTimeout(() => setSuccess(false), 8000);
+    // The form will now naturally submit to the 'action' URL (FormSubmit)
   };
 
   return (
@@ -74,7 +42,21 @@ export default function BookingForm() {
         {/* Form Container */}
         <div className="w-full max-w-[420px] bg-black rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative border border-white/10 z-20">
           <div className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form 
+              action="https://formsubmit.co/fastcartravels4@gmail.com" 
+              method="POST" 
+              onSubmit={handleSubmit}
+              className="space-y-4"
+            >
+              {/* FormSubmit Config */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_subject" value={`NEW BOOKING: ${fromLoc} to ${toLoc}`} />
+              <input type="hidden" name="mainCategory" value={mainTab} />
+              <input type="hidden" name="tripType" value={tripType} />
+              <input type="hidden" name="fromLocation" value={fromLoc} />
+              <input type="hidden" name="toLocation" value={toLoc} />
+
               {/* Location Inputs Block */}
               <div className="relative bg-[#f3f3f3] rounded-2xl flex flex-col p-1.5 z-50">
                 {/* Connecting Line */}

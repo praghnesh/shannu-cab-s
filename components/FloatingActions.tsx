@@ -54,10 +54,6 @@ export default function FloatingActions() {
             className="md:hidden fixed bottom-6 right-6 z-[2000] bg-green-500 text-white p-4 rounded-full shadow-[0_10px_30px_rgba(34,197,94,0.4)] active:scale-90 border-2 border-white/20"
           >
              <MessageCircle size={28} />
-             <span className="absolute -top-1 -right-1 flex h-4 w-4">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
-             </span>
           </motion.a>
 
           {/* Call - Left Side */}
@@ -115,12 +111,7 @@ export default function FloatingActions() {
                   >
                     <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
                     <span className="font-black text-xs uppercase tracking-widest">WhatsApp</span>
-                    {/* Notification Dot */}
-                    <span className="absolute top-2 right-4 flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                    </span>
-                  </a>
+                    </a>
                  {/* Desktop: Red Call Button */}
                  <a 
                     href="tel:+919948924786" 

@@ -29,7 +29,6 @@ export const metadata: Metadata = {
 }
 
 import FloatingActions from '../components/FloatingActions'
-import BookingNotification from '../components/BookingNotification'
 
 export default function RootLayout({
   children,
@@ -46,15 +45,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingActions />
-        <BookingNotification />
-        
-        {/* VIP Support Badge */}
-        <div className="fixed bottom-32 right-6 z-40 hidden md:block">
-           <div className="bg-white/80 backdrop-blur shadow-2xl p-4 rounded-3xl border border-white flex flex-col items-center gap-2 animate-bounce">
-              <span className="text-[10px] font-black text-blue-900 uppercase">Live Support</span>
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-           </div>
-        </div>
       </body>
     </html>
   )
