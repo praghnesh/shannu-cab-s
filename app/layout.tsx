@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -37,6 +38,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth antialiased w-full max-w-full overflow-x-clip">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18120794982"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18120794982');
+          `}
+        </Script>
+      </head>
       <body className={`${poppins.variable} font-sans bg-slate-50 text-slate-900 overflow-x-clip w-full max-w-full selection:bg-orange-500 selection:text-white`}>
         <PageLoader />
         <Navbar />
