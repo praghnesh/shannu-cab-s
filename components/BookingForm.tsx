@@ -240,7 +240,7 @@ export default function BookingForm() {
                        <option value="Ertiga">Maruti Ertiga</option>
                        <option value="Innova">Toyota Innova</option>
                        <option value="Innova Crysta">Innova Crysta</option>
-                       <option value="Tempo Traveller">Tempo Traveller</option>
+                       <option value="Tempo Traveller / Force Urbania">Tempo Traveller / Force Urbania</option>
                     </select>
                     <ChevronDown size={14} className="text-black absolute right-3 pointer-events-none" />
                  </div>
