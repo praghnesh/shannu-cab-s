@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className={`max-w-7xl mx-auto w-full px-6 sm:px-8 transition-all duration-500 ${scrolled ? 'py-2' : 'py-4 sm:py-5'}`}>
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center group relative z-[1001]">
-              <span className={`text-2xl sm:text-3xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-blue-950' : 'text-white'}`}>
+              <span className={`text-3xl sm:text-4xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-blue-950' : 'text-white'}`}>
                 Fast car <span className="text-orange-500">Travels</span>
               </span>
             </Link>

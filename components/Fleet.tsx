@@ -172,28 +172,147 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             A Vehicle for <br /> Every Ambition
           </motion.h2>
           
-          <div className="bg-slate-50 p-2 sm:p-4 rounded-[3rem] shadow-2xl border border-slate-100 mx-auto max-w-3xl mt-12 overflow-hidden">
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
-              <div className="bg-blue-950 text-white px-10 py-5 rounded-[2.5rem] flex items-center justify-center gap-3 font-black whitespace-nowrap text-sm shadow-xl shrink-0">
-                <MapPin size={20} className="text-orange-500" /> SEARCH ROUTES
-              </div>
-              <div className="relative flex-grow">
-                <select 
-                  value={selectedRoute}
-                    onChange={(e) => {
-                      setSelectedRoute(e.target.value);
-                      setViewIndex(null); 
-                      setGalleryIndex(0);
-                    }}
-                  className="w-full bg-transparent px-10 py-5 text-blue-950 font-black text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
-                >
-                  {routes.map(r => (
-                    <option key={r.value} value={r.value}>{r.label}</option>
-                  ))}
-                </select>
-              </div>
+        {/* Premium Information Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12 mb-16 text-left max-w-7xl mx-auto">
+          {/* Card 1: Book Your Car Travels */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] transition-all duration-500 flex flex-col justify-between group"
+          >
+            <div>
+              <span className="text-orange-500 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Premium Travel</span>
+              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Book Your Car Travels</h3>
+              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                Planning your next trip? Book your ride easily with <strong className="text-blue-950">Fast Car Travels</strong> and enjoy a safe, comfortable, and hassle-free journey. We provide reliable car rental and taxi services in Vijayawada for local travel, outstation trips, airport transfers, corporate travel, family tours, and special occasions.
+              </p>
+              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+                With a wide range of well-maintained vehicles and experienced drivers, we ensure a smooth travel experience tailored to your needs and budget. Whether you need a quick city ride or a long-distance journey, our team is ready to serve you with punctual and professional service.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Why Choose Fast Car Travels?</h4>
+              <ul className="space-y-3">
+                {[
+                  "Easy and quick booking process",
+                  "Clean and comfortable vehicles",
+                  "Professional and friendly drivers",
+                  "Affordable pricing with transparent charges",
+                  "24/7 customer support",
+                  "On-time pickup and drop services"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                    <CheckCircle size={14} className="text-orange-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Card 2: Outstation Cab Services */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] transition-all duration-500 flex flex-col justify-between group"
+          >
+            <div>
+              <span className="text-orange-500 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Long Distance</span>
+              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Outstation Cab Services</h3>
+              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                <strong className="text-blue-950">Fast Car Travels</strong> provides reliable and comfortable outstation cab services from Vijayawada to major cities, tourist destinations, pilgrimage centers, and business locations. Whether you are planning a family vacation, weekend getaway, corporate trip, or long-distance journey, we ensure a safe, smooth, and enjoyable travel experience.
+              </p>
+              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+                Our outstation taxi services are designed to offer convenience, flexibility, and affordability with well-maintained vehicles and experienced drivers. We focus on punctual service, customer comfort, and transparent pricing to make every trip stress-free and memorable.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Our Services Include:</h4>
+              <ul className="space-y-3">
+                {[
+                  "One-way and round-trip cab services",
+                  "Family tours and holiday travel",
+                  "Pilgrimage and temple trips",
+                  "Business and corporate travel",
+                  "Weekend getaway packages",
+                  "Airport and railway station transfers",
+                  "Customized travel plans for all destinations"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                    <CheckCircle size={14} className="text-orange-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Card 3: Local Taxi Service */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] transition-all duration-500 flex flex-col justify-between group"
+          >
+            <div>
+              <span className="text-orange-500 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">City Travel</span>
+              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Local Taxi Service</h3>
+              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                <strong className="text-blue-950">Fast Car Travels</strong> offers dependable and affordable local taxi services in Vijayawada for all your daily travel needs. Whether you need a ride for office commutes, shopping, business meetings, railway station transfers, hospital visits, or local sightseeing, we provide safe and comfortable transportation with professional drivers.
+              </p>
+              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+                Our local taxi service is designed to give you a hassle-free travel experience with timely pickups, clean vehicles, and flexible travel options. We understand the importance of punctuality and customer satisfaction, which is why we focus on delivering reliable service at competitive prices.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Our Services Include:</h4>
+              <ul className="space-y-3">
+                {[
+                  "City rides within Vijayawada",
+                  "Railway station pickup and drop",
+                  "Local airport transfers",
+                  "Hourly and full-day taxi packages",
+                  "Corporate and business travel",
+                  "Family and personal trips",
+                  "Local sightseeing tours"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                    <CheckCircle size={14} className="text-orange-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Route Selector Banner */}
+        <div className="bg-slate-50 p-2 sm:p-4 rounded-[3rem] shadow-2xl border border-slate-100 mx-auto max-w-3xl mt-12 overflow-hidden mb-12">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
+            <div className="bg-blue-950 text-white px-10 py-5 rounded-[2.5rem] flex items-center justify-center gap-3 font-black whitespace-nowrap text-sm shadow-xl shrink-0">
+              <MapPin size={20} className="text-orange-500" /> SEARCH ROUTES
+            </div>
+            <div className="relative flex-grow">
+              <select 
+                value={selectedRoute}
+                  onChange={(e) => {
+                    setSelectedRoute(e.target.value);
+                    setViewIndex(null); 
+                    setGalleryIndex(0);
+                  }}
+                className="w-full bg-transparent px-10 py-5 text-blue-950 font-black text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
+              >
+                {routes.map(r => (
+                  <option key={r.value} value={r.value}>{r.label}</option>
+                ))}
+              </select>
             </div>
           </div>
+        </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
