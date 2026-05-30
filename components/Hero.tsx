@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import BookingForm from "./BookingForm";
 import { motion } from "framer-motion";
-import { Shield, Headphones, Star, Users, MapPin, ArrowRight } from 'lucide-react';
+import { Shield, Headphones, Star, Users, MapPin, ArrowRight, Phone, MessageCircle } from 'lucide-react';
 
 const tariffData = [
   {
@@ -48,39 +48,44 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center pt-8 pb-8">
+          {/* Main Hero Banner Image */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="hidden lg:inline-flex items-center gap-4 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full text-white text-xs font-black uppercase tracking-widest mb-10"
-          >
-             <div className="flex -space-x-3">
-                {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full border-2 border-blue-950 bg-slate-400" />)}
-             </div>
-             <span className="flex items-center gap-2"><Star size={14} className="text-orange-500" fill="currentColor" /> 50,000+ HAPPY TRAVELERS</span>
-          </motion.div>
-
-          <motion.h1 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10"
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto mb-10 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10"
           >
-            FAST CAR TRAVELS. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-orange-500">
-              WORLD CLASS RIDES.
-            </span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-xl sm:text-2xl text-blue-100/90 max-w-4xl mx-auto leading-tight font-medium mb-12 tracking-tight"
+            <img 
+              src="/hero-banner.png" 
+              alt="Fast Car Travels - Local Taxi Service" 
+              className="w-full h-auto object-contain block"
+            />
+          </motion.div>
+
+          {/* Mobile CTA Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex md:hidden gap-4 max-w-md mx-auto mb-10 px-4"
           >
-            Experience intercity travel reimagined. From private luxury sedans to 
-            heavy vehicle logistics, we combine safety, speed, and 100% reliability 
-            for the ultimate journey across South India.
-          </motion.p>
+            <a 
+              href="tel:+919948924786"
+              className="flex-1 bg-blue-600 text-white py-4 px-6 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all"
+            >
+              <Phone size={16} fill="currentColor" />
+              <span>Call Now</span>
+            </a>
+            <a 
+              href="https://wa.me/919948924786"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-green-500 text-white py-4 px-6 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(34,197,94,0.3)] active:scale-95 transition-all"
+            >
+              <MessageCircle size={16} fill="currentColor" />
+              <span>WhatsApp</span>
+            </a>
+          </motion.div>
 
           {/* Expanded Hero Stats */}
           <motion.div 
@@ -153,11 +158,18 @@ export default function Hero() {
                   </div>
                 </div>
                 
-                {/* Bottom Pill */}
-                <div className="mt-8 text-center">
+                {/* Bottom Pill & Book Now Button */}
+                <div className="mt-8 text-center flex flex-col gap-3 items-center">
                   <div className="inline-block bg-white text-blue-950 font-black text-[10px] sm:text-xs py-2 px-5 rounded-full shadow-md uppercase tracking-wider group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300">
                     {tariff.pill}
                   </div>
+                  <a 
+                    href="tel:+919948924786" 
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-black text-xs py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(249,115,22,0.2)] active:scale-95 transition-all uppercase tracking-widest"
+                  >
+                    <Phone size={14} fill="currentColor" />
+                    <span>BOOK NOW</span>
+                  </a>
                 </div>
               </motion.div>
             ))}

@@ -8,7 +8,7 @@ export default function BookingForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [mainTab] = useState("OUTSTATION"); // Default, visually hidden
-  const [tripType] = useState("ONE WAY"); // Default, visually hidden
+  const [tripType, setTripType] = useState("ONE WAY");
 
   const [fromLoc, setFromLoc] = useState("");
   const [toLoc, setToLoc] = useState("");
@@ -93,6 +93,32 @@ export default function BookingForm() {
               <input type="hidden" name="mainTab" value={mainTab} />
               <input type="hidden" name="tripType" value={tripType} />
 
+              {/* Trip Type Toggle (One Way vs Round Trip) */}
+              <div className="grid grid-cols-2 bg-[#f3f3f3]/10 border border-white/10 rounded-2xl p-1 gap-1">
+                <button
+                  type="button"
+                  onClick={() => setTripType("ONE WAY")}
+                  className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
+                    tripType === "ONE WAY"
+                      ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+                      : "bg-transparent text-gray-400 hover:text-white"
+                  }`}
+                >
+                  One Way
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTripType("ROUND TRIP")}
+                  className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
+                    tripType === "ROUND TRIP"
+                      ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+                      : "bg-transparent text-gray-400 hover:text-white"
+                  }`}
+                >
+                  Round Trip
+                </button>
+              </div>
+
               {/* Location Inputs Block */}
               <div className="relative bg-[#f3f3f3] rounded-2xl flex flex-col p-1.5 z-50">
                 {/* Connecting Line */}
@@ -101,9 +127,9 @@ export default function BookingForm() {
                 {/* From Input */}
                 <div className="relative flex items-center gap-4 bg-transparent p-3 z-10 border-b border-gray-300/50">
                    <div className="w-3 h-3 bg-white rounded-full border-[3px] border-black flex-shrink-0 ml-1"></div>
-                   <div className="flex flex-col flex-grow relative">
-                      <span className="text-[10px] font-bold text-gray-500 mb-0.5">Where from?</span>
-                      <input 
+                    <div className="flex flex-col flex-grow relative">
+                       <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">From</span>
+                       <input 
                          required
                          value={fromLoc}
                          onChange={(e) => {
@@ -137,9 +163,9 @@ export default function BookingForm() {
                 {/* To Input */}
                 <div className="relative flex items-center gap-4 bg-transparent p-3 z-10">
                    <div className="w-3 h-3 bg-black flex-shrink-0 ml-1"></div>
-                   <div className="flex flex-col flex-grow relative">
-                      <span className="text-[10px] font-bold text-gray-500 mb-0.5">Where to?</span>
-                      <input 
+                    <div className="flex flex-col flex-grow relative">
+                       <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">To</span>
+                       <input 
                          required
                          value={toLoc}
                          onChange={(e) => {

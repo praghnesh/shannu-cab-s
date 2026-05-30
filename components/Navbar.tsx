@@ -48,12 +48,7 @@ export default function Navbar() {
             : 'bg-transparent'
         }`}
       >
-        {/* Top Green Banner */}
-        <div className="bg-green-600 text-white py-2 w-full text-center text-base sm:text-lg font-black tracking-widest flex justify-center items-center relative shadow-sm">
-           <a href="tel:+919948924786" className="hover:text-green-100 transition-colors flex items-center justify-center gap-2">
-              <PhoneCall size={16} className="animate-pulse" /> +91 9948924786
-           </a>
-        </div>
+
 
         <div className={`max-w-7xl mx-auto w-full px-6 sm:px-8 transition-all duration-500 ${scrolled ? 'py-2' : 'py-4 sm:py-5'}`}>
           <div className="flex justify-between items-center h-16">
