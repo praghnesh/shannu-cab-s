@@ -165,7 +165,7 @@ export default function Hero() {
                   </div>
                   <a 
                     href="tel:+919948924786" 
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-black text-xs py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(249,115,22,0.2)] active:scale-95 transition-all uppercase tracking-widest"
+                    className="w-full bg-green-500 hover:bg-green-600 text-white font-black text-xs py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(34,197,94,0.2)] active:scale-95 transition-all uppercase tracking-widest"
                   >
                     <Phone size={14} fill="currentColor" />
                     <span>BOOK NOW</span>

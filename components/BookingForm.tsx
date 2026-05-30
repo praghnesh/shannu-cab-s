@@ -100,7 +100,7 @@ export default function BookingForm() {
                   onClick={() => setTripType("ONE WAY")}
                   className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
                     tripType === "ONE WAY"
-                      ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+                      ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
                       : "bg-transparent text-gray-400 hover:text-white"
                   }`}
                 >
@@ -111,7 +111,7 @@ export default function BookingForm() {
                   onClick={() => setTripType("ROUND TRIP")}
                   className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
                     tripType === "ROUND TRIP"
-                      ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+                      ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
                       : "bg-transparent text-gray-400 hover:text-white"
                   }`}
                 >
@@ -252,7 +252,7 @@ export default function BookingForm() {
                 whileTap={{ scale: 0.98 }}
                 type="submit" 
                 disabled={loading} 
-                className="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-600 transition-colors mt-2"
+                className="w-full bg-green-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-green-600 transition-colors mt-2"
               >
                 {loading ? 'Processing...' : 'Explore Cabs'}
               </motion.button>

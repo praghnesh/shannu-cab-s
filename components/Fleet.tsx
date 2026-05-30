@@ -179,10 +179,10 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] transition-all duration-500 flex flex-col justify-between group"
+            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
           >
             <div>
-              <span className="text-orange-500 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Premium Travel</span>
+              <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Premium Travel</span>
               <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Book Your Car Travels</h3>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
                 Planning your next trip? Book your ride easily with <strong className="text-blue-950">Fast Car Travels</strong> and enjoy a safe, comfortable, and hassle-free journey. We provide reliable car rental and taxi services in Vijayawada for local travel, outstation trips, airport transfers, corporate travel, family tours, and special occasions.
@@ -203,7 +203,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   "On-time pickup and drop services"
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                    <CheckCircle size={14} className="text-orange-500 shrink-0 mt-0.5" />
+                    <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -217,10 +217,10 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] transition-all duration-500 flex flex-col justify-between group"
+            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
           >
             <div>
-              <span className="text-orange-500 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Long Distance</span>
+              <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Long Distance</span>
               <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Outstation Cab Services</h3>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
                 <strong className="text-blue-950">Fast Car Travels</strong> provides reliable and comfortable outstation cab services from Vijayawada to major cities, tourist destinations, pilgrimage centers, and business locations. Whether you are planning a family vacation, weekend getaway, corporate trip, or long-distance journey, we ensure a safe, smooth, and enjoyable travel experience.
@@ -242,7 +242,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   "Customized travel plans for all destinations"
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                    <CheckCircle size={14} className="text-orange-500 shrink-0 mt-0.5" />
+                    <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -256,10 +256,10 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-orange-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] transition-all duration-500 flex flex-col justify-between group"
+            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
           >
             <div>
-              <span className="text-orange-500 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">City Travel</span>
+              <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">City Travel</span>
               <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Local Taxi Service</h3>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
                 <strong className="text-blue-950">Fast Car Travels</strong> offers dependable and affordable local taxi services in Vijayawada for all your daily travel needs. Whether you need a ride for office commutes, shopping, business meetings, railway station transfers, hospital visits, or local sightseeing, we provide safe and comfortable transportation with professional drivers.
@@ -281,7 +281,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   "Local sightseeing tours"
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                    <CheckCircle size={14} className="text-orange-500 shrink-0 mt-0.5" />
+                    <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
