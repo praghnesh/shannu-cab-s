@@ -41,12 +41,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav 
-        className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 flex flex-col ${
-          scrolled 
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border-b border-slate-100' 
+      <nav
+        className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 flex flex-col ${scrolled
+            ? 'bg-white/90 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border-b border-slate-100'
             : 'bg-transparent'
-        }`}
+          }`}
       >
 
 
@@ -54,36 +53,35 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group relative z-[1001]">
               <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
-                <img 
-                  src="/logo-clean.png" 
-                  alt="Fast Car Travels Logo" 
-                  className="w-full h-full object-contain block" 
+                <img
+                  src="/logo-clean.png"
+                  alt="Fast Car Travels Logo"
+                  className="w-full h-full object-contain block"
                 />
               </div>
-              <span className={`text-3xl sm:text-4xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-blue-950' : 'text-white'}`}>
-                Fast car <span className="text-orange-500">Travels</span>
+              <span className="text-3xl sm:text-4xl font-black tracking-tighter transition-colors duration-300">
+                <span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span>
               </span>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
-                <Link 
-                  key={link.name} 
-                  href={link.href} 
-                  className={`text-sm font-bold uppercase tracking-widest transition-all relative group ${
-                    scrolled ? 'text-slate-600 hover:text-orange-500' : 'text-white/80 hover:text-white'
-                  }`}
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`text-sm font-bold uppercase tracking-widest transition-all relative group ${scrolled ? 'text-slate-600 hover:text-orange-500' : 'text-white/80 hover:text-white'
+                    }`}
                 >
                   {link.name}
                   <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
                 </Link>
               ))}
-              
-              <motion.a 
+
+              <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="tel:+919948924786" 
+                href="tel:+919948924786"
                 className="flex items-center gap-3 bg-orange-500 text-white px-8 py-3.5 rounded-2xl font-black text-sm tracking-widest shadow-2xl hover:bg-blue-950 transition-colors"
               >
                 <PhoneCall size={18} />
@@ -93,15 +91,14 @@ export default function Navbar() {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden relative z-[3001]">
-              <button 
-                onClick={() => setIsOpen(!isOpen)} 
-                className={`w-14 h-14 flex items-center justify-center rounded-2xl transition-all duration-300 shadow-2xl border ${
-                  isOpen 
-                    ? 'bg-orange-500 text-white border-orange-400 rotate-90 scale-110' 
-                    : scrolled 
-                      ? 'bg-blue-950 text-white border-blue-900 shadow-blue-950/20' 
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`w-14 h-14 flex items-center justify-center rounded-2xl transition-all duration-300 shadow-2xl border ${isOpen
+                    ? 'bg-orange-500 text-white border-orange-400 rotate-90 scale-110'
+                    : scrolled
+                      ? 'bg-blue-950 text-white border-blue-900 shadow-blue-950/20'
                       : 'bg-white/10 backdrop-blur-md text-white border-white/20'
-                }`}
+                  }`}
               >
                 {isOpen ? <X size={32} strokeWidth={3} /> : <Menu size={32} strokeWidth={3} />}
               </button>
@@ -115,14 +112,14 @@ export default function Navbar() {
         {isOpen && (
           <>
             {/* Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-blue-950/60 backdrop-blur-sm z-[1100] lg:hidden"
             />
-            
+
             {/* Drawer */}
             <motion.div
               initial={{ x: '100%' }}
@@ -133,32 +130,34 @@ export default function Navbar() {
             >
               <div className="p-10 flex-grow">
                 <div className="flex justify-between items-start mb-12">
-                   <div className="flex items-center gap-3">
-                      <div className="h-12 w-12 flex items-center justify-center shrink-0">
-                        <img 
-                          src="/logo-clean.png" 
-                          alt="Fast Car Travels Logo" 
-                          className="w-full h-full object-contain block" 
-                        />
-                      </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 flex items-center justify-center shrink-0">
+                      <img
+                        src="/logo-clean.png"
+                        alt="Fast Car Travels Logo"
+                        className="w-full h-full object-contain block"
+                      />
+                    </div>
                       <div className="flex flex-col">
-                        <span className="text-3xl font-black text-blue-950 tracking-tighter leading-none">Fast car <span className="text-orange-500">Travels</span></span>
+                        <span className="text-3xl font-black tracking-tighter leading-none">
+                          <span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span>
+                        </span>
                         <p className="text-slate-400 text-sm mt-1.5 font-medium">Your VIP Travel Partner</p>
                       </div>
-                   </div>
-                   <button 
-                     onClick={() => setIsOpen(false)}
-                     className="p-3 bg-slate-100 rounded-xl text-blue-950 hover:bg-orange-500 hover:text-white transition-colors lg:hidden"
-                   >
-                     <X size={20} strokeWidth={3} />
-                   </button>
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-3 bg-slate-100 rounded-xl text-blue-950 hover:bg-orange-500 hover:text-white transition-colors lg:hidden"
+                  >
+                    <X size={20} strokeWidth={3} />
+                  </button>
                 </div>
 
                 <div className="flex flex-col gap-6">
                   {navLinks.map((link) => (
-                    <Link 
-                      key={link.name} 
-                      href={link.href} 
+                    <Link
+                      key={link.name}
+                      href={link.href}
                       onClick={() => setIsOpen(false)}
                       className="text-2xl font-black text-blue-950 hover:text-orange-500 transition-colors flex justify-between items-center group"
                     >
@@ -169,8 +168,8 @@ export default function Navbar() {
                 </div>
 
                 <div className="mt-16 pt-10 border-t border-slate-100">
-                  <a 
-                    href="tel:+919948924786" 
+                  <a
+                    href="tel:+919948924786"
                     className="flex flex-col gap-2 group"
                   >
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Live Concierge 24/7</span>

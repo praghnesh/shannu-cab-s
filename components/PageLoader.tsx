@@ -19,7 +19,7 @@ export default function PageLoader() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-[1000] bg-blue-950 flex flex-col items-center justify-center pointer-events-none"
         >
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -27,19 +27,19 @@ export default function PageLoader() {
           >
             <div className="flex items-center gap-4 mb-8 justify-center">
               <div className="h-16 w-16 md:h-20 md:w-20 flex items-center justify-center shrink-0 shadow-2xl">
-                <img 
-                  src="/logo-clean.png" 
-                  alt="Fast Car Travels Logo" 
-                  className="w-full h-full object-contain block" 
+                <img
+                  src="/logo-clean.png"
+                  alt="Fast Car Travels Logo"
+                  className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-4xl md:text-6xl font-black tracking-tighter text-white">
-                Fast car <span className="text-orange-500">Travels</span>
+              <span className="text-4xl md:text-6xl font-black tracking-tighter">
+                <span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span>
               </span>
             </div>
-            
+
             <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden relative">
-              <motion.div 
+              <motion.div
                 initial={{ left: "-100%" }}
                 animate={{ left: "100%" }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

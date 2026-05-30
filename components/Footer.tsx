@@ -8,19 +8,19 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <div className="h-10 w-10 flex items-center justify-center shrink-0">
-                <img 
-                  src="/logo-clean.png" 
-                  alt="Fast Car Travels Logo" 
-                  className="w-full h-full object-contain block" 
+                <img
+                  src="/logo-clean.png"
+                  alt="Fast Car Travels Logo"
+                  className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-4xl font-black tracking-tighter text-white leading-none">Fast car <span className="text-orange-500">Travels</span></span>
+              <span className="text-4xl font-black tracking-tighter leading-none"><span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span></span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
               Premium car travel agency providing outstation cab booking, airport transfers, and corporate rentals across Hyderabad and Vijayawada.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
@@ -69,7 +69,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <span className="text-orange-500">📍</span>
-                <span>Vijayawada & Hyderabad,<br/>Andhra Pradesh & Telangana</span>
+                <span>Vijayawada & Hyderabad,<br />Andhra Pradesh & Telangana</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-orange-500">📞</span>
@@ -82,30 +82,30 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        
+
         {/* SEO Keywords Section */}
         <div className="border-t border-slate-800 py-12 mb-8">
           <h4 className="text-white text-sm font-black uppercase tracking-[0.3em] mb-8 opacity-50 text-center">Comprehensive Service Network & Popular Searches</h4>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-slate-300 font-bold">
             {[
-              "Hyderabad to Vijayawada", "Vijayawada to Hyderabad cab", "Vijayawada to Hyderabad Cabs", "Vijayawada to Hyderabad taxi", 
-              "Hyderabad to Vijayawada cab", "Hyderabad to Vijayawada Cabs", "Hyderabad to Vijayawada taxi", "Guntur to Hyderabad taxi", 
-              "Guntur to Hyderabad Cabs", "Guntur to Hyderabad cab", "Hyderabad to Guntur cab", "Hyderabad to Guntur taxi", 
-              "Hyderabad to Guntur Cabs", "Hyderabad to Bengaluru Cabs", "Hyderabad to Bengaluru taxi", "Hyderabad to Tirupati Cabs", 
-              "Hyderabad to Chennai cabs", "Vijayawada to Ongole taxi", "Vijayawada to Ongole cab", "Vijayawada to Rajahmundry cab", 
-              "Vijayawada to Rajahmundry Cabs", "Vijayawada to Tirupati cab", "Vijayawada to Tirupati Cabs", "Vijayawada to Tirupati taxi", 
-              "Vijayawada to Chennai cab", "Vijayawada to Chennai taxi", "Vijayawada to Bhimavaram Cabs", "Vijayawada to Eluru Cabs", 
-              "Vijayawada to Tadepalligudem Cabs", "Vijayawada to Tanuku Cabs", "Vijayawada to Srisailam cabs", "Ongole to Vijayawada Cabs", 
-              "Tirupati to Vijayawada Cabs", "Chennai to Hyderabad taxi", "Chennai to Hyderabad cab", "Hyderabad to Rajahmundry cab", 
-              "Hyderabad to Rajahmundry taxi", "Hyderabad to Eluru cab", "Hyderabad to Eluru taxi", "Hyderabad to Tenali cab", 
-              "Hyderabad to Tenali taxi", "Hyderabad to Bapatla cab", "Hyderabad to Bapatla taxi", "Hyderabad to Ongole taxi", 
-              "Hyderabad to Ongole Cab", "Hyderabad to Tirupati taxi", "Hyderabad to Tanuku cabs", "Hyderabad to Tadepalligudem Cabs", 
-              "Hyderabad to Machilipatnam cabs", "Hyderabad to Gudivada cabs", "Hyderabad to Srisailam cabs", "Taxi service Vijayawada", 
-              "Car travels Vijayawada", "Taxi service near me", "Car travels near me", "Vijayawada taxi service", "Vijayawada car travels", 
-              "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Mini bus Vijayawada", "Tempo traveller hire Vijayawada", 
-              "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderabad taxi service", "Hyderabad car travels", 
-              "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", "Guntur taxi service", 
-              "Guntur car travels", "Car travels Tenali", "Taxi service Tenali", "Taxi service Machilipatnam", "Car travels Machilipatnam", 
+              "Hyderabad to Vijayawada", "Vijayawada to Hyderabad cab", "Vijayawada to Hyderabad Cabs", "Vijayawada to Hyderabad taxi",
+              "Hyderabad to Vijayawada cab", "Hyderabad to Vijayawada Cabs", "Hyderabad to Vijayawada taxi", "Guntur to Hyderabad taxi",
+              "Guntur to Hyderabad Cabs", "Guntur to Hyderabad cab", "Hyderabad to Guntur cab", "Hyderabad to Guntur taxi",
+              "Hyderabad to Guntur Cabs", "Hyderabad to Bengaluru Cabs", "Hyderabad to Bengaluru taxi", "Hyderabad to Tirupati Cabs",
+              "Hyderabad to Chennai cabs", "Vijayawada to Ongole taxi", "Vijayawada to Ongole cab", "Vijayawada to Rajahmundry cab",
+              "Vijayawada to Rajahmundry Cabs", "Vijayawada to Tirupati cab", "Vijayawada to Tirupati Cabs", "Vijayawada to Tirupati taxi",
+              "Vijayawada to Chennai cab", "Vijayawada to Chennai taxi", "Vijayawada to Bhimavaram Cabs", "Vijayawada to Eluru Cabs",
+              "Vijayawada to Tadepalligudem Cabs", "Vijayawada to Tanuku Cabs", "Vijayawada to Srisailam cabs", "Ongole to Vijayawada Cabs",
+              "Tirupati to Vijayawada Cabs", "Chennai to Hyderabad taxi", "Chennai to Hyderabad cab", "Hyderabad to Rajahmundry cab",
+              "Hyderabad to Rajahmundry taxi", "Hyderabad to Eluru cab", "Hyderabad to Eluru taxi", "Hyderabad to Tenali cab",
+              "Hyderabad to Tenali taxi", "Hyderabad to Bapatla cab", "Hyderabad to Bapatla taxi", "Hyderabad to Ongole taxi",
+              "Hyderabad to Ongole Cab", "Hyderabad to Tirupati taxi", "Hyderabad to Tanuku cabs", "Hyderabad to Tadepalligudem Cabs",
+              "Hyderabad to Machilipatnam cabs", "Hyderabad to Gudivada cabs", "Hyderabad to Srisailam cabs", "Taxi service Vijayawada",
+              "Car travels Vijayawada", "Taxi service near me", "Car travels near me", "Vijayawada taxi service", "Vijayawada car travels",
+              "Best car travels Vijayawada", "Tempo traveller Vijayawada", "Mini bus Vijayawada", "Tempo traveller hire Vijayawada",
+              "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderabad taxi service", "Hyderabad car travels",
+              "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", "Guntur taxi service",
+              "Guntur car travels", "Car travels Tenali", "Taxi service Tenali", "Taxi service Machilipatnam", "Car travels Machilipatnam",
               "Urbaniya Tempo Traveller", "Best car travels", "Fast Car Travels", "Best car travels in Vijayawada", "Best car travels in Hyderabad",
               "Outstation cab booking", "Intercity cab service", "Premium car rental South India", "Reliable taxi service Hyderabad",
               "Cab booking Vijayawada", "Hyderabad to Vijayawada outstation cabs", "Vizag to Hyderabad cabs", "Rajahmundry to Vijayawada taxi",
@@ -134,23 +134,23 @@ export default function Footer() {
 
         {/* Location Map Section */}
         <div className="border-t border-slate-800 py-12 mb-8">
-           <h3 className="text-white text-lg font-black uppercase tracking-widest mb-8 text-center">Visit Our Main Terminal</h3>
-           <div className="w-full h-[300px] rounded-[2rem] overflow-hidden border-4 border-slate-800 shadow-2xl relative">
-               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.008973975938!2d78.3582555!3d17.507085049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9273e58effef%3A0x8b7f69422df2b50f!2sJaya%20Prakash%20Narayan%20Nagar%2C%20Miyapur%2C%20Hyderabad%2C%20Telangana%20500049!5e0!3m2!1sen!2sin!4v1777205761866!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
-              ></iframe>
-              <div className="absolute top-6 left-6 bg-blue-950/90 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 hidden sm:block">
-                 <p className="text-white font-black text-xs uppercase tracking-widest">Hyderabad Hub</p>
-                 <p className="text-blue-200 text-[10px]">Miyapur Terminal</p>
-              </div>
-           </div>
+          <h3 className="text-white text-lg font-black uppercase tracking-widest mb-8 text-center">Visit Our Main Terminal</h3>
+          <div className="w-full h-[300px] rounded-[2rem] overflow-hidden border-4 border-slate-800 shadow-2xl relative">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.008973975938!2d78.3582555!3d17.507085049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9273e58effef%3A0x8b7f69422df2b50f!2sJaya%20Prakash%20Narayan%20Nagar%2C%20Miyapur%2C%20Hyderabad%2C%20Telangana%20500049!5e0!3m2!1sen!2sin!4v1777205761866!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+            ></iframe>
+            <div className="absolute top-6 left-6 bg-blue-950/90 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 hidden sm:block">
+              <p className="text-white font-black text-xs uppercase tracking-widest">Hyderabad Hub</p>
+              <p className="text-blue-200 text-[10px]">Miyapur Terminal</p>
+            </div>
+          </div>
         </div>
 
         <div className="border-t border-slate-800 py-12 mb-8">
