@@ -49,18 +49,18 @@ export default function Navbar() {
       >
 
 
-        <div className={`max-w-7xl mx-auto w-full px-6 sm:px-8 transition-all duration-500 ${scrolled ? 'py-2' : 'py-4 sm:py-5'}`}>
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group relative z-[1001]">
-              <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
+        <div className={`max-w-7xl mx-auto w-full px-6 sm:px-8 transition-all duration-500 ${scrolled ? 'py-1' : 'py-3 sm:py-4'}`}>
+          <div className="flex justify-between items-center h-24">
+            <Link href="/" className="flex items-center gap-3.5 sm:gap-5 group relative z-[1001]">
+              <div className="h-18 w-18 sm:h-22 sm:w-22 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <img
                   src="/logo-clean.png"
                   alt="Fast Car Travels Logo"
                   className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-3xl sm:text-4xl font-black tracking-tighter transition-colors duration-300">
-                <span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span>
+              <span className="text-4xl sm:text-5xl font-black tracking-tighter text-red-600 transition-colors duration-300">
+                Fast car Travels
               </span>
             </Link>
 
@@ -130,8 +130,8 @@ export default function Navbar() {
             >
               <div className="p-10 flex-grow">
                 <div className="flex justify-between items-start mb-12">
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-4">
+                    <div className="h-24 w-24 flex items-center justify-center shrink-0">
                       <img
                         src="/logo-clean.png"
                         alt="Fast Car Travels Logo"
@@ -139,10 +139,10 @@ export default function Navbar() {
                       />
                     </div>
                       <div className="flex flex-col">
-                        <span className="text-3xl font-black tracking-tighter leading-none">
-                          <span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span>
+                        <span className="text-4xl font-black tracking-tighter leading-none text-red-600">
+                          Fast car Travels
                         </span>
-                        <p className="text-slate-400 text-sm mt-1.5 font-medium">Your VIP Travel Partner</p>
+                        <p className="text-slate-400 text-sm mt-2 font-medium">Your VIP Travel Partner</p>
                       </div>
                   </div>
                   <button

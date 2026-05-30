@@ -6,15 +6,17 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-10 w-10 flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-20 w-20 flex items-center justify-center shrink-0">
                 <img
                   src="/logo-clean.png"
                   alt="Fast Car Travels Logo"
                   className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-4xl font-black tracking-tighter leading-none"><span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span></span>
+              <span className="text-4xl sm:text-5xl font-black tracking-tighter leading-none text-red-600">
+                Fast car Travels
+              </span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
               Premium car travel agency providing outstation cab booking, airport transfers, and corporate rentals across Hyderabad and Vijayawada.

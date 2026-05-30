@@ -25,16 +25,16 @@ export default function PageLoader() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <div className="flex items-center gap-4 mb-8 justify-center">
-              <div className="h-16 w-16 md:h-20 md:w-20 flex items-center justify-center shrink-0 shadow-2xl">
+            <div className="flex items-center gap-6 mb-8 justify-center">
+              <div className="h-32 w-32 md:h-44 md:w-44 flex items-center justify-center shrink-0 shadow-2xl">
                 <img
                   src="/logo-clean.png"
                   alt="Fast Car Travels Logo"
                   className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-4xl md:text-6xl font-black tracking-tighter">
-                <span className="text-red-600">Fast car</span> <span className="text-orange-500">Travels</span>
+              <span className="text-5xl md:text-7xl font-black tracking-tighter text-red-600">
+                Fast car Travels
               </span>
             </div>
 
