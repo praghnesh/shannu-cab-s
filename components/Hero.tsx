@@ -9,8 +9,8 @@ const tariffData = [
     title: "Local Trip",
     pill: "Toll Gates (If Any) & Parking Extra",
     items: [
-      { label: "4Hrs 40Km", price: "₹1,500/-" },
-      { label: "8Hrs 80Km", price: "₹2,500/-" },
+      { label: "4Hrs 40Km", price: "₹1,300/-" },
+      { label: "8Hrs 80Km", price: "₹2,200/-" },
       { label: "Per Extra Km", price: "₹13/-" },
       { label: "Per Extra Hour", price: "₹200/-" }
     ]
@@ -31,7 +31,7 @@ const tariffData = [
     pill: "Toll Gates, Border taxes & Parking Extra",
     items: [
       { label: "Per daylimit", price: "300Km" },
-      { label: "Per Extra Km", price: "₹13/-" },
+      { label: "Per Extra Km", price: "₹12/-" },
       { label: "Driver Batta Per Day", price: "₹500/-" },
       { label: "Night Halt", price: "₹500/-" }
     ]
@@ -48,6 +48,24 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center pt-8 pb-8">
+          {/* Promo Offer Banner */}
+          <motion.a
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            href="https://wa.me/919948924786?text=Hi,%20I%20want%20to%20book%20a%20Hyderabad%20to%20Vijayawada%20cab%20and%20avail%20the%20Rs.500%20discount%20offer."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-5 py-2.5 rounded-full font-black text-xs md:text-sm tracking-wide shadow-2xl mb-8 border border-white/20 transition-all cursor-pointer"
+          >
+            <span className="bg-white text-orange-600 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider">
+              Offer
+            </span>
+            <span>Book Hyderabad to Vijayawada Cabs: Up to ₹500 Off!</span>
+          </motion.a>
+
           {/* Main Hero Banner Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -57,7 +75,7 @@ export default function Hero() {
           >
             <img 
               src="/hero-banner.png" 
-              alt="Fast Car Travels - Local Taxi Service" 
+              alt="Amaravathi Fast Car Travels - Local Taxi Service" 
               className="w-full h-auto object-contain block"
             />
           </motion.div>

@@ -108,7 +108,7 @@ export default function BookingNotification() {
                   </h4>
 
                   <p className="text-[10px] sm:text-[11px] font-bold text-slate-500 leading-tight sm:leading-snug mb-2 sm:mb-3">
-                    {activeNotification.route}
+                    {activeNotification.route.includes("⇄") ? `${activeNotification.route} Cabs, Taxi` : activeNotification.route}
                   </p>
 
                   <div className="flex items-center justify-between gap-2 sm:gap-3 mt-auto">

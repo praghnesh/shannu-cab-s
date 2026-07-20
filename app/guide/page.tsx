@@ -84,7 +84,7 @@ export default function GuidePage() {
                      </div>
 
                      <div className="lg:w-1/2 space-y-8">
-                        <h2 className="text-5xl md:text-7xl font-black text-blue-950 tracking-tighter leading-none">{guide.route}</h2>
+                        <h2 className="text-5xl md:text-7xl font-black text-blue-950 tracking-tighter leading-none">{guide.route.includes("⇄") ? `${guide.route} Cabs, Taxi` : guide.route}</h2>
                         <p className="text-slate-500 text-xl font-medium leading-relaxed italic">"{guide.description}"</p>
                         
                         <div className="grid sm:grid-cols-2 gap-6">

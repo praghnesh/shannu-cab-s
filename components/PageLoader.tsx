@@ -29,12 +29,13 @@ export default function PageLoader() {
               <div className="h-32 w-32 md:h-44 md:w-44 flex items-center justify-center shrink-0 shadow-2xl">
                 <img
                   src="/logo-clean.png"
-                  alt="Fast Car Travels Logo"
+                  alt="Amaravathi Fast Car Travels Logo"
                   className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-5xl md:text-7xl font-black tracking-tighter text-red-600">
-                Fast car Travels
+              <span className="text-3xl md:text-6xl font-black tracking-tighter leading-tight">
+                <span className="text-white">Amaravathi</span>{' '}
+                <span className="text-yellow-400">Fast Car Travels</span>
               </span>
             </div>
 

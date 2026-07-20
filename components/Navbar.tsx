@@ -55,12 +55,17 @@ export default function Navbar() {
               <div className="h-18 w-18 sm:h-22 sm:w-22 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <img
                   src="/logo-clean.png"
-                  alt="Fast Car Travels Logo"
+                  alt="Amaravathi Fast Car Travels Logo"
                   className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-4xl sm:text-5xl font-black tracking-tighter text-red-600 transition-colors duration-300">
-                Fast car Travels
+              <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter transition-colors duration-300 leading-tight">
+                <span className={scrolled ? 'text-blue-950' : 'text-white'}>
+                  Amaravathi
+                </span>
+                <span className={scrolled ? 'text-orange-500' : 'text-yellow-400'}>
+                  {' '}Fast Car Travels
+                </span>
               </span>
             </Link>
 
@@ -134,13 +139,14 @@ export default function Navbar() {
                     <div className="h-24 w-24 flex items-center justify-center shrink-0">
                       <img
                         src="/logo-clean.png"
-                        alt="Fast Car Travels Logo"
+                        alt="Amaravathi Fast Car Travels Logo"
                         className="w-full h-full object-contain block"
                       />
                     </div>
                       <div className="flex flex-col">
-                        <span className="text-4xl font-black tracking-tighter leading-none text-red-600">
-                          Fast car Travels
+                        <span className="text-xl font-black tracking-tighter leading-tight">
+                          <span className="text-blue-950">Amaravathi</span>{' '}
+                          <span className="text-orange-500">Fast Car Travels</span>
                         </span>
                         <p className="text-slate-400 text-sm mt-2 font-medium">Your VIP Travel Partner</p>
                       </div>

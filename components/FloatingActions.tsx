@@ -4,13 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, Navigation, ArrowRight } from 'lucide-react';
 
 const routes = [
-  "HYDERABAD ⇄ VIJAYAWADA",
-  "VIJAYAWADA ⇄ HYDERABAD",
-  "GUNTUR ⇄ HYDERABAD",
-  "HYDERABAD ⇄ BENGALURU",
-  "VIJAYAWADA ⇄ TIRUPATI",
-  "ELURU ⇄ HYDERABAD",
-  "HYDERABAD ⇄ GUDIVADA"
+  "HYDERABAD ⇄ VIJAYAWADA CABS, TAXI",
+  "VIJAYAWADA ⇄ HYDERABAD CABS, TAXI",
+  "GUNTUR ⇄ HYDERABAD CABS, TAXI",
+  "HYDERABAD ⇄ BENGALURU CABS, TAXI",
+  "VIJAYAWADA ⇄ TIRUPATI CABS, TAXI",
+  "ELURU ⇄ HYDERABAD CABS, TAXI",
+  "HYDERABAD ⇄ GUDIVADA CABS, TAXI"
 ];
 
 export default function FloatingActions() {

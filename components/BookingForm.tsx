@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, Clock, Car, Phone, X, ChevronDown, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LiveMap from './LiveMap';
@@ -16,6 +16,9 @@ export default function BookingForm() {
   const [showToSuggestions, setShowToSuggestions] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
+  const [fromSuggestions, setFromSuggestions] = useState<string[]>([]);
+  const [toSuggestions, setToSuggestions] = useState<string[]>([]);
+
   const cities = [
     "Hyderabad", "Shamshabad Airport", "Vijayawada", "Guntur", "Visakhapatnam (Vizag)", "Vizag", "Machilipatnam", 
     "Rajahmundry", "Kakinada", "Tirupati", "Warangal", "Nizamabad", "Khammam", 
@@ -23,6 +26,132 @@ export default function BookingForm() {
     "Bangalore", "Chennai", "Mumbai", "Pune", "Delhi", "Amaravati", "Srisailam", 
     "Bhimavaram", "Tenali", "Proddatur", "Adoni", "Madanapalle"
   ];
+
+  const pincodeMap: { [key: string]: string[] } = {
+    "500": ["Hyderabad", "Shamshabad Airport"],
+    "501": ["Hyderabad", "Shamshabad Airport"],
+    "502": ["Hyderabad", "Shamshabad Airport"],
+    "503": ["Nizamabad"],
+    "504": ["Nizamabad", "Karimnagar"],
+    "505": ["Karimnagar"],
+    "506": ["Warangal"],
+    "507": ["Khammam"],
+    "508": ["Hyderabad", "Khammam"],
+    "509": ["Hyderabad", "Kurnool"],
+    "515": ["Anantapur"],
+    "516": ["Proddatur", "Tirupati"],
+    "517": ["Tirupati", "Chittoor", "Madanapalle"],
+    "518": ["Kurnool", "Adoni"],
+    "520": ["Vijayawada"],
+    "521": ["Vijayawada", "Machilipatnam"],
+    "522": ["Guntur", "Tenali"],
+    "523": ["Ongole"],
+    "524": ["Nellore"],
+    "530": ["Visakhapatnam (Vizag)", "Vizag"],
+    "531": ["Visakhapatnam (Vizag)", "Vizag"],
+    "532": ["Visakhapatnam (Vizag)", "Vizag", "Kakinada"],
+    "533": ["Rajahmundry", "Kakinada"],
+    "534": ["Eluru", "Bhimavaram"],
+    "535": ["Visakhapatnam (Vizag)", "Vizag"],
+    "560": ["Bangalore"],
+    "600": ["Chennai"],
+    "400": ["Mumbai"],
+    "411": ["Pune"],
+    "110": ["Delhi"]
+  };
+
+  const getSuggestions = (val: string) => {
+    const cleanVal = val.trim().replace(/\s+/g, '');
+    if (!cleanVal) return [];
+    
+    if (/^\d+$/.test(cleanVal)) {
+      const matchedCities: string[] = [];
+      Object.keys(pincodeMap).forEach(prefix => {
+        if (prefix.startsWith(cleanVal) || cleanVal.startsWith(prefix)) {
+          matchedCities.push(...pincodeMap[prefix]);
+        }
+      });
+      return Array.from(new Set(matchedCities));
+    }
+    
+    return cities.filter(c => c.toLowerCase().includes(cleanVal.toLowerCase()));
+  };
+
+  useEffect(() => {
+    const offline = getSuggestions(fromLoc);
+    setFromSuggestions(offline);
+
+    if (fromLoc.trim().length < 3) return;
+
+    const delayDebounceFn = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/suggestions?q=${encodeURIComponent(fromLoc)}`);
+        const data = await res.json();
+        
+        const apiCities = data.map((item: any) => {
+          const parts = item.display_name.split(',');
+          if (parts.length <= 1) return item.display_name;
+          
+          const place = parts[0].trim();
+          const state = parts[parts.length - 3]?.trim() || "";
+          
+          let city = parts[1]?.trim() || "";
+          if (city.toLowerCase().includes("district") || city.toLowerCase().includes("state") || city === state) {
+            city = "";
+          }
+          
+          if (city) {
+            return `${place}, ${city} (${state})`;
+          }
+          return `${place} (${state})`;
+        });
+
+        setFromSuggestions(prev => Array.from(new Set([...prev, ...apiCities])));
+      } catch (err) {
+        console.error("Error fetching from suggestions:", err);
+      }
+    }, 400);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [fromLoc]);
+
+  useEffect(() => {
+    const offline = getSuggestions(toLoc);
+    setToSuggestions(offline);
+
+    if (toLoc.trim().length < 3) return;
+
+    const delayDebounceFn = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/suggestions?q=${encodeURIComponent(toLoc)}`);
+        const data = await res.json();
+        
+        const apiCities = data.map((item: any) => {
+          const parts = item.display_name.split(',');
+          if (parts.length <= 1) return item.display_name;
+          
+          const place = parts[0].trim();
+          const state = parts[parts.length - 3]?.trim() || "";
+          
+          let city = parts[1]?.trim() || "";
+          if (city.toLowerCase().includes("district") || city.toLowerCase().includes("state") || city === state) {
+            city = "";
+          }
+          
+          if (city) {
+            return `${place}, ${city} (${state})`;
+          }
+          return `${place} (${state})`;
+        });
+
+        setToSuggestions(prev => Array.from(new Set([...prev, ...apiCities])));
+      } catch (err) {
+        console.error("Error fetching to suggestions:", err);
+      }
+    }, 400);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [toLoc]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +183,7 @@ export default function BookingForm() {
         body: JSON.stringify({
           access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
           subject: `NEW BOOKING: ${data.pickup} to ${data.drop}`,
-          from_name: "Fast Car Travels Website",
+          from_name: "Amaravathi Fast Car Travels Website",
           ...data
         })
       });
@@ -125,7 +254,7 @@ export default function BookingForm() {
                 <div className="absolute left-[21px] top-[38px] bottom-[38px] w-[2px] bg-black/20 z-0"></div>
                 
                 {/* From Input */}
-                <div className="relative flex items-center gap-4 bg-transparent p-3 z-10 border-b border-gray-300/50">
+                <div className={`relative flex items-center gap-4 bg-transparent p-3 border-b border-gray-300/50 transition-all ${showFromSuggestions ? 'z-30' : 'z-10'}`}>
                    <div className="w-3 h-3 bg-white rounded-full border-[3px] border-black flex-shrink-0 ml-1"></div>
                     <div className="flex flex-col flex-grow relative">
                        <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">From</span>
@@ -149,19 +278,18 @@ export default function BookingForm() {
                      </button>
                    )}
 
-                   <AnimatePresence>
-                     {showFromSuggestions && fromLoc.length > 0 && (
-                       <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                         {cities.filter(c => c.toLowerCase().includes(fromLoc.toLowerCase())).map((city) => (
-                           <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                         ))}
-                       </motion.div>
-                     )}
-                   </AnimatePresence>
+                    <AnimatePresence>
+                      {showFromSuggestions && fromLoc.length > 0 && (
+                        <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
+                          {fromSuggestions.map((city) => (
+                            <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                 </div>
 
-                {/* To Input */}
-                <div className="relative flex items-center gap-4 bg-transparent p-3 z-10">
+                <div className={`relative flex items-center gap-4 bg-transparent p-3 transition-all ${showToSuggestions ? 'z-30' : 'z-10'}`}>
                    <div className="w-3 h-3 bg-black flex-shrink-0 ml-1"></div>
                     <div className="flex flex-col flex-grow relative">
                        <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">To</span>
@@ -185,19 +313,18 @@ export default function BookingForm() {
                      </button>
                    )}
 
-                   <AnimatePresence>
-                     {showToSuggestions && toLoc.length > 0 && (
-                       <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                         {cities.filter(c => c.toLowerCase().includes(toLoc.toLowerCase())).map((city) => (
-                           <button key={city} type="button" onMouseDown={() => setToLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                         ))}
-                       </motion.div>
-                     )}
-                   </AnimatePresence>
+                    <AnimatePresence>
+                      {showToSuggestions && toLoc.length > 0 && (
+                        <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
+                          {toSuggestions.map((city) => (
+                            <button key={city} type="button" onMouseDown={() => setToLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                 </div>
               </div>
 
-              {/* Date & Time Row */}
               <div className="flex gap-2">
                  <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden">
                     <Calendar size={16} className="text-black flex-shrink-0" />
@@ -266,8 +393,7 @@ export default function BookingForm() {
             )}
 
             {/* Mobile Map View */}
-            <div className="lg:hidden w-full mt-6 rounded-2xl overflow-hidden border border-white/10 h-[200px] relative">
-               <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] z-10"></div>
+            <div className="lg:hidden w-full mt-6 rounded-2xl overflow-hidden border border-white/10 h-[350px] relative">
                <LiveMap 
                  location={fromLoc} 
                  destination={toLoc} 

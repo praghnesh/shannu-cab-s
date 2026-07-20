@@ -35,8 +35,8 @@ export default function Home() {
             <div className="absolute inset-0 bg-[url('/banner.png')] opacity-5 bg-cover bg-fixed"></div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} className="space-y-10">
-                  <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-[0.9]">
-                     WHY 50,000+ TRUST <br /> <span className="text-orange-500">FAST CAR TRAVELS</span>
+                  <h2 className="text-3xl md:text-6xl font-black text-white tracking-tight leading-tight md:leading-[0.9]">
+                     WHY 50,000+ TRUST <br /> <span className="text-orange-500">AMARAVATHI FAST CAR TRAVELS</span>
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-12 mt-10 sm:mt-20">
                      <div className="p-6 sm:p-10 bg-white/5 rounded-[2rem] sm:rounded-[3rem] border border-white/10 backdrop-blur-xl group hover:bg-white/10 transition-all flex flex-col items-center">

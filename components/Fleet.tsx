@@ -3,97 +3,97 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Users, ShieldCheck, Zap, ArrowRight, Star, X, MapPin, CheckCircle, Sparkles } from 'lucide-react';
+import { Phone, Users, ShieldCheck, Zap, ArrowRight, Star, X, MapPin, CheckCircle, Sparkles, Navigation } from 'lucide-react';
 
 const fleetData = [
   // Vijayawada ⇄ Hyderabad (Etios Base: ₹5000)
   { id: 101, name: "Toyota Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
-  { id: 102, name: "Suzuki Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
-  { id: 103, name: "Suzuki Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 102, name: "Maruti Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
+  { id: 103, name: "Maruti Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
   { id: 104, name: "Toyota Innova", price: "₹8,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
   { id: 105, name: "Toyota Innova Crysta Luxury", price: "₹8,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
 
   // Vijayawada ⇄ Hyderabad Airport (Etios Base: ₹5000)
   { id: 111, name: "Toyota Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
-  { id: 112, name: "Suzuki Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
-  { id: 113, name: "Suzuki Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 112, name: "Maruti Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
+  { id: 113, name: "Maruti Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
   { id: 114, name: "Toyota Innova", price: "₹8,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
   { id: 115, name: "Toyota Innova Crysta Luxury", price: "₹8,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
 
   // Guntur ⇄ Hyderabad (Etios Base: ₹5500)
   { id: 121, name: "Toyota Etios", price: "₹5,500", route: "Guntur ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-red-50" },
-  { id: 122, name: "Suzuki Swift Dzire", price: "₹5,500", route: "Guntur ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
-  { id: 123, name: "Suzuki Ertiga", price: "₹8,000", route: "Guntur ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-red-50" },
+  { id: 122, name: "Maruti Swift Dzire", price: "₹5,500", route: "Guntur ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
+  { id: 123, name: "Maruti Ertiga", price: "₹8,000", route: "Guntur ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-red-50" },
   { id: 124, name: "Toyota Innova", price: "₹8,000", route: "Guntur ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-red-50" },
   { id: 125, name: "Toyota Innova Crysta Luxury", price: "₹8,500", route: "Guntur ⇄ Hyderabad", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-red-50" },
 
   // Hyderabad ⇄ Guntur (Etios Base: ₹5500)
   { id: 131, name: "Toyota Etios", price: "₹5,500", route: "Hyderabad ⇄ Guntur", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-red-50" },
-  { id: 132, name: "Suzuki Swift Dzire", price: "₹5,500", route: "Hyderabad ⇄ Guntur", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
-  { id: 133, name: "Suzuki Ertiga", price: "₹8,000", route: "Hyderabad ⇄ Guntur", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-red-50" },
+  { id: 132, name: "Maruti Swift Dzire", price: "₹5,500", route: "Hyderabad ⇄ Guntur", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-red-50" },
+  { id: 133, name: "Maruti Ertiga", price: "₹8,000", route: "Hyderabad ⇄ Guntur", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-red-50" },
   { id: 134, name: "Toyota Innova", price: "₹8,000", route: "Hyderabad ⇄ Guntur", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-red-50" },
   { id: 135, name: "Toyota Innova Crysta Luxury", price: "₹8,500", route: "Hyderabad ⇄ Guntur", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-red-50" },
 
   // Hyderabad ⇄ Tenali (Etios Base: ₹6000)
   { id: 141, name: "Toyota Etios", price: "₹6,000", route: "Hyderabad ⇄ Tenali", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-teal-50" },
-  { id: 142, name: "Suzuki Swift Dzire", price: "₹6,000", route: "Hyderabad ⇄ Tenali", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-teal-50" },
-  { id: 143, name: "Suzuki Ertiga", price: "₹8,500", route: "Hyderabad ⇄ Tenali", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-teal-50" },
+  { id: 142, name: "Maruti Swift Dzire", price: "₹6,000", route: "Hyderabad ⇄ Tenali", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-teal-50" },
+  { id: 143, name: "Maruti Ertiga", price: "₹8,500", route: "Hyderabad ⇄ Tenali", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-teal-50" },
   { id: 144, name: "Toyota Innova", price: "₹11,000", route: "Hyderabad ⇄ Tenali", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-teal-50" },
   { id: 145, name: "Toyota Innova Crysta Luxury", price: "₹13,000", route: "Hyderabad ⇄ Tenali", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-teal-50" },
 
   // Hyderabad ⇄ Tirupati (Etios Base: ₹12000)
   { id: 151, name: "Toyota Etios", price: "₹12,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-yellow-50" },
-  { id: 152, name: "Suzuki Swift Dzire", price: "₹12,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-yellow-50" },
-  { id: 153, name: "Suzuki Ertiga", price: "₹16,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-yellow-50" },
+  { id: 152, name: "Maruti Swift Dzire", price: "₹12,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-yellow-50" },
+  { id: 153, name: "Maruti Ertiga", price: "₹16,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-yellow-50" },
   { id: 154, name: "Toyota Innova", price: "₹19,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-yellow-50" },
   { id: 155, name: "Toyota Innova Crysta Luxury", price: "₹21,000", route: "Hyderabad ⇄ Tirupati", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-yellow-50" },
 
   // Hyderabad ⇄ Bangalore (Etios Base: ₹12000)
   { id: 161, name: "Toyota Etios", price: "₹12,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-orange-50" },
-  { id: 162, name: "Suzuki Swift Dzire", price: "₹12,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-orange-50" },
-  { id: 163, name: "Suzuki Ertiga", price: "₹16,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-orange-50" },
+  { id: 162, name: "Maruti Swift Dzire", price: "₹12,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-orange-50" },
+  { id: 163, name: "Maruti Ertiga", price: "₹16,000", route: "Hyderabad ⇄ Bangalore", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-orange-50" },
   { id: 164, name: "Toyota Innova", price: "₹19,500", route: "Hyderabad ⇄ Bangalore", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-orange-50" },
   { id: 165, name: "Toyota Innova Crysta Luxury", price: "₹21,500", route: "Hyderabad ⇄ Bangalore", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-orange-50" },
 
   // Bangalore ⇄ Hyderabad (Etios Base: ₹12000)
   { id: 171, name: "Toyota Etios", price: "₹12,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-orange-50" },
-  { id: 172, name: "Suzuki Swift Dzire", price: "₹12,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-orange-50" },
-  { id: 173, name: "Suzuki Ertiga", price: "₹16,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-orange-50" },
+  { id: 172, name: "Maruti Swift Dzire", price: "₹12,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-orange-50" },
+  { id: 173, name: "Maruti Ertiga", price: "₹16,000", route: "Bangalore ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-orange-50" },
   { id: 174, name: "Toyota Innova", price: "₹19,500", route: "Bangalore ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-orange-50" },
   { id: 175, name: "Toyota Innova Crysta Luxury", price: "₹21,500", route: "Bangalore ⇄ Hyderabad", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-orange-50" },
 
   // Hyderabad ⇄ Srisailam (Etios Base: ₹7000)
   { id: 181, name: "Toyota Etios", price: "₹7,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-green-50" },
-  { id: 182, name: "Suzuki Swift Dzire", price: "₹7,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-green-50" },
-  { id: 183, name: "Suzuki Ertiga", price: "₹9,500", route: "Hyderabad ⇄ Srisailam", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-green-50" },
+  { id: 182, name: "Maruti Swift Dzire", price: "₹7,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-green-50" },
+  { id: 183, name: "Maruti Ertiga", price: "₹9,500", route: "Hyderabad ⇄ Srisailam", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-green-50" },
   { id: 184, name: "Toyota Innova", price: "₹12,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-green-50" },
   { id: 185, name: "Toyota Innova Crysta Luxury", price: "₹14,000", route: "Hyderabad ⇄ Srisailam", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-green-50" },
 
   // Hyderabad ⇄ Vizag (Etios Base: ₹15000)
   { id: 191, name: "Toyota Etios", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-cyan-50" },
-  { id: 192, name: "Suzuki Swift Dzire", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-cyan-50" },
-  { id: 193, name: "Suzuki Ertiga", price: "₹20,000", route: "Hyderabad ⇄ Vizag", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-cyan-50" },
+  { id: 192, name: "Maruti Swift Dzire", price: "₹15,000", route: "Hyderabad ⇄ Vizag", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-cyan-50" },
+  { id: 193, name: "Maruti Ertiga", price: "₹20,000", route: "Hyderabad ⇄ Vizag", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-cyan-50" },
   { id: 194, name: "Toyota Innova", price: "₹24,000", route: "Hyderabad ⇄ Vizag", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-cyan-50" },
   { id: 195, name: "Toyota Innova Crysta Luxury", price: "₹26,000", route: "Hyderabad ⇄ Vizag", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-cyan-50" },
 
   // Hyderabad ⇄ Bhimavaram (Etios Base: ₹8000)
   { id: 201, name: "Toyota Etios", price: "₹8,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-indigo-50" },
-  { id: 202, name: "Suzuki Swift Dzire", price: "₹8,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-indigo-50" },
-  { id: 203, name: "Suzuki Ertiga", price: "₹11,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-indigo-50" },
+  { id: 202, name: "Maruti Swift Dzire", price: "₹8,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-indigo-50" },
+  { id: 203, name: "Maruti Ertiga", price: "₹11,000", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-indigo-50" },
   { id: 204, name: "Toyota Innova", price: "₹13,500", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-indigo-50" },
   { id: 205, name: "Toyota Innova Crysta Luxury", price: "₹15,500", route: "Hyderabad ⇄ Bhimavaram", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-indigo-50" },
   
   // Eluru ⇄ Hyderabad (Etios Base: ₹6500)
   { id: 211, name: "Toyota Etios", price: "₹6,500", route: "Eluru ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-purple-50" },
-  { id: 212, name: "Suzuki Swift Dzire", price: "₹6,500", route: "Eluru ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-purple-50" },
-  { id: 213, name: "Suzuki Ertiga", price: "₹9,500", route: "Eluru ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-purple-50" },
+  { id: 212, name: "Maruti Swift Dzire", price: "₹6,500", route: "Eluru ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-purple-50" },
+  { id: 213, name: "Maruti Ertiga", price: "₹9,500", route: "Eluru ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-purple-50" },
   { id: 214, name: "Toyota Innova", price: "₹12,000", route: "Eluru ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-purple-50" },
   { id: 215, name: "Toyota Innova Crysta Luxury", price: "₹14,000", route: "Eluru ⇄ Hyderabad", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-purple-50" },
 
   // Hyderabad ⇄ Gudivada (Etios Base: ₹6500)
   { id: 221, name: "Toyota Etios", price: "₹6,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-pink-50" },
-  { id: 222, name: "Suzuki Swift Dzire", price: "₹6,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-pink-50" },
-  { id: 223, name: "Suzuki Ertiga", price: "₹9,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-pink-50" },
+  { id: 222, name: "Maruti Swift Dzire", price: "₹6,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-pink-50" },
+  { id: 223, name: "Maruti Ertiga", price: "₹9,500", route: "Hyderabad ⇄ Gudivada", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-pink-50" },
   { id: 224, name: "Toyota Innova", price: "₹12,000", route: "Hyderabad ⇄ Gudivada", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-pink-50" },
   { id: 225, name: "Toyota Innova Crysta Luxury", price: "₹14,000", route: "Hyderabad ⇄ Gudivada", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-pink-50" },
 
@@ -185,14 +185,14 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Premium Travel</span>
               <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Book Your Car Travels</h3>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                Planning your next trip? Book your ride easily with <strong className="text-blue-950">Fast Car Travels</strong> and enjoy a safe, comfortable, and hassle-free journey. We provide reliable car rental and taxi services in Vijayawada for local travel, outstation trips, airport transfers, corporate travel, family tours, and special occasions.
+                Planning your next trip? Book your ride easily with <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> and enjoy a safe, comfortable, and hassle-free journey. We provide reliable car rental and taxi services in Vijayawada for local travel, outstation trips, airport transfers, corporate travel, family tours, and special occasions.
               </p>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
                 With a wide range of well-maintained vehicles and experienced drivers, we ensure a smooth travel experience tailored to your needs and budget. Whether you need a quick city ride or a long-distance journey, our team is ready to serve you with punctual and professional service.
               </p>
             </div>
             <div>
-              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Why Choose Fast Car Travels?</h4>
+              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Why Choose Amaravathi Fast Car Travels?</h4>
               <ul className="space-y-3">
                 {[
                   "Easy and quick booking process",
@@ -223,7 +223,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Long Distance</span>
               <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Outstation Cab Services</h3>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                <strong className="text-blue-950">Fast Car Travels</strong> provides reliable and comfortable outstation cab services from Vijayawada to major cities, tourist destinations, pilgrimage centers, and business locations. Whether you are planning a family vacation, weekend getaway, corporate trip, or long-distance journey, we ensure a safe, smooth, and enjoyable travel experience.
+                <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> provides reliable and comfortable outstation cab services from Vijayawada to major cities, tourist destinations, pilgrimage centers, and business locations. Whether you are planning a family vacation, weekend getaway, corporate trip, or long-distance journey, we ensure a safe, smooth, and enjoyable travel experience.
               </p>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
                 Our outstation taxi services are designed to offer convenience, flexibility, and affordability with well-maintained vehicles and experienced drivers. We focus on punctual service, customer comfort, and transparent pricing to make every trip stress-free and memorable.
@@ -262,7 +262,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">City Travel</span>
               <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Local Taxi Service</h3>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                <strong className="text-blue-950">Fast Car Travels</strong> offers dependable and affordable local taxi services in Vijayawada for all your daily travel needs. Whether you need a ride for office commutes, shopping, business meetings, railway station transfers, hospital visits, or local sightseeing, we provide safe and comfortable transportation with professional drivers.
+                <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> offers dependable and affordable local taxi services in Vijayawada for all your daily travel needs. Whether you need a ride for office commutes, shopping, business meetings, railway station transfers, hospital visits, or local sightseeing, we provide safe and comfortable transportation with professional drivers.
               </p>
               <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
                 Our local taxi service is designed to give you a hassle-free travel experience with timely pickups, clean vehicles, and flexible travel options. We understand the importance of punctuality and customer satisfaction, which is why we focus on delivering reliable service at competitive prices.
@@ -296,7 +296,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             <div className="bg-blue-950 text-white px-10 py-5 rounded-[2.5rem] flex items-center justify-center gap-3 font-black whitespace-nowrap text-sm shadow-xl shrink-0">
               <MapPin size={20} className="text-orange-500" /> SEARCH ROUTES
             </div>
-            <div className="relative flex-grow">
+            <div className="relative flex-grow flex flex-col justify-center min-h-[60px]">
               <select 
                 value={selectedRoute}
                   onChange={(e) => {
@@ -304,12 +304,17 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                     setViewIndex(null); 
                     setGalleryIndex(0);
                   }}
-                className="w-full bg-transparent px-10 py-5 text-blue-950 font-black text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
+                className="w-full bg-transparent px-10 pt-2 pb-0.5 text-blue-950 font-black text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
               >
                 {routes.map(r => (
                   <option key={r.value} value={r.value}>{r.label}</option>
                 ))}
               </select>
+              {selectedRoute.includes("⇄") && (
+                <div className="text-[11px] font-black text-orange-500 tracking-widest uppercase text-center sm:text-left sm:pl-10 pb-1.5 mt-0.5">
+                  (Cab, Cabs, Taxi)
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -335,7 +340,11 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
                 <div className="p-6 md:p-10 flex flex-col flex-grow">
-                  <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-blue-950 mb-4 leading-tight tracking-tighter">{car.name}</h4>
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-blue-950 mb-1 leading-tight tracking-tighter">{car.name}</h4>
+                  <div className="text-[10px] font-black text-slate-500 tracking-wider uppercase mb-5 flex items-center gap-1.5">
+                    <Navigation size={12} className="text-orange-500 shrink-0" />
+                    {selectedRoute.includes("⇄") ? `${selectedRoute} (Cab, Cabs, Taxi)` : selectedRoute}
+                  </div>
                   
                   <div className="grid grid-cols-3 gap-2.5 mb-6 border-b border-slate-100 pb-6 text-center">
                     <div className="flex flex-col items-center justify-center">
@@ -406,6 +415,27 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                       DETAILS <ArrowRight size={20} />
                     </motion.button>
                   </div>
+
+                  {car.name.toLowerCase().includes("urbania") && (
+                    <div className="flex gap-4 mt-4 w-full">
+                      <a
+                        href="https://wa.me/919948924786?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20hire%20the%20Force%20Urbania."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-grow bg-orange-500 hover:bg-orange-600 text-white font-black text-xs py-5 rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 text-center"
+                      >
+                        HIRE <ArrowRight size={16} />
+                      </a>
+                      <a
+                        href="https://wa.me/919948924786?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20rent%20the%20Force%20Urbania."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-grow bg-blue-950 hover:bg-orange-500 text-white font-black text-xs py-5 rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-blue-950/20 text-center"
+                      >
+                        RENTAL <ArrowRight size={16} />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -417,8 +447,8 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
            <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 rounded-full blur-[150px] opacity-20 -mr-48 -mt-48"></div>
            <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
-                 <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none">
-                    Every Ride is a <br /> <span className="text-orange-500 italic">Fast car Travels</span> Promise.
+                 <h3 className="text-3xl md:text-6xl font-black text-white tracking-tighter leading-tight md:leading-none">
+                    Every Ride is a <br /> <span className="text-orange-500 italic">Amaravathi Fast Car Travels</span> Promise.
                  </h3>
                  <p className="text-blue-100/60 text-xl font-medium leading-relaxed">
                     We don't just provide cars; we provide peace of mind. All our vehicles are less than 2 years old, undergo 50+ safety checks daily, and are driven by certified professional chauffeurs.

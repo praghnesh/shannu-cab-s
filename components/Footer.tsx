@@ -10,12 +10,13 @@ export default function Footer() {
               <div className="h-20 w-20 flex items-center justify-center shrink-0">
                 <img
                   src="/logo-clean.png"
-                  alt="Fast Car Travels Logo"
+                  alt="Amaravathi Fast Car Travels Logo"
                   className="w-full h-full object-contain block"
                 />
               </div>
-              <span className="text-4xl sm:text-5xl font-black tracking-tighter leading-none text-red-600">
-                Fast car Travels
+              <span className="text-4xl sm:text-5xl font-black tracking-tighter leading-none">
+                <span className="text-white">Amaravathi</span>{' '}
+                <span className="text-yellow-400">Fast Car Travels</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
@@ -26,7 +27,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
-              <li><Link href="/" className="hover:text-orange-400 transition">About Fast car Travels</Link></li>
+              <li><Link href="/" className="hover:text-orange-400 transition">About Amaravathi Fast Car Travels</Link></li>
               <li><Link href="/services" className="hover:text-orange-400 transition">Premium Services</Link></li>
               <li><Link href="/fleet" className="hover:text-orange-400 transition">Elite Fleet Catalog</Link></li>
               <li><Link href="/guide" className="hover:text-orange-400 transition">City Travel Guide</Link></li>
@@ -108,7 +109,7 @@ export default function Footer() {
               "Taxi service Hyderabad", "Car travels in Hyderabad", "Hyderabad taxi service", "Hyderabad car travels",
               "Cab service Vijayawada", "Cab service Hyderabad", "Car travels Guntur", "Taxi service Guntur", "Guntur taxi service",
               "Guntur car travels", "Car travels Tenali", "Taxi service Tenali", "Taxi service Machilipatnam", "Car travels Machilipatnam",
-              "cabs innova car hire", "toyota innova rental", "Urbaniya Tempo Traveller", "Best car travels", "Fast Car Travels", "Best car travels in Vijayawada", "Best car travels in Hyderabad",
+              "cabs innova car hire", "toyota innova rental", "Urbaniya Tempo Traveller", "Best car travels", "Amaravathi Fast Car Travels", "Best car travels in Vijayawada", "Best car travels in Hyderabad",
               "Outstation cab booking", "Intercity cab service", "Premium car rental South India", "Reliable taxi service Hyderabad",
               "Cab booking Vijayawada", "Hyderabad to Vijayawada outstation cabs", "Vizag to Hyderabad cabs", "Rajahmundry to Vijayawada taxi",
               "Kakinada to Hyderabad cab", "Nellore to Vijayawada cabs", "Tuni outstation cab routes", "Innova Crysta hire Hyderabad",
@@ -124,7 +125,9 @@ export default function Footer() {
               "Vizag taxi service", "Nellore outstation cabs", "Book cab online Hyderabad to Vijayawada", "Cheapest taxi from Vijayawada to Hyderabad",
               "Best cab service for family trip in Andhra Pradesh", "Safe outstation cab service near me", "Luxury car rental with professional driver",
               "24/7 intercity taxi service near me", "Book Innova for outstation trip online", "Corporate car hire services in Hyderabad",
-              "Wedding car rental service in Vijayawada", "VIP cab service South India"
+              "Wedding car rental service in Vijayawada", "VIP cab service South India",
+              "innova taxi services", "innova crista taxi services", "innova cabs in Vijayawada", "innova car hire in Vijayawada",
+              "toyota innova rental price", "toyota innova car hire"
             ].map((keyword, idx) => (
               <span key={idx} className="hover:text-orange-500 transition cursor-default flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></span>
@@ -157,9 +160,9 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 py-12 mb-8">
           <div className="space-y-4 text-center md:text-left">
-            <p>© {new Date().getFullYear()} Fast car Travels. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Amaravathi Fast Car Travels. All rights reserved.</p>
             <p className="max-w-3xl text-[10px] leading-relaxed opacity-40">
-              Disclaimer: Fast Car Travels is an independent travel service provider. We are not affiliated with any government transport department. All vehicle images and brand names are property of their respective owners and are used here for representational purposes only. Toll taxes, parking fees, and interstate permits are extra as per actuals.
+              Disclaimer: Amaravathi Fast Car Travels is an independent travel service provider. We are not affiliated with any government transport department. All vehicle images and brand names are property of their respective owners and are used here for representational purposes only. Toll taxes, parking fees, and interstate permits are extra as per actuals.
             </p>
           </div>
           <div className="flex space-x-6 mt-6 md:mt-0">
