@@ -39,13 +39,21 @@ export default function Footer() {
             <h3 className="text-white text-lg font-black uppercase tracking-widest mb-6">Popular Routes</h3>
             <ul className="grid grid-cols-1 gap-4 text-xl font-black">
               {[
-                "Hyderabad ⇄ Vijayawada Cab", "Vijayawada ⇄ Hyderabad Taxi", "Hyderabad ⇄ Guntur Cabs",
-                "Hyderabad ⇄ Bengaluru Cabs", "Hyderabad ⇄ Tirupati Taxi", "Vijayawada ⇄ Rajahmundry Cab",
-                "Vijayawada ⇄ Chennai Cabs", "Hyderabad ⇄ Srisailam Cabs", "Guntur ⇄ Hyderabad Taxi"
+                { label: "Hyderabad ⇄ Vijayawada Cab", href: "/hyderabad-to-vijayawada-cab" },
+                { label: "Vijayawada ⇄ Hyderabad Taxi", href: "/hyderabad-to-vijayawada-cab" },
+                { label: "Hyderabad ⇄ Guntur Cabs", href: "/contact" },
+                { label: "Hyderabad ⇄ Bengaluru Cabs", href: "/contact" },
+                { label: "Hyderabad ⇄ Tirupati Taxi", href: "/contact" },
+                { label: "Vijayawada ⇄ Rajahmundry Cab", href: "/contact" },
+                { label: "Vijayawada ⇄ Chennai Cabs", href: "/contact" },
+                { label: "Hyderabad ⇄ Srisailam Cabs", href: "/contact" },
+                { label: "Guntur ⇄ Hyderabad Taxi", href: "/contact" }
               ].map(route => (
-                <li key={route} className="text-white hover:text-orange-500 transition cursor-pointer flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
-                  {route}
+                <li key={route.label}>
+                  <Link href={route.href} className="text-white hover:text-orange-500 transition cursor-pointer flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
+                    {route.label}
+                  </Link>
                 </li>
               ))}
             </ul>

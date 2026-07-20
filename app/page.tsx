@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Star, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import Image from 'next/image';
 
+import Link from 'next/link';
 import About from '@/components/About';
 import CityExplorer from '@/components/CityExplorer';
 
@@ -129,37 +130,47 @@ export default function Home() {
 
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {[
-                     { route: "Hyderabad to Vijayawada", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Vijayawada to Hyderabad", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Bangalore", price: "Starts from ₹12,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Bangalore to Hyderabad", price: "Starts from ₹12,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Srisailam", price: "Starts from ₹7,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Vizag", price: "Starts from ₹15,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Bhimavaram", price: "Starts from ₹8,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Ongole", price: "Starts from ₹7,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Vijayawada to Bhimavaram", price: "Starts from ₹3,500", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Guntur to Hyderabad", price: "Starts from ₹5,000", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Tirupati", price: "Starts from ₹9,999", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Eluru to Hyderabad", price: "Starts from ₹6,500", icon: <MapPin className="text-orange-500" /> },
-                     { route: "Hyderabad to Gudivada", price: "Starts from ₹6,500", icon: <MapPin className="text-orange-500" /> }
+                     { route: "Hyderabad to Vijayawada", price: "Starts from ₹5,500 (All Inclusive)", href: "/hyderabad-to-vijayawada-cab", featured: true },
+                     { route: "Vijayawada to Hyderabad", price: "Starts from ₹5,500 (All Inclusive)", href: "/hyderabad-to-vijayawada-cab", featured: true },
+                     { route: "Hyderabad to Bangalore", price: "Starts from ₹12,000", href: "/contact" },
+                     { route: "Bangalore to Hyderabad", price: "Starts from ₹12,000", href: "/contact" },
+                     { route: "Hyderabad to Srisailam", price: "Starts from ₹7,000", href: "/contact" },
+                     { route: "Hyderabad to Vizag", price: "Starts from ₹15,000", href: "/contact" },
+                     { route: "Hyderabad to Bhimavaram", price: "Starts from ₹8,000", href: "/contact" },
+                     { route: "Hyderabad to Ongole", price: "Starts from ₹7,000", href: "/contact" },
+                     { route: "Vijayawada to Bhimavaram", price: "Starts from ₹3,500", href: "/contact" },
+                     { route: "Guntur to Hyderabad", price: "Starts from ₹5,000", href: "/contact" },
+                     { route: "Hyderabad to Tirupati", price: "Starts from ₹9,999", href: "/contact" },
+                     { route: "Eluru to Hyderabad", price: "Starts from ₹6,500", href: "/contact" },
+                     { route: "Hyderabad to Gudivada", price: "Starts from ₹6,500", href: "/contact" }
                   ].map((item, idx) => (
-                     <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-orange-500/50 hover:bg-white hover:shadow-xl transition-all group"
-                     >
-                        <div className="flex items-center gap-4">
-                           <div className="p-3 bg-white rounded-2xl group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                              {item.icon}
+                     <Link key={idx} href={item.href || "/contact"}>
+                        <motion.div
+                           initial={{ opacity: 0, scale: 0.95 }}
+                           whileInView={{ opacity: 1, scale: 1 }}
+                           transition={{ delay: idx * 0.05 }}
+                           className={`p-6 rounded-3xl border transition-all group cursor-pointer ${
+                              item.featured 
+                                 ? 'bg-orange-50/60 border-orange-300 hover:bg-orange-50 hover:shadow-xl' 
+                                 : 'bg-slate-50 border-slate-100 hover:border-orange-500/50 hover:bg-white hover:shadow-xl'
+                           }`}
+                        >
+                           <div className="flex items-center gap-4">
+                              <div className="p-3 bg-white rounded-2xl group-hover:bg-orange-500 group-hover:text-white transition-colors shadow-sm">
+                                 <MapPin className="text-orange-500 group-hover:text-white" />
+                              </div>
+                              <div className="flex-1">
+                                 <div className="flex items-center justify-between">
+                                    <h4 className="font-black text-blue-950 tracking-tight">{item.route}</h4>
+                                    {item.featured && (
+                                       <span className="text-[10px] bg-orange-500 text-white font-black px-2 py-0.5 rounded-full uppercase">SPECIAL PLAN</span>
+                                    )}
+                                 </div>
+                                 <p className="text-xs font-bold text-orange-600 uppercase tracking-widest mt-1">{item.price}</p>
+                              </div>
                            </div>
-                           <div>
-                              <h4 className="font-black text-blue-950 tracking-tight">{item.route}</h4>
-                              <p className="text-xs font-bold text-orange-500 uppercase tracking-widest">{item.price}</p>
-                           </div>
-                        </div>
-                     </motion.div>
+                        </motion.div>
+                     </Link>
                   ))}
                </div>
 

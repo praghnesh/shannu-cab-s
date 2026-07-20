@@ -33,6 +33,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'Special Plans', href: '/hyderabad-to-vijayawada-cab' },
     { name: 'Services', href: '/services' },
     { name: 'Our Fleet', href: '/fleet' },
     { name: 'Travel Guide', href: '/guide' },
