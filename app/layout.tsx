@@ -14,6 +14,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://amaravathifastcartravels.com'),
   title: 'Amaravathi Fast Car Travels | Best Cab & Taxi Service in Hyderabad & Vijayawada',
   description: 'Book premium cab services for Hyderabad to Vijayawada, Guntur, Tirupati, and more. We offer reliable airport transfers, outstation cabs, and tempo travellers with 24/7 support. Best car travels in Vijayawada and Hyderabad.',
   keywords: [

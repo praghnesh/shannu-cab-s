@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://amaravathifastcartravels.com'),
   title: 'Hyderabad to Vijayawada Cab | Book Taxi Online Starting ₹5,500 - Amaravathi Fast Car Travels',
   description: 'Book Hyderabad to Vijayawada cab service & Vijayawada to Hyderabad taxi at best price ₹5,500. All inclusive fare (fuel, toll gates, driver allowance included). 24/7 doorstep pickup, Innova Crysta, Dzire, Ertiga & Tempo Traveller rentals.',
   keywords: [
