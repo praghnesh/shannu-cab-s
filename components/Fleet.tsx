@@ -9,14 +9,14 @@ const fleetData = [
   // Vijayawada ⇄ Hyderabad (Etios Base: ₹5000)
   { id: 101, name: "Toyota Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
   { id: 102, name: "Maruti Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
-  { id: 103, name: "Maruti Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 103, name: "Maruti Ertiga", price: "₹7,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
   { id: 104, name: "Toyota Innova", price: "₹8,000", route: "Vijayawada ⇄ Hyderabad", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
   { id: 105, name: "Toyota Innova Crysta Luxury", price: "₹8,500", route: "Vijayawada ⇄ Hyderabad", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
 
   // Vijayawada ⇄ Hyderabad Airport (Etios Base: ₹5000)
   { id: 111, name: "Toyota Etios", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/ETLOS.png", type: "Budget", bgColor: "bg-blue-50" },
   { id: 112, name: "Maruti Swift Dzire", price: "₹5,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹12/Km", capacity: "4+1 Seats", localPrice: "₹2,200", image: "/cars/DSIRE.png", type: "Executive", bgColor: "bg-blue-50" },
-  { id: 113, name: "Maruti Ertiga", price: "₹7,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
+  { id: 113, name: "Maruti Ertiga", price: "₹7,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹15/Km", capacity: "6+1 Seats", localPrice: "₹3,200", image: "/EART.png", type: "Family", bgColor: "bg-blue-50" },
   { id: 114, name: "Toyota Innova", price: "₹8,000", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹19/Km", capacity: "7+1 Seats", localPrice: "₹3,800", image: "/INNO.png", type: "VIP", bgColor: "bg-blue-50" },
   { id: 115, name: "Toyota Innova Crysta Luxury", price: "₹8,500", route: "Vijayawada ⇄ Hyderabad Airport", perKm: "₹20/Km", capacity: "7+1 Seats", localPrice: "₹4,500", image: "/CRISTA.png", type: "Ultra VIP", bgColor: "bg-blue-50" },
 

@@ -44,7 +44,7 @@ export default function HyderabadToVijayawadaPage() {
     {
       carType: "Ertiga",
       category: "SUV (6+1)",
-      price: "₹7,500",
+      price: "₹7,000",
       ideal: "Ideal for 5-6 Passengers / Families",
       image: "/EART.png",
       popular: true,
@@ -114,7 +114,7 @@ export default function HyderabadToVijayawadaPage() {
 
   // All User uploaded & promotional photos combined
   const tourGalleryPhotos = [
-    { src: "/route-photos/poster-innova-5000.jpg", title: "Innova Crysta One Way Premium Service", caption: "Vijayawada to Hyderabad One Way Fare starting 5000 RS" },
+    { src: "/route-photos/hyd-10-tourist-places.png", title: "Hyderabad Sightseeing & Tourist Attractions", caption: "Charminar, Ramoji Film City & Iconic Landmarks in Hyderabad" },
     { src: "/route-photos/poster-happy-customer.png", title: "Happy Customer Reviews", caption: "Fast, Safe & Comfortable Journeys with Amaravathi Fast Car Travels" },
     { src: "/route-photos/fast-car-travels-banner.jpg", title: "Amaravathi Fast Car Travels Chauffeur Banner", caption: "Call +91 9948924786 for Rentals, Tours, Outstation & Airport Drops" },
     { src: "/route-photos/poster-one-way.jpg", title: "Amaravathi Fast Car Travels One Way Offer", caption: "Chilakaluripet & Vijayawada to Hyderabad One Way Drop Rs. 6750/-" },
@@ -221,7 +221,7 @@ export default function HyderabadToVijayawadaPage() {
                     <h4 className="font-black text-blue-950">Ertiga</h4>
                     <p className="text-xs text-slate-500 font-medium">SUV • 6 Passengers</p>
                   </div>
-                  <span className="text-2xl font-black text-orange-600">₹7,500</span>
+                  <span className="text-2xl font-black text-orange-600">₹7,000</span>
                 </div>
 
                 <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
@@ -264,13 +264,13 @@ export default function HyderabadToVijayawadaPage() {
                 className="object-cover bg-black"
               />
             </div>
-            {/* Premium Innova Crysta Poster */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-yellow-500 bg-slate-900 h-64 sm:h-96">
+            {/* Hyderabad Tourist Places Banner */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-orange-500 bg-slate-900 h-64 sm:h-96">
               <Image 
-                src="/route-photos/poster-innova-5000.jpg" 
-                alt="Innova Crysta One Way Premium Car Service 5000 RS" 
+                src="/route-photos/hyd-10-tourist-places.png" 
+                alt="Hyderabad Sightseeing & City Landmarks" 
                 fill 
-                className="object-contain bg-black"
+                className="object-cover bg-black"
               />
             </div>
           </div>
@@ -624,12 +624,7 @@ export default function HyderabadToVijayawadaPage() {
                 >
                   <PhoneCall size={20} /> CALL NOW: 9948924786
                 </a>
-                <a
-                  href="tel:+918688845589"
-                  className="bg-white/10 hover:bg-white/20 text-white font-black px-8 py-4 rounded-2xl text-base inline-flex items-center gap-3 transition-colors border border-white/20"
-                >
-                  <PhoneCall size={20} /> ALTERNATE: 8688845589
-                </a>
+
               </div>
             </div>
 
@@ -712,7 +707,7 @@ export default function HyderabadToVijayawadaPage() {
                     <PhoneCall className="text-orange-500 shrink-0 mt-0.5" size={18} />
                     <div>
                       <p className="font-bold text-white">Phone Numbers:</p>
-                      <p className="mt-0.5 font-bold text-orange-400 text-sm">7207680288 / 8688845589</p>
+
                       <p className="text-xs text-white font-bold">+91 9948924786 (Main Concierge)</p>
                     </div>
                   </div>
