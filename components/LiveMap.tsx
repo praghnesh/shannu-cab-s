@@ -32,12 +32,14 @@ export default function LiveMap({ location, destination, isVisible }: LiveMapPro
   const mapFrom = sanitizeForMap(activeFrom);
   const mapTo = sanitizeForMap(activeTo);
 
+  const isSingleCity = !rawTo || rawFrom.toLowerCase() === rawTo.toLowerCase();
+
   useEffect(() => {
     const fetchRouteInfo = async () => {
       setLoading(true);
 
       try {
-        const response = await fetch(`/api/route-info?from=${encodeURIComponent(activeFrom)}&to=${encodeURIComponent(activeTo)}`);
+        const response = await fetch(`/api/route-info?from=${encodeURIComponent(activeFrom)}&to=${encodeURIComponent(isSingleCity ? activeFrom : activeTo)}`);
         const data = await response.json();
 
         if (data.distance) {
@@ -53,9 +55,15 @@ export default function LiveMap({ location, destination, isVisible }: LiveMapPro
     if (isVisible) {
       fetchRouteInfo();
     }
-  }, [activeFrom, activeTo, isVisible]);
+  }, [activeFrom, activeTo, isSingleCity, isVisible]);
 
-  const embedUrl = `https://maps.google.com/maps?saddr=${encodeURIComponent(mapFrom)}&daddr=${encodeURIComponent(mapTo)}&output=embed`;
+  // Construct iframe Google Maps URL correctly
+  let embedUrl = "";
+  if (!isSingleCity) {
+    embedUrl = `https://maps.google.com/maps?saddr=${encodeURIComponent(mapFrom)}&daddr=${encodeURIComponent(mapTo)}&output=embed`;
+  } else {
+    embedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapFrom + ', India')}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+  }
 
   const numericKm = parseFloat(distance) || 274;
   const estHours = (numericKm / 60).toFixed(1);
@@ -78,7 +86,7 @@ export default function LiveMap({ location, destination, isVisible }: LiveMapPro
               <div>
                 <h4 className="text-[10px] lg:text-xs font-black text-slate-900 uppercase tracking-widest leading-none mb-1">ROUTE DETAILS</h4>
                 <p className="text-[9px] lg:text-[10px] font-bold text-slate-500 uppercase tracking-tighter truncate max-w-[170px] lg:max-w-none">
-                   {`${mapFrom} → ${mapTo}`}
+                   {!isSingleCity ? `${mapFrom} → ${mapTo}` : `CITY: ${mapFrom}`}
                 </p>
               </div>
             </div>
