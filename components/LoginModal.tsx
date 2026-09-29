@@ -184,7 +184,7 @@ export default function LoginModal() {
                   </div>
                 </div>
 
-                {/* Customer Number */}
+                {/* Customer Number (Strict 10 digits max) */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
                     Customer Phone Number <span className="text-orange-500">*</span>
@@ -195,9 +195,10 @@ export default function LoginModal() {
                       type="tel"
                       required
                       maxLength={10}
+                      pattern="[0-9]{10}"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Enter Customer Mobile Number"
+                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      placeholder="Enter 10-digit Mobile Number"
                       className="w-full bg-slate-800/90 border border-slate-700 focus:border-yellow-400 rounded-xl py-3.5 pl-12 pr-4 text-sm font-semibold text-white placeholder-slate-500 outline-none transition-all shadow-inner"
                     />
                   </div>

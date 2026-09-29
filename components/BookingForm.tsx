@@ -10,6 +10,7 @@ export default function BookingForm() {
   const [mainTab] = useState("OUTSTATION"); // Default, visually hidden
   const [tripType, setTripType] = useState("ONE WAY");
   const [hourlyPackage, setHourlyPackage] = useState("8 Hours / 80 Km");
+  const [phone, setPhone] = useState("");
 
   const [fromLoc, setFromLoc] = useState("");
   const [toLoc, setToLoc] = useState("");
@@ -160,7 +161,7 @@ export default function BookingForm() {
     
     const formData = new FormData(e.currentTarget);
     const data = {
-      phone: formData.get('phone'),
+      phone: phone || formData.get('phone'),
       pickup: fromLoc,
       drop: tripType === "HOURLY RENTAL" ? `Hourly Rental (${hourlyPackage})` : toLoc,
       mainCategory: mainTab,
@@ -405,28 +406,55 @@ export default function BookingForm() {
                 </div>
               )}
 
+              {/* Date & Time Row with Instant Picker Triggers */}
               <div className="flex gap-2">
-                 <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden">
-                    <Calendar size={16} className="text-black flex-shrink-0" />
+                 <div 
+                   onClick={(e) => {
+                     const input = e.currentTarget.querySelector('input');
+                     if (input && 'showPicker' in input) {
+                       try { (input as HTMLInputElement).showPicker(); } catch(err){}
+                     }
+                   }}
+                   className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden cursor-pointer"
+                 >
+                    <Calendar size={16} className="text-black flex-shrink-0 pointer-events-none" />
                     <input 
                       name="date" 
                       type="date" 
                       required 
-                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0"
+                      onClick={(e) => {
+                        if ('showPicker' in e.currentTarget) {
+                          try { e.currentTarget.showPicker(); } catch(err){}
+                        }
+                      }}
+                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 cursor-pointer"
                     />
                  </div>
-                 <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden">
-                    <Clock size={16} className="text-black flex-shrink-0" />
+                 <div 
+                   onClick={(e) => {
+                     const input = e.currentTarget.querySelector('input');
+                     if (input && 'showPicker' in input) {
+                       try { (input as HTMLInputElement).showPicker(); } catch(err){}
+                     }
+                   }}
+                   className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden cursor-pointer"
+                 >
+                    <Clock size={16} className="text-black flex-shrink-0 pointer-events-none" />
                     <input 
                       name="time" 
                       type="time" 
                       required 
-                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0"
+                      onClick={(e) => {
+                        if ('showPicker' in e.currentTarget) {
+                          try { e.currentTarget.showPicker(); } catch(err){}
+                        }
+                      }}
+                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 cursor-pointer"
                     />
                  </div>
               </div>
 
-              {/* Phone & Vehicle Row */}
+              {/* Phone & Vehicle Row (Strict 10-Digit Phone Input) */}
               <div className="flex gap-2">
                  <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 overflow-hidden">
                     <Phone size={16} className="text-black flex-shrink-0" />
@@ -434,12 +462,16 @@ export default function BookingForm() {
                       name="phone" 
                       type="tel" 
                       required 
+                      maxLength={10}
+                      pattern="[0-9]{10}"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                       placeholder="Phone No." 
                       className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 placeholder-gray-500"
                     />
                  </div>
-                 <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative overflow-hidden">
-                    <Car size={16} className="text-black flex-shrink-0" />
+                 <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative overflow-hidden cursor-pointer">
+                    <Car size={16} className="text-black flex-shrink-0 pointer-events-none" />
                     <select name="vehicle" required className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 appearance-none pr-4 cursor-pointer">
                        <option value="">Vehicle</option>
                        <option value="Swift Dzire">Swift Dzire</option>
