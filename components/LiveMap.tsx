@@ -35,11 +35,15 @@ export default function LiveMap({ location, destination, isVisible }: LiveMapPro
   const isSingleCity = !rawTo || rawFrom.toLowerCase() === rawTo.toLowerCase();
 
   useEffect(() => {
+    if (!isVisible) return;
+
     const fetchRouteInfo = async () => {
       setLoading(true);
 
       try {
-        const response = await fetch(`/api/route-info?from=${encodeURIComponent(activeFrom)}&to=${encodeURIComponent(isSingleCity ? activeFrom : activeTo)}`);
+        const isSingle = !rawTo || rawFrom.toLowerCase() === rawTo.toLowerCase();
+        const targetTo = isSingle ? activeFrom : activeTo;
+        const response = await fetch(`/api/route-info?from=${encodeURIComponent(activeFrom)}&to=${encodeURIComponent(targetTo)}`);
         const data = await response.json();
 
         if (data.distance) {
@@ -52,10 +56,8 @@ export default function LiveMap({ location, destination, isVisible }: LiveMapPro
       }
     };
 
-    if (isVisible) {
-      fetchRouteInfo();
-    }
-  }, [activeFrom, activeTo, isSingleCity, isVisible]);
+    fetchRouteInfo();
+  }, [activeFrom, activeTo, rawFrom, rawTo, isVisible]);
 
   // Construct iframe Google Maps URL correctly
   let embedUrl = "";
