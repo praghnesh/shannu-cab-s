@@ -1,111 +1,176 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { User, Phone, ArrowRight, Lock, CheckCircle } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+
+type TripType = "one-way" | "round-trip" | "hourly";
+
+const CAR_TYPES = [
+  "Sedan (Swift Dzire / Etios)",
+  "SUV (Innova / Ertiga)",
+  "SUV+ (Innova Crysta)",
+  "Tempo Traveller (12 Seater)",
+];
+
+const HOURLY_DURATIONS = ["2 Hours", "4 Hours", "6 Hours", "8 Hours", "10 Hours", "12 Hours"];
+
+// Pincode → City name mapping (AP & Telangana + major cities)
+const PINCODE_CITY_MAP: Record<string, string> = {
+  "500001": "Hyderabad", "500002": "Hyderabad", "500003": "Hyderabad",
+  "500004": "Hyderabad", "500032": "Hyderabad", "500072": "Hyderabad",
+  "520001": "Vijayawada", "520002": "Vijayawada", "520010": "Vijayawada",
+  "521001": "Machilipatnam", "522001": "Guntur", "522002": "Guntur",
+  "530001": "Visakhapatnam", "530002": "Visakhapatnam", "530003": "Visakhapatnam",
+  "533001": "Rajahmundry", "534001": "Eluru", "515001": "Anantapur",
+  "516001": "Kurnool", "516002": "Kurnool", "517001": "Tirupati",
+  "517501": "Tirupati", "524001": "Nellore", "524002": "Nellore",
+  "508001": "Nalgonda", "506001": "Warangal", "505001": "Karimnagar",
+  "502001": "Medak", "503001": "Nizamabad", "504001": "Adilabad",
+  "110001": "Delhi", "110002": "Delhi", "400001": "Mumbai",
+  "600001": "Chennai", "600002": "Chennai", "560001": "Bangalore",
+  "560002": "Bangalore", "700001": "Kolkata",
+};
+
+// City suggestions list for name-based autocomplete
+const CITY_SUGGESTIONS = [
+  "Hyderabad", "Vijayawada", "Visakhapatnam", "Guntur", "Tirupati",
+  "Nellore", "Kurnool", "Rajahmundry", "Eluru", "Machilipatnam",
+  "Warangal", "Karimnagar", "Nizamabad", "Nalgonda", "Anantapur",
+  "Delhi", "Mumbai", "Chennai", "Bangalore", "Kolkata",
+  "Amaravathi", "Ongole", "Kadapa", "Srikakulam", "Vizianagaram",
+];
+
+const WHATSAPP_NUMBER = "919393591444"; // Amaravathi Fast Car Travels WhatsApp
+
+function CityInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder: string;
+}) {
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSug, setShowSug] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleChange = (val: string) => {
+    onChange(val);
+    if (!val.trim()) { setSuggestions([]); setShowSug(false); return; }
+
+    // If all digits — pincode lookup
+    if (/^\d+$/.test(val)) {
+      const match = PINCODE_CITY_MAP[val];
+      if (match) {
+        setSuggestions([`${match} (${val})`]);
+        setShowSug(true);
+      } else {
+        // Partial pincode match
+        const partial = Object.entries(PINCODE_CITY_MAP)
+          .filter(([pin]) => pin.startsWith(val))
+          .map(([pin, city]) => `${city} (${pin})`)
+          .slice(0, 5);
+        setSuggestions(partial);
+        setShowSug(partial.length > 0);
+      }
+    } else {
+      // Name-based suggestions
+      const lower = val.toLowerCase();
+      const matches = CITY_SUGGESTIONS.filter((c) => c.toLowerCase().includes(lower)).slice(0, 6);
+      setSuggestions(matches);
+      setShowSug(matches.length > 0);
+    }
+  };
+
+  const pick = (s: string) => {
+    // Strip pincode part if present e.g. "Hyderabad (500001)"
+    const cityOnly = s.replace(/\s*\(\d+\)$/, "");
+    onChange(cityOnly);
+    setSuggestions([]);
+    setShowSug(false);
+  };
+
+  return (
+    <div className="relative">
+      <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">{label}</label>
+      <input
+        ref={inputRef}
+        type="text"
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        onFocus={() => value && setShowSug(suggestions.length > 0)}
+        onBlur={() => setTimeout(() => setShowSug(false), 150)}
+        placeholder={placeholder}
+        className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+        autoComplete="off"
+      />
+      {showSug && suggestions.length > 0 && (
+        <ul className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-black/10 rounded-lg shadow-xl overflow-hidden">
+          {suggestions.map((s) => (
+            <li
+              key={s}
+              onMouseDown={() => pick(s)}
+              className="px-3 py-2 text-sm font-semibold text-black hover:bg-yellow-100 cursor-pointer border-b border-black/5 last:border-0"
+            >
+              {s}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export default function LoginModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [tripType, setTripType] = useState<TripType>("one-way");
+  const [customerName, setCustomerName] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [carType, setCarType] = useState("");
+  const [duration, setDuration] = useState("");
 
   useEffect(() => {
-    // Check if user has already logged in
-    const loggedIn = localStorage.getItem("fast_travels_customer_logged");
-    if (!loggedIn) {
-      setIsOpen(true);
-    }
+    const seen = sessionStorage.getItem("quote_modal_seen");
+    if (!seen) setIsOpen(true);
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [isOpen]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const close = () => {
+    sessionStorage.setItem("quote_modal_seen", "true");
+    setIsOpen(false);
+  };
+
+  const handleBook = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
 
-    if (!name.trim()) {
-      setError("Please enter your name / దయచేసి మీ పేరు ఎంటర్ చేయండి");
-      return;
-    }
+    const tripLabel = tripType === "one-way" ? "One Way" : tripType === "round-trip" ? "Round Trip" : "Hourly Rental";
+    const lines = [
+      `🚖 *New Booking Request*`,
+      ``,
+      `👤 *Customer:* ${customerName || "—"}`,
+      `🗺️ *Trip Type:* ${tripLabel}`,
+      `📍 *From:* ${from || "—"}`,
+      tripType !== "hourly" ? `📍 *To:* ${to || "—"}` : `⏱️ *Duration:* ${duration || "—"}`,
+      `📅 *Date:* ${date || "—"}`,
+      `⏰ *Time:* ${time || "—"}`,
+      `🚗 *Car Type:* ${carType || "—"}`,
+      ``,
+      `_Sent from Amaravathi Fast Car Travels website_`,
+    ].filter(Boolean).join("\n");
 
-    const cleanPhone = phone.trim().replace(/\D/g, "");
-    if (cleanPhone.length < 10) {
-      setError("Please enter a valid 10-digit mobile number / దయచేసి 10 అంకెల ఫోన్ నెంబర్ ఇవ్వండి");
-      return;
-    }
-
-    setLoading(true);
-
-    const payload = {
-      access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
-      subject: `🚨 NEW WEBSITE LOGIN: ${name.trim()} (${cleanPhone})`,
-      from_name: "Amaravathi Fast Car Travels Website",
-      name: name.trim(),
-      phone: cleanPhone,
-      Customer_Name: name.trim(),
-      Customer_Number: cleanPhone,
-      Submitted_At: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-      Page_Url: typeof window !== "undefined" ? window.location.href : ""
-    };
-
-    try {
-      // 1. Try server-side route first for reliability
-      const serverRes = await fetch("/api/login-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          phone: cleanPhone,
-          pageUrl: typeof window !== "undefined" ? window.location.href : ""
-        })
-      });
-
-      let emailSent = serverRes.ok;
-
-      // 2. Direct Web3Forms submission as fallback
-      if (!emailSent) {
-        const directRes = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-        emailSent = directRes.ok;
-      }
-
-      setIsSuccess(true);
-      localStorage.setItem("fast_travels_customer_logged", "true");
-      localStorage.setItem("fast_travels_customer_name", name.trim());
-      localStorage.setItem("fast_travels_customer_phone", cleanPhone);
-      
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 1200);
-
-    } catch (err) {
-      console.error("Login email submission error:", err);
-      // Fallback unlock so website access works
-      localStorage.setItem("fast_travels_customer_logged", "true");
-      setIsSuccess(true);
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 1200);
-    } finally {
-      setLoading(false);
-    }
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
+    window.open(waUrl, "_blank");
+    close();
   };
 
   if (!isOpen) return null;
@@ -113,127 +178,173 @@ export default function LoginModal() {
   return (
     <AnimatePresence>
       <motion.div
+        key="quote-overlay"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+        className="fixed inset-0 z-[99999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 overflow-y-auto"
       >
         <motion.div
-          initial={{ scale: 0.9, y: 20, opacity: 0 }}
+          key="quote-card"
+          initial={{ scale: 0.9, y: 24, opacity: 0 }}
           animate={{ scale: 1, y: 0, opacity: 1 }}
-          exit={{ scale: 0.9, y: 20, opacity: 0 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="w-full max-w-md bg-slate-900 border border-yellow-500/30 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden text-white relative"
+          exit={{ scale: 0.9, y: 24, opacity: 0 }}
+          transition={{ type: "spring", damping: 24, stiffness: 300 }}
+          className="w-full max-w-sm bg-yellow-400 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.7)] overflow-visible relative my-4"
         >
-          {/* Top Header */}
-          <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-blue-950 p-6 pt-8 text-center relative border-b border-white/10">
-            <div className="mx-auto w-20 h-20 mb-3 bg-white/5 rounded-2xl p-2 border border-yellow-500/30 shadow-xl flex items-center justify-center">
-              <img
-                src="/logo-clean.png"
-                alt="Amaravathi Fast Car Travels"
-                className="w-full h-full object-contain"
+          {/* X Close */}
+          <button
+            onClick={close}
+            aria-label="Close"
+            className="absolute top-3.5 right-3.5 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/25 text-black/60 hover:text-black transition-all"
+          >
+            <X size={15} strokeWidth={2.5} />
+          </button>
+
+          {/* Header */}
+          <div className="px-6 pt-6 pb-4 text-center">
+            <h2 className="text-xl font-black text-black tracking-tight">Get Instant Quote</h2>
+            <p className="text-[12px] font-semibold text-black/60 mt-0.5">Book in 60 Seconds · WhatsApp లో వస్తుంది</p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleBook} className="px-5 pb-6 space-y-3">
+
+            {/* Customer Name */}
+            <div>
+              <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">
+                Customer Name
+              </label>
+              <input
+                type="text"
+                required
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                placeholder="మీ పేరు / Your Name"
+                className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
               />
             </div>
-            <h2 className="text-2xl font-black text-white tracking-tight">
-              AMARAVATHI <span className="text-yellow-400">FAST CAR TRAVELS</span>
-            </h2>
-            <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mt-1">
-              Customer Login / కస్టమర్ లాగిన్
-            </p>
-          </div>
 
-          {/* Form Content */}
-          <div className="p-6 sm:p-8">
-            <p className="text-slate-300 text-xs sm:text-sm font-medium text-center mb-6 leading-relaxed">
-              Please enter your details to unlock our website tariffs, cab availability & instant 24/7 booking access.
-            </p>
+            {/* Trip Type Toggle */}
+            <div>
+              <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1.5">
+                Trip Type
+              </label>
+              <div className="flex gap-1.5">
+                {(["one-way", "round-trip", "hourly"] as TripType[]).map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTripType(t)}
+                    className={`flex-1 py-2 text-[11px] font-black rounded-lg border-2 transition-all ${
+                      tripType === t
+                        ? "bg-black text-yellow-400 border-black"
+                        : "bg-white text-black border-white hover:border-black/30"
+                    }`}
+                  >
+                    {t === "one-way" ? "One Way" : t === "round-trip" ? "Round Trip" : "Hourly"}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-            {isSuccess ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-green-500/20 border border-green-500/40 rounded-2xl p-6 text-center space-y-3"
-              >
-                <CheckCircle className="text-green-400 mx-auto" size={48} />
-                <h3 className="text-xl font-extrabold text-green-400">Login Successful!</h3>
-                <p className="text-xs text-green-200">Welcome to Amaravathi Fast Car Travels. Opening website...</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {error && (
-                  <div className="bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-bold p-3 rounded-xl text-center">
-                    {error}
-                  </div>
-                )}
+            {/* From — with city/pincode suggestions */}
+            <CityInput
+              label="From"
+              value={from}
+              onChange={setFrom}
+              placeholder="City name or Pincode"
+            />
 
-                {/* Customer Name */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
-                    Customer Name <span className="text-orange-500">*</span>
-                  </label>
-                  <div className="relative flex items-center">
-                    <User className="absolute left-4 text-orange-400 pointer-events-none" size={18} />
-                    <input
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Enter Customer Name"
-                      className="w-full bg-slate-800/90 border border-slate-700 focus:border-yellow-400 rounded-xl py-3.5 pl-12 pr-4 text-sm font-semibold text-white placeholder-slate-500 outline-none transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-
-                {/* Customer Number (Strict 10 digits max) */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
-                    Customer Phone Number <span className="text-orange-500">*</span>
-                  </label>
-                  <div className="relative flex items-center">
-                    <Phone className="absolute left-4 text-orange-400 pointer-events-none" size={18} />
-                    <input
-                      type="tel"
-                      required
-                      maxLength={10}
-                      pattern="[0-9]{10}"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                      placeholder="Enter 10-digit Mobile Number"
-                      className="w-full bg-slate-800/90 border border-slate-700 focus:border-yellow-400 rounded-xl py-3.5 pl-12 pr-4 text-sm font-semibold text-white placeholder-slate-500 outline-none transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-
-                {/* Login Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={loading}
-                  className="w-full mt-2 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-base py-4 rounded-xl shadow-[0_10px_25px_rgba(249,115,22,0.4)] transition-all flex items-center justify-center gap-2 tracking-wider uppercase cursor-pointer"
-                >
-                  {loading ? (
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>
-                      <span>Logging in...</span>
-                    </div>
-                  ) : (
-                    <>
-                      <span>LOGIN</span>
-                      <ArrowRight size={20} className="stroke-[3]" />
-                    </>
-                  )}
-                </motion.button>
-
-                <div className="flex items-center justify-center gap-2 pt-2 text-[11px] text-slate-400">
-                  <Lock size={12} className="text-yellow-400" />
-                  <span>Your details are 100% safe & private.</span>
-                </div>
-              </form>
+            {/* To — hidden for hourly */}
+            {tripType !== "hourly" && (
+              <CityInput
+                label="To"
+                value={to}
+                onChange={setTo}
+                placeholder="City name or Pincode"
+              />
             )}
-          </div>
+
+            {/* Duration — for hourly only */}
+            {tripType === "hourly" && (
+              <div>
+                <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Duration</label>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {HOURLY_DURATIONS.map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setDuration(d)}
+                      className={`py-2 text-[11px] font-black rounded-lg border-2 transition-all ${
+                        duration === d
+                          ? "bg-black text-yellow-400 border-black"
+                          : "bg-white text-black border-white hover:border-black/30"
+                      }`}
+                    >
+                      {d}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Date + Time row */}
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Travel Date</label>
+                <input
+                  type="date"
+                  required
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  min={new Date().toISOString().split("T")[0]}
+                  className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-2 py-2.5 text-sm font-semibold text-black outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Time</label>
+                <input
+                  type="time"
+                  required
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-2 py-2.5 text-sm font-semibold text-black outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            {/* Car Type */}
+            <div>
+              <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Car Type</label>
+              <select
+                value={carType}
+                onChange={(e) => setCarType(e.target.value)}
+                className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black outline-none transition-all appearance-none cursor-pointer"
+              >
+                <option value="">Select car type</option>
+                {CAR_TYPES.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* WhatsApp Book Now */}
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              type="submit"
+              className="w-full mt-1 bg-black text-yellow-400 font-black text-sm py-3.5 rounded-xl tracking-widest uppercase shadow-lg hover:bg-neutral-900 transition-all flex items-center justify-center gap-2"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              BOOK NOW via WhatsApp
+            </motion.button>
+          </form>
         </motion.div>
       </motion.div>
     </AnimatePresence>
   );
 }
+
