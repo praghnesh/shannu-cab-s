@@ -9,6 +9,7 @@ export default function BookingForm() {
   const [success, setSuccess] = useState(false);
   const [mainTab] = useState("OUTSTATION"); // Default, visually hidden
   const [tripType, setTripType] = useState("ONE WAY");
+  const [hourlyPackage, setHourlyPackage] = useState("8 Hours / 80 Km");
 
   const [fromLoc, setFromLoc] = useState("");
   const [toLoc, setToLoc] = useState("");
@@ -161,16 +162,19 @@ export default function BookingForm() {
     const data = {
       phone: formData.get('phone'),
       pickup: fromLoc,
-      drop: toLoc,
+      drop: tripType === "HOURLY RENTAL" ? `Hourly Rental (${hourlyPackage})` : toLoc,
       mainCategory: mainTab,
       tripType: tripType,
+      hourlyPackage: tripType === "HOURLY RENTAL" ? hourlyPackage : undefined,
       date: formData.get('date'),
       time: formData.get('time'),
       vehicle: formData.get('vehicle')
     };
 
     // Prepare WhatsApp message
-    const message = `*New Booking Request*%0A%0A*Phone:* ${data.phone}%0A*Category:* ${data.mainCategory}%0A*Trip:* ${data.tripType}%0A*From:* ${data.pickup}%0A*To:* ${data.drop}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`;
+    const message = tripType === "HOURLY RENTAL" 
+      ? `*New Hourly Rental Request*%0A%0A*Phone:* ${data.phone}%0A*Type:* Hourly Rental%0A*Package:* ${hourlyPackage}%0A*Pickup Location/Pincode:* ${data.pickup}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`
+      : `*New Booking Request*%0A%0A*Phone:* ${data.phone}%0A*Category:* ${data.mainCategory}%0A*Trip:* ${data.tripType}%0A*From:* ${data.pickup}%0A*To:* ${data.drop}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`;
 
     try {
       // 1. Submit to Email (Web3Forms)
@@ -182,7 +186,7 @@ export default function BookingForm() {
         },
         body: JSON.stringify({
           access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
-          subject: `NEW BOOKING: ${data.pickup} to ${data.drop}`,
+          subject: `NEW BOOKING (${data.tripType}): ${data.pickup}`,
           from_name: "Amaravathi Fast Car Travels Website",
           ...data
         })
@@ -214,7 +218,7 @@ export default function BookingForm() {
     >
       <div className="flex flex-col lg:flex-row items-start justify-center gap-8">
         {/* Form Container */}
-        <div className="w-full max-w-[420px] bg-black rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative border border-white/10 z-20">
+        <div className="w-full max-w-[440px] bg-black rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative border border-white/10 z-20">
           <div className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <input type="hidden" name="fromLoc" value={fromLoc} />
@@ -222,12 +226,12 @@ export default function BookingForm() {
               <input type="hidden" name="mainTab" value={mainTab} />
               <input type="hidden" name="tripType" value={tripType} />
 
-              {/* Trip Type Toggle (One Way vs Round Trip) */}
-              <div className="grid grid-cols-2 bg-[#f3f3f3]/10 border border-white/10 rounded-2xl p-1 gap-1">
+              {/* Trip Type Toggle (One Way vs Round Trip vs Hourly Rental) */}
+              <div className="grid grid-cols-3 bg-[#f3f3f3]/10 border border-white/10 rounded-2xl p-1 gap-1">
                 <button
                   type="button"
                   onClick={() => setTripType("ONE WAY")}
-                  className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
+                  className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 ${
                     tripType === "ONE WAY"
                       ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
                       : "bg-transparent text-gray-400 hover:text-white"
@@ -238,7 +242,7 @@ export default function BookingForm() {
                 <button
                   type="button"
                   onClick={() => setTripType("ROUND TRIP")}
-                  className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
+                  className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 ${
                     tripType === "ROUND TRIP"
                       ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
                       : "bg-transparent text-gray-400 hover:text-white"
@@ -246,84 +250,160 @@ export default function BookingForm() {
                 >
                   Round Trip
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setTripType("HOURLY RENTAL")}
+                  className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 ${
+                    tripType === "HOURLY RENTAL"
+                      ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
+                      : "bg-transparent text-gray-400 hover:text-white"
+                  }`}
+                >
+                  Hourly Rental
+                </button>
               </div>
 
               {/* Location Inputs Block */}
-              <div className="relative bg-[#f3f3f3] rounded-2xl flex flex-col p-1.5 z-50">
-                {/* Connecting Line */}
-                <div className="absolute left-[21px] top-[38px] bottom-[38px] w-[2px] bg-black/20 z-0"></div>
-                
-                {/* From Input */}
-                <div className={`relative flex items-center gap-4 bg-transparent p-3 border-b border-gray-300/50 transition-all ${showFromSuggestions ? 'z-30' : 'z-10'}`}>
-                   <div className="w-3 h-3 bg-white rounded-full border-[3px] border-black flex-shrink-0 ml-1"></div>
-                    <div className="flex flex-col flex-grow relative">
-                       <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">From</span>
-                       <input 
-                         required
-                         value={fromLoc}
-                         onChange={(e) => {
-                           setFromLoc(e.target.value);
-                           setShowFromSuggestions(true);
-                           setIsSearching(true);
-                         }}
-                         onFocus={() => setShowFromSuggestions(true)}
-                         onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
-                         placeholder="Enter Departure City"
-                         className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
-                      />
-                   </div>
-                   {fromLoc && (
-                     <button type="button" onClick={() => setFromLoc("")} className="text-gray-400 hover:text-black">
-                       <X size={20} />
-                     </button>
-                   )}
-
-                    <AnimatePresence>
-                      {showFromSuggestions && fromLoc.length > 0 && (
-                        <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                          {fromSuggestions.map((city) => (
-                            <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                          ))}
-                        </motion.div>
+              {tripType === "HOURLY RENTAL" ? (
+                <div className="space-y-3">
+                  {/* Single Pickup Location & Pincode Input for Hourly Rental */}
+                  <div className="relative bg-[#f3f3f3] rounded-2xl p-1.5 z-50">
+                    <div className={`relative flex items-center gap-4 bg-transparent p-3 ${showFromSuggestions ? 'z-30' : 'z-10'}`}>
+                      <MapPin size={20} className="text-black flex-shrink-0" />
+                      <div className="flex flex-col flex-grow relative">
+                        <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">Pickup City / Pincode</span>
+                        <input 
+                          required
+                          value={fromLoc}
+                          onChange={(e) => {
+                            setFromLoc(e.target.value);
+                            setShowFromSuggestions(true);
+                            setIsSearching(true);
+                          }}
+                          onFocus={() => setShowFromSuggestions(true)}
+                          onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
+                          placeholder="Enter City Name or Pincode"
+                          className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
+                        />
+                      </div>
+                      {fromLoc && (
+                        <button type="button" onClick={() => setFromLoc("")} className="text-gray-400 hover:text-black">
+                          <X size={20} />
+                        </button>
                       )}
-                    </AnimatePresence>
-                </div>
 
-                <div className={`relative flex items-center gap-4 bg-transparent p-3 transition-all ${showToSuggestions ? 'z-30' : 'z-10'}`}>
-                   <div className="w-3 h-3 bg-black flex-shrink-0 ml-1"></div>
-                    <div className="flex flex-col flex-grow relative">
-                       <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">To</span>
-                       <input 
-                         required
-                         value={toLoc}
-                         onChange={(e) => {
-                           setToLoc(e.target.value);
-                           setShowToSuggestions(true);
-                           setIsSearching(true);
-                         }}
-                         onFocus={() => setShowToSuggestions(true)}
-                         onBlur={() => setTimeout(() => setShowToSuggestions(false), 200)}
-                         placeholder="Enter Destination City"
-                         className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
-                      />
-                   </div>
-                   {toLoc && (
-                     <button type="button" onClick={() => setToLoc("")} className="text-gray-400 hover:text-black">
-                       <X size={20} />
-                     </button>
-                   )}
+                      <AnimatePresence>
+                        {showFromSuggestions && fromLoc.length > 0 && (
+                          <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
+                            {fromSuggestions.map((city) => (
+                              <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
 
-                    <AnimatePresence>
-                      {showToSuggestions && toLoc.length > 0 && (
-                        <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                          {toSuggestions.map((city) => (
-                            <button key={city} type="button" onMouseDown={() => setToLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                  {/* Hourly Package Selector (2, 4, 6, 8, 10, 12 Hours) */}
+                  <div className="relative bg-[#f3f3f3] rounded-2xl p-3 flex flex-col gap-1">
+                    <span className="text-xs sm:text-sm font-black text-gray-700 uppercase tracking-wider">Hourly Rental Package</span>
+                    <div className="relative flex items-center">
+                      <Clock size={18} className="text-black mr-2 flex-shrink-0" />
+                      <select 
+                        value={hourlyPackage}
+                        onChange={(e) => setHourlyPackage(e.target.value)}
+                        className="bg-transparent text-sm font-bold text-black outline-none w-full appearance-none pr-6 cursor-pointer"
+                      >
+                        <option value="2 Hours / 20 Km">2 Hours / 20 Km</option>
+                        <option value="4 Hours / 40 Km">4 Hours / 40 Km</option>
+                        <option value="6 Hours / 60 Km">6 Hours / 60 Km</option>
+                        <option value="8 Hours / 80 Km">8 Hours / 80 Km</option>
+                        <option value="10 Hours / 100 Km">10 Hours / 100 Km</option>
+                        <option value="12 Hours / 120 Km">12 Hours / 120 Km</option>
+                      </select>
+                      <ChevronDown size={14} className="text-black absolute right-2 pointer-events-none" />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                /* One Way & Round Trip Location Inputs */
+                <div className="relative bg-[#f3f3f3] rounded-2xl flex flex-col p-1.5 z-50">
+                  {/* Connecting Line */}
+                  <div className="absolute left-[21px] top-[38px] bottom-[38px] w-[2px] bg-black/20 z-0"></div>
+                  
+                  {/* From Input */}
+                  <div className={`relative flex items-center gap-4 bg-transparent p-3 border-b border-gray-300/50 transition-all ${showFromSuggestions ? 'z-30' : 'z-10'}`}>
+                     <div className="w-3 h-3 bg-white rounded-full border-[3px] border-black flex-shrink-0 ml-1"></div>
+                      <div className="flex flex-col flex-grow relative">
+                         <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">From</span>
+                         <input 
+                           required
+                           value={fromLoc}
+                           onChange={(e) => {
+                             setFromLoc(e.target.value);
+                             setShowFromSuggestions(true);
+                             setIsSearching(true);
+                           }}
+                           onFocus={() => setShowFromSuggestions(true)}
+                           onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
+                           placeholder="Enter Departure City or Pincode"
+                           className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
+                        />
+                     </div>
+                     {fromLoc && (
+                       <button type="button" onClick={() => setFromLoc("")} className="text-gray-400 hover:text-black">
+                         <X size={20} />
+                       </button>
+                     )}
+
+                      <AnimatePresence>
+                        {showFromSuggestions && fromLoc.length > 0 && (
+                          <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
+                            {fromSuggestions.map((city) => (
+                              <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                  </div>
+
+                  {/* To Input */}
+                  <div className={`relative flex items-center gap-4 bg-transparent p-3 transition-all ${showToSuggestions ? 'z-30' : 'z-10'}`}>
+                     <div className="w-3 h-3 bg-black flex-shrink-0 ml-1"></div>
+                      <div className="flex flex-col flex-grow relative">
+                         <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">To</span>
+                         <input 
+                           required
+                           value={toLoc}
+                           onChange={(e) => {
+                             setToLoc(e.target.value);
+                             setShowToSuggestions(true);
+                             setIsSearching(true);
+                           }}
+                           onFocus={() => setShowToSuggestions(true)}
+                           onBlur={() => setTimeout(() => setShowToSuggestions(false), 200)}
+                           placeholder="Enter Destination City or Pincode"
+                           className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
+                        />
+                     </div>
+                     {toLoc && (
+                       <button type="button" onClick={() => setToLoc("")} className="text-gray-400 hover:text-black">
+                         <X size={20} />
+                       </button>
+                     )}
+
+                      <AnimatePresence>
+                        {showToSuggestions && toLoc.length > 0 && (
+                          <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
+                            {toSuggestions.map((city) => (
+                              <button key={city} type="button" onMouseDown={() => setToLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                  </div>
+                </div>
+              )}
 
               <div className="flex gap-2">
                  <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden">
@@ -396,7 +476,7 @@ export default function BookingForm() {
             <div className="lg:hidden w-full mt-6 rounded-2xl overflow-hidden border border-white/10 h-[350px] relative">
                <LiveMap 
                  location={fromLoc} 
-                 destination={toLoc} 
+                 destination={tripType === "HOURLY RENTAL" ? fromLoc : toLoc} 
                  isVisible={isSearching || fromLoc.length > 0 || toLoc.length > 0} 
                />
             </div>
@@ -407,7 +487,7 @@ export default function BookingForm() {
         <div className="hidden lg:block w-full max-w-[500px] h-[550px] rounded-3xl overflow-hidden border border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.3)] bg-black">
            <LiveMap 
              location={fromLoc} 
-             destination={toLoc} 
+             destination={tripType === "HOURLY RENTAL" ? fromLoc : toLoc} 
              isVisible={true} 
            />
         </div>
@@ -415,4 +495,3 @@ export default function BookingForm() {
     </motion.div>
   );
 }
-

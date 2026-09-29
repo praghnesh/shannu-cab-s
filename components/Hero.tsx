@@ -1,8 +1,7 @@
 "use client";
-import Image from 'next/image';
 import BookingForm from "./BookingForm";
 import { motion } from "framer-motion";
-import { Shield, Headphones, Star, Users, MapPin, ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { Shield, Headphones, Users, MapPin, ArrowRight, Phone, MessageCircle } from 'lucide-react';
 
 const tariffData = [
   {
@@ -40,14 +39,14 @@ const tariffData = [
 
 export default function Hero() {
   return (
-    <div className="relative bg-blue-950 pt-20 lg:pt-32 pb-0 overflow-hidden w-full">
+    <div className="relative bg-blue-950 pt-20 lg:pt-28 pb-12 overflow-hidden w-full">
       {/* Clean Solid Blue Background */}
       <div className="absolute inset-0 z-0 bg-blue-950">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-950 to-blue-900 opacity-50 z-10"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center pt-8 pb-8">
+        <div className="text-center pt-4 pb-8">
           {/* Promo Offer Banner */}
           <motion.a
             whileHover={{ scale: 1.03 }}
@@ -66,26 +65,24 @@ export default function Hero() {
             <span>Book Hyderabad to Vijayawada Cabs: Up to ₹500 Off!</span>
           </motion.a>
 
-          {/* Main Hero Banner Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto mb-10 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10"
-          >
-            <img 
-              src="/hero-banner.png" 
-              alt="Amaravathi Fast Car Travels - Local Taxi Service" 
-              className="w-full h-auto object-contain block"
-            />
-          </motion.div>
+          {/* Main Hero Booking Form (2nd Image Prominent Focus) */}
+          <div id="main-booking-form" className="w-full mb-12 flex justify-center">
+            <motion.div
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8 }}
+               className="w-full"
+            >
+              <BookingForm />
+            </motion.div>
+          </div>
 
-          {/* Mobile CTA Buttons */}
+          {/* Mobile Quick Call / WhatsApp Action Buttons */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex md:hidden gap-4 max-w-md mx-auto mb-10 px-4"
+            transition={{ delay: 0.3 }}
+            className="flex md:hidden gap-4 max-w-md mx-auto mb-12 px-4"
           >
             <a 
               href="tel:+919948924786"
@@ -109,7 +106,7 @@ export default function Hero() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.4 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mb-16"
           >
              {[
@@ -130,7 +127,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+            transition={{ delay: 0.5 }}
             className="text-center mb-10 mt-6"
           >
             <span className="font-black text-xs sm:text-sm text-orange-500 uppercase tracking-[0.25em] block mb-2">Our Premium Tariffs</span>
@@ -146,7 +143,7 @@ export default function Hero() {
                 key={tariff.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
+                transition={{ delay: 0.6 + index * 0.1 }}
                 whileHover={{ y: -6, scale: 1.01 }}
                 className="relative bg-gradient-to-br from-blue-950/80 to-blue-900/40 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 p-6 sm:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:border-orange-500/40 hover:shadow-[0_20px_50px_rgba(249,115,22,0.1)] transition-all duration-500 group"
               >
@@ -197,8 +194,8 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1 }}
-            className="text-center mt-6 mb-20"
+            transition={{ delay: 0.8 }}
+            className="text-center mt-6 mb-8"
           >
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-none">
               TRAVEL IN STYLE & <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300">EXTRA COMFORT</span>
@@ -206,18 +203,6 @@ export default function Hero() {
           </motion.div>
 
         </div>
-      </div>
-
-      {/* Floating Booking Card */}
-      <div id="main-booking-form" className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mt-[-60px] lg:mt-[-80px] mb-0 pb-2 sm:pb-10 max-w-6xl mx-auto flex justify-center">
-        <motion.div
-           initial={{ opacity: 0, y: 50 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8, delay: 0.8 }}
-           className="w-full"
-        >
-          <BookingForm />
-        </motion.div>
       </div>
     </div>
   );
