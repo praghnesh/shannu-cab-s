@@ -49,8 +49,10 @@ export default function LoginModal() {
 
     const payload = {
       access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
-      subject: `NEW WEBSITE LOGIN: ${name.trim()} (${cleanPhone})`,
-      from_name: "Amaravathi Fast Car Travels Login Form",
+      subject: `🚨 NEW WEBSITE LOGIN: ${name.trim()} (${cleanPhone})`,
+      from_name: "Amaravathi Fast Car Travels Website",
+      name: name.trim(),
+      phone: cleanPhone,
       Customer_Name: name.trim(),
       Customer_Number: cleanPhone,
       Submitted_At: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
@@ -58,48 +60,44 @@ export default function LoginModal() {
     };
 
     try {
-      // 1. Submit to Email via Web3Forms
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      // 2. Also send to internal booking API for safety
-      fetch("/api/booking", {
+      // 1. Try server-side route first for reliability
+      const serverRes = await fetch("/api/login-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "LOGIN_FORM_SUBMISSION",
           name: name.trim(),
           phone: cleanPhone,
-          timestamp: new Date().toISOString()
+          pageUrl: typeof window !== "undefined" ? window.location.href : ""
         })
-      }).catch(() => {});
+      });
 
-      if (response.ok) {
-        setIsSuccess(true);
-        localStorage.setItem("fast_travels_customer_logged", "true");
-        localStorage.setItem("fast_travels_customer_name", name.trim());
-        localStorage.setItem("fast_travels_customer_phone", cleanPhone);
-        
-        setTimeout(() => {
-          setIsOpen(false);
-        }, 1200);
-      } else {
-        // Fallback unlock so user can access website
-        localStorage.setItem("fast_travels_customer_logged", "true");
-        setIsSuccess(true);
-        setTimeout(() => {
-          setIsOpen(false);
-        }, 1200);
+      let emailSent = serverRes.ok;
+
+      // 2. Direct Web3Forms submission as fallback
+      if (!emailSent) {
+        const directRes = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+        emailSent = directRes.ok;
       }
+
+      setIsSuccess(true);
+      localStorage.setItem("fast_travels_customer_logged", "true");
+      localStorage.setItem("fast_travels_customer_name", name.trim());
+      localStorage.setItem("fast_travels_customer_phone", cleanPhone);
+      
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 1200);
+
     } catch (err) {
       console.error("Login email submission error:", err);
-      // Fallback unlock
+      // Fallback unlock so website access works
       localStorage.setItem("fast_travels_customer_logged", "true");
       setIsSuccess(true);
       setTimeout(() => {
