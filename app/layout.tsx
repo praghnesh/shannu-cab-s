@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 }
 
 import FloatingActions from '../components/FloatingActions'
+import LoginModal from '../components/LoginModal'
 
 export default function RootLayout({
   children,
@@ -55,6 +56,7 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.variable} font-sans bg-slate-50 text-slate-900 overflow-x-clip w-full max-w-full selection:bg-orange-500 selection:text-white`}>
         <PageLoader />
+        <LoginModal />
         <Navbar />
         <main className="min-h-screen">
           {children}
