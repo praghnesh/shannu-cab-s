@@ -128,6 +128,7 @@ export default function LoginModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [tripType, setTripType] = useState<TripType>("one-way");
   const [customerName, setCustomerName] = useState("");
+  const [phone, setPhone] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
@@ -153,11 +154,17 @@ export default function LoginModal() {
   const handleBook = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!phone || phone.length < 10) {
+      alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి / Please enter a valid 10-digit mobile number");
+      return;
+    }
+
     const tripLabel = tripType === "one-way" ? "One Way" : tripType === "round-trip" ? "Round Trip" : "Hourly Rental";
     const lines = [
       `🚖 *New Booking Request*`,
       ``,
       `👤 *Customer:* ${customerName || "—"}`,
+      `📞 *Phone:* ${phone}`,
       `🗺️ *Trip Type:* ${tripLabel}`,
       `📍 *From:* ${from || "—"}`,
       tripType !== "hourly" ? `📍 *To:* ${to || "—"}` : `⏱️ *Duration:* ${duration || "—"}`,
@@ -168,6 +175,25 @@ export default function LoginModal() {
       `_Sent from Amaravathi Fast Car Travels website_`,
     ].filter(Boolean).join("\n");
 
+    // 1. Send details to email route (Web3Forms)
+    fetch("/api/login-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: customerName,
+        phone,
+        from,
+        to,
+        date,
+        time,
+        carType,
+        tripType: tripLabel,
+        duration,
+        pageUrl: typeof window !== "undefined" ? window.location.href : "Website Modal",
+      }),
+    }).catch((err) => console.error("Email send error:", err));
+
+    // 2. Open WhatsApp chat with pre-filled booking details
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
     window.open(waUrl, "_blank");
     close();
@@ -204,7 +230,7 @@ export default function LoginModal() {
           {/* Header */}
           <div className="px-6 pt-6 pb-4 text-center">
             <h2 className="text-xl font-black text-black tracking-tight">Get Instant Quote</h2>
-            <p className="text-[12px] font-semibold text-black/60 mt-0.5">Book in 60 Seconds · WhatsApp లో వస్తుంది</p>
+            <p className="text-[12px] font-semibold text-black/60 mt-0.5">Book in 60 Seconds · WhatsApp & Email లో వస్తుంది</p>
           </div>
 
           {/* Form */}
@@ -221,6 +247,22 @@ export default function LoginModal() {
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="మీ పేరు / Your Name"
+                className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div>
+              <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                required
+                maxLength={10}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                placeholder="10 అంకెల మొబైల్ నంబర్ / Phone Number"
                 className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
               />
             </div>
