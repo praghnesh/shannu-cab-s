@@ -137,8 +137,33 @@ export default function LoginModal() {
   const [duration, setDuration] = useState("");
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("quote_modal_seen");
-    if (!seen) setIsOpen(true);
+    const isFilled = () => {
+      try {
+        return (
+          localStorage.getItem("quote_form_filled") === "true" ||
+          sessionStorage.getItem("quote_form_filled") === "true"
+        );
+      } catch {
+        return false;
+      }
+    };
+
+    if (isFilled()) {
+      setIsOpen(false);
+      return;
+    }
+
+    // Modal stays active until user fills either form
+    setIsOpen(true);
+
+    const handleFormFilled = () => {
+      setIsOpen(false);
+    };
+
+    window.addEventListener("quote_form_filled", handleFormFilled);
+    return () => {
+      window.removeEventListener("quote_form_filled", handleFormFilled);
+    };
   }, []);
 
   useEffect(() => {
@@ -147,8 +172,25 @@ export default function LoginModal() {
   }, [isOpen]);
 
   const close = () => {
-    sessionStorage.setItem("quote_modal_seen", "true");
     setIsOpen(false);
+    // If user closes without filling, re-show after 30 seconds
+    try {
+      if (
+        localStorage.getItem("quote_form_filled") !== "true" &&
+        sessionStorage.getItem("quote_form_filled") !== "true"
+      ) {
+        setTimeout(() => {
+          try {
+            if (
+              localStorage.getItem("quote_form_filled") !== "true" &&
+              sessionStorage.getItem("quote_form_filled") !== "true"
+            ) {
+              setIsOpen(true);
+            }
+          } catch {}
+        }, 30000);
+      }
+    } catch {}
   };
 
   const handleBook = (e: React.FormEvent) => {
@@ -158,6 +200,13 @@ export default function LoginModal() {
       alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి / Please enter a valid 10-digit mobile number");
       return;
     }
+
+    // Mark as filled so modal never opens again
+    try {
+      localStorage.setItem("quote_form_filled", "true");
+      sessionStorage.setItem("quote_form_filled", "true");
+      window.dispatchEvent(new Event("quote_form_filled"));
+    } catch {}
 
     const tripLabel = tripType === "one-way" ? "One Way" : tripType === "round-trip" ? "Round Trip" : "Hourly Rental";
     const lines = [
@@ -196,8 +245,9 @@ export default function LoginModal() {
     // 2. Open WhatsApp chat with pre-filled booking details
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
     window.open(waUrl, "_blank");
-    close();
+    setIsOpen(false);
   };
+
 
   if (!isOpen) return null;
 

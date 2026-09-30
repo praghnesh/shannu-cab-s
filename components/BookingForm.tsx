@@ -140,6 +140,13 @@ export default function BookingForm() {
       return;
     }
 
+    // Mark as filled so modal never opens again
+    try {
+      localStorage.setItem("quote_form_filled", "true");
+      sessionStorage.setItem("quote_form_filled", "true");
+      window.dispatchEvent(new Event("quote_form_filled"));
+    } catch {}
+
     const tripLabel = tripType === "one-way" ? "One Way" : tripType === "round-trip" ? "Round Trip" : "Hourly Rental";
     const lines = [
       `🚖 *New Booking Request*`,
@@ -179,6 +186,7 @@ export default function BookingForm() {
     window.open(waUrl, "_blank");
     setSubmitted(true);
   };
+
 
   return (
     <div className="w-full max-w-sm sm:max-w-md mx-auto bg-yellow-400 rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] border-4 border-yellow-300 overflow-visible relative text-left">
