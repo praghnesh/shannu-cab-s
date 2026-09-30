@@ -1,529 +1,352 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { Calendar, Clock, Car, Phone, X, ChevronDown, MapPin } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import LiveMap from './LiveMap';
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 
-export default function BookingForm() {
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [mainTab] = useState("OUTSTATION"); // Default, visually hidden
-  const [tripType, setTripType] = useState("ONE WAY");
-  const [hourlyPackage, setHourlyPackage] = useState("8 Hours / 80 Km");
-  const [phone, setPhone] = useState("");
+type TripType = "one-way" | "round-trip" | "hourly";
 
-  const [fromLoc, setFromLoc] = useState("");
-  const [toLoc, setToLoc] = useState("");
-  const [showFromSuggestions, setShowFromSuggestions] = useState(false);
-  const [showToSuggestions, setShowToSuggestions] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
+const CAR_TYPES = [
+  "Sedan (Swift Dzire / Etios)",
+  "SUV (Innova / Ertiga)",
+  "SUV+ (Innova Crysta)",
+  "Tempo Traveller (12 Seater)",
+];
 
-  const [fromSuggestions, setFromSuggestions] = useState<string[]>([]);
-  const [toSuggestions, setToSuggestions] = useState<string[]>([]);
+const HOURLY_DURATIONS = ["2 Hours", "4 Hours", "6 Hours", "8 Hours", "10 Hours", "12 Hours"];
 
-  const cities = [
-    "Hyderabad", "Shamshabad Airport", "Vijayawada", "Guntur", "Visakhapatnam (Vizag)", "Vizag", "Machilipatnam", 
-    "Rajahmundry", "Kakinada", "Tirupati", "Warangal", "Nizamabad", "Khammam", 
-    "Karimnagar", "Nellore", "Kurnool", "Anantapur", "Chittoor", "Eluru", "Ongole", 
-    "Bangalore", "Chennai", "Mumbai", "Pune", "Delhi", "Amaravati", "Srisailam", 
-    "Bhimavaram", "Tenali", "Proddatur", "Adoni", "Madanapalle"
-  ];
+// Pincode → City name mapping (AP & Telangana + major cities)
+const PINCODE_CITY_MAP: Record<string, string> = {
+  "500001": "Hyderabad", "500002": "Hyderabad", "500003": "Hyderabad",
+  "500004": "Hyderabad", "500032": "Hyderabad", "500072": "Hyderabad",
+  "520001": "Vijayawada", "520002": "Vijayawada", "520010": "Vijayawada",
+  "521001": "Machilipatnam", "522001": "Guntur", "522002": "Guntur",
+  "530001": "Visakhapatnam", "530002": "Visakhapatnam", "530003": "Visakhapatnam",
+  "533001": "Rajahmundry", "534001": "Eluru", "515001": "Anantapur",
+  "516001": "Kurnool", "516002": "Kurnool", "517001": "Tirupati",
+  "517501": "Tirupati", "524001": "Nellore", "524002": "Nellore",
+  "508001": "Nalgonda", "506001": "Warangal", "505001": "Karimnagar",
+  "502001": "Medak", "503001": "Nizamabad", "504001": "Adilabad",
+  "110001": "Delhi", "110002": "Delhi", "400001": "Mumbai",
+  "600001": "Chennai", "600002": "Chennai", "560001": "Bangalore",
+  "560002": "Bangalore", "700001": "Kolkata",
+};
 
-  const pincodeMap: { [key: string]: string[] } = {
-    "500": ["Hyderabad", "Shamshabad Airport"],
-    "501": ["Hyderabad", "Shamshabad Airport"],
-    "502": ["Hyderabad", "Shamshabad Airport"],
-    "503": ["Nizamabad"],
-    "504": ["Nizamabad", "Karimnagar"],
-    "505": ["Karimnagar"],
-    "506": ["Warangal"],
-    "507": ["Khammam"],
-    "508": ["Hyderabad", "Khammam"],
-    "509": ["Hyderabad", "Kurnool"],
-    "515": ["Anantapur"],
-    "516": ["Proddatur", "Tirupati"],
-    "517": ["Tirupati", "Chittoor", "Madanapalle"],
-    "518": ["Kurnool", "Adoni"],
-    "520": ["Vijayawada"],
-    "521": ["Vijayawada", "Machilipatnam"],
-    "522": ["Guntur", "Tenali"],
-    "523": ["Ongole"],
-    "524": ["Nellore"],
-    "530": ["Visakhapatnam (Vizag)", "Vizag"],
-    "531": ["Visakhapatnam (Vizag)", "Vizag"],
-    "532": ["Visakhapatnam (Vizag)", "Vizag", "Kakinada"],
-    "533": ["Rajahmundry", "Kakinada"],
-    "534": ["Eluru", "Bhimavaram"],
-    "535": ["Visakhapatnam (Vizag)", "Vizag"],
-    "560": ["Bangalore"],
-    "600": ["Chennai"],
-    "400": ["Mumbai"],
-    "411": ["Pune"],
-    "110": ["Delhi"]
-  };
+// City suggestions list for name-based autocomplete
+const CITY_SUGGESTIONS = [
+  "Hyderabad", "Vijayawada", "Visakhapatnam", "Guntur", "Tirupati",
+  "Nellore", "Kurnool", "Rajahmundry", "Eluru", "Machilipatnam",
+  "Warangal", "Karimnagar", "Nizamabad", "Nalgonda", "Anantapur",
+  "Delhi", "Mumbai", "Chennai", "Bangalore", "Kolkata",
+  "Amaravathi", "Ongole", "Kadapa", "Srikakulam", "Vizianagaram",
+];
 
-  const getSuggestions = (val: string) => {
-    const cleanVal = val.trim().replace(/\s+/g, '');
-    if (!cleanVal) return [];
-    
-    if (/^\d+$/.test(cleanVal)) {
-      const matchedCities: string[] = [];
-      Object.keys(pincodeMap).forEach(prefix => {
-        if (prefix.startsWith(cleanVal) || cleanVal.startsWith(prefix)) {
-          matchedCities.push(...pincodeMap[prefix]);
-        }
-      });
-      return Array.from(new Set(matchedCities));
-    }
-    
-    return cities.filter(c => c.toLowerCase().includes(cleanVal.toLowerCase()));
-  };
+const WHATSAPP_NUMBER = "919393591444"; // Amaravathi Fast Car Travels WhatsApp
 
-  useEffect(() => {
-    const offline = getSuggestions(fromLoc);
-    setFromSuggestions(offline);
+function CityInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder: string;
+}) {
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSug, setShowSug] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    if (fromLoc.trim().length < 3) return;
+  const handleChange = (val: string) => {
+    onChange(val);
+    if (!val.trim()) { setSuggestions([]); setShowSug(false); return; }
 
-    const delayDebounceFn = setTimeout(async () => {
-      try {
-        const res = await fetch(`/api/suggestions?q=${encodeURIComponent(fromLoc)}`);
-        const data = await res.json();
-        
-        const apiCities = data.map((item: any) => {
-          const parts = item.display_name.split(',');
-          if (parts.length <= 1) return item.display_name;
-          
-          const place = parts[0].trim();
-          const state = parts[parts.length - 3]?.trim() || "";
-          
-          let city = parts[1]?.trim() || "";
-          if (city.toLowerCase().includes("district") || city.toLowerCase().includes("state") || city === state) {
-            city = "";
-          }
-          
-          if (city) {
-            return `${place}, ${city} (${state})`;
-          }
-          return `${place} (${state})`;
-        });
-
-        setFromSuggestions(prev => Array.from(new Set([...prev, ...apiCities])));
-      } catch (err) {
-        console.error("Error fetching from suggestions:", err);
-      }
-    }, 400);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [fromLoc]);
-
-  useEffect(() => {
-    const offline = getSuggestions(toLoc);
-    setToSuggestions(offline);
-
-    if (toLoc.trim().length < 3) return;
-
-    const delayDebounceFn = setTimeout(async () => {
-      try {
-        const res = await fetch(`/api/suggestions?q=${encodeURIComponent(toLoc)}`);
-        const data = await res.json();
-        
-        const apiCities = data.map((item: any) => {
-          const parts = item.display_name.split(',');
-          if (parts.length <= 1) return item.display_name;
-          
-          const place = parts[0].trim();
-          const state = parts[parts.length - 3]?.trim() || "";
-          
-          let city = parts[1]?.trim() || "";
-          if (city.toLowerCase().includes("district") || city.toLowerCase().includes("state") || city === state) {
-            city = "";
-          }
-          
-          if (city) {
-            return `${place}, ${city} (${state})`;
-          }
-          return `${place} (${state})`;
-        });
-
-        setToSuggestions(prev => Array.from(new Set([...prev, ...apiCities])));
-      } catch (err) {
-        console.error("Error fetching to suggestions:", err);
-      }
-    }, 400);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [toLoc]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      phone: phone || formData.get('phone'),
-      pickup: fromLoc,
-      drop: tripType === "HOURLY RENTAL" ? `Hourly Rental (${hourlyPackage})` : toLoc,
-      mainCategory: mainTab,
-      tripType: tripType,
-      hourlyPackage: tripType === "HOURLY RENTAL" ? hourlyPackage : undefined,
-      date: formData.get('date'),
-      time: formData.get('time'),
-      vehicle: formData.get('vehicle')
-    };
-
-    // Prepare WhatsApp message
-    const message = tripType === "HOURLY RENTAL" 
-      ? `*New Hourly Rental Request*%0A%0A*Phone:* ${data.phone}%0A*Type:* Hourly Rental%0A*Package:* ${hourlyPackage}%0A*Pickup Location/Pincode:* ${data.pickup}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`
-      : `*New Booking Request*%0A%0A*Phone:* ${data.phone}%0A*Category:* ${data.mainCategory}%0A*Trip:* ${data.tripType}%0A*From:* ${data.pickup}%0A*To:* ${data.drop}%0A*Date:* ${data.date}%0A*Time:* ${data.time}%0A*Vehicle:* ${data.vehicle}`;
-
-    try {
-      // 1. Submit to Email (Web3Forms)
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
-          subject: `NEW BOOKING (${data.tripType}): ${data.pickup}`,
-          from_name: "Amaravathi Fast Car Travels Website",
-          ...data
-        })
-      });
-
-      if (response.ok) {
-        setSuccess(true);
-        // 2. Open WhatsApp
-        window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+    if (/^\d+$/.test(val)) {
+      const match = PINCODE_CITY_MAP[val];
+      if (match) {
+        setSuggestions([`${match} (${val})`]);
+        setShowSug(true);
       } else {
-        // Fallback to WhatsApp even if email fails
-        window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+        const partial = Object.entries(PINCODE_CITY_MAP)
+          .filter(([pin]) => pin.startsWith(val))
+          .map(([pin, city]) => `${city} (${pin})`)
+          .slice(0, 5);
+        setSuggestions(partial);
+        setShowSug(partial.length > 0);
       }
-      
-    } catch (error) {
-      console.error("Submission error:", error);
-      window.open(`https://wa.me/919948924786?text=${message}`, '_blank');
+    } else {
+      const lower = val.toLowerCase();
+      const matches = CITY_SUGGESTIONS.filter((c) => c.toLowerCase().includes(lower)).slice(0, 6);
+      setSuggestions(matches);
+      setShowSug(matches.length > 0);
     }
+  };
 
-    setLoading(false);
-    setTimeout(() => setSuccess(false), 8000);
+  const pick = (s: string) => {
+    const cityOnly = s.replace(/\s*\(\d+\)$/, "");
+    onChange(cityOnly);
+    setSuggestions([]);
+    setShowSug(false);
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="w-full max-w-7xl mx-auto overflow-visible"
-    >
-      <div className="flex flex-col lg:flex-row items-start justify-center gap-8">
-        {/* Form Container */}
-        <div className="w-full max-w-[440px] bg-black rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative border border-white/10 z-20">
-          <div className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="hidden" name="fromLoc" value={fromLoc} />
-              <input type="hidden" name="toLoc" value={toLoc} />
-              <input type="hidden" name="mainTab" value={mainTab} />
-              <input type="hidden" name="tripType" value={tripType} />
+    <div className="relative">
+      <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">{label}</label>
+      <input
+        ref={inputRef}
+        type="text"
+        required
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        onFocus={() => value && setShowSug(suggestions.length > 0)}
+        onBlur={() => setTimeout(() => setShowSug(false), 150)}
+        placeholder={placeholder}
+        className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+        autoComplete="off"
+      />
+      {showSug && suggestions.length > 0 && (
+        <ul className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-black/10 rounded-lg shadow-xl overflow-hidden">
+          {suggestions.map((s) => (
+            <li
+              key={s}
+              onMouseDown={() => pick(s)}
+              className="px-3 py-2 text-sm font-semibold text-black hover:bg-yellow-100 cursor-pointer border-b border-black/5 last:border-0"
+            >
+              {s}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
-              {/* Trip Type Toggle (One Way vs Round Trip vs Hourly Rental) */}
-              <div className="grid grid-cols-3 bg-[#f3f3f3]/10 border border-white/10 rounded-2xl p-1 gap-1">
-                <button
-                  type="button"
-                  onClick={() => setTripType("ONE WAY")}
-                  className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 ${
-                    tripType === "ONE WAY"
-                      ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
-                      : "bg-transparent text-gray-400 hover:text-white"
-                  }`}
-                >
-                  One Way
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTripType("ROUND TRIP")}
-                  className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 ${
-                    tripType === "ROUND TRIP"
-                      ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
-                      : "bg-transparent text-gray-400 hover:text-white"
-                  }`}
-                >
-                  Round Trip
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTripType("HOURLY RENTAL")}
-                  className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 ${
-                    tripType === "HOURLY RENTAL"
-                      ? "bg-green-500 text-white shadow-lg shadow-green-500/20"
-                      : "bg-transparent text-gray-400 hover:text-white"
-                  }`}
-                >
-                  Hourly Rental
-                </button>
-              </div>
+export default function BookingForm() {
+  const [tripType, setTripType] = useState<TripType>("one-way");
+  const [customerName, setCustomerName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [carType, setCarType] = useState("");
+  const [duration, setDuration] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-              {/* Location Inputs Block */}
-              {tripType === "HOURLY RENTAL" ? (
-                <div className="space-y-3">
-                  {/* Single Pickup Location & Pincode Input for Hourly Rental */}
-                  <div className="relative bg-[#f3f3f3] rounded-2xl p-1.5 z-50">
-                    <div className={`relative flex items-center gap-4 bg-transparent p-3 ${showFromSuggestions ? 'z-30' : 'z-10'}`}>
-                      <MapPin size={20} className="text-black flex-shrink-0" />
-                      <div className="flex flex-col flex-grow relative">
-                        <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">Pickup City / Pincode</span>
-                        <input 
-                          required
-                          value={fromLoc}
-                          onChange={(e) => {
-                            setFromLoc(e.target.value);
-                            setShowFromSuggestions(true);
-                            setIsSearching(true);
-                          }}
-                          onFocus={() => setShowFromSuggestions(true)}
-                          onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
-                          placeholder="Enter City Name or Pincode"
-                          className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
-                        />
-                      </div>
-                      {fromLoc && (
-                        <button type="button" onClick={() => setFromLoc("")} className="text-gray-400 hover:text-black">
-                          <X size={20} />
-                        </button>
-                      )}
+  const handleBook = (e: React.FormEvent) => {
+    e.preventDefault();
 
-                      <AnimatePresence>
-                        {showFromSuggestions && fromLoc.length > 0 && (
-                          <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                            {fromSuggestions.map((city) => (
-                              <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
+    if (!phone || phone.length < 10) {
+      alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి / Please enter a valid 10-digit mobile number");
+      return;
+    }
 
-                  {/* Hourly Package Selector (2, 4, 6, 8, 10, 12 Hours) */}
-                  <div className="relative bg-[#f3f3f3] rounded-2xl p-3 flex flex-col gap-1">
-                    <span className="text-xs sm:text-sm font-black text-gray-700 uppercase tracking-wider">Hourly Rental Package</span>
-                    <div className="relative flex items-center">
-                      <Clock size={18} className="text-black mr-2 flex-shrink-0" />
-                      <select 
-                        value={hourlyPackage}
-                        onChange={(e) => setHourlyPackage(e.target.value)}
-                        className="bg-transparent text-sm font-bold text-black outline-none w-full appearance-none pr-6 cursor-pointer"
-                      >
-                        <option value="2 Hours / 20 Km">2 Hours / 20 Km</option>
-                        <option value="4 Hours / 40 Km">4 Hours / 40 Km</option>
-                        <option value="6 Hours / 60 Km">6 Hours / 60 Km</option>
-                        <option value="8 Hours / 80 Km">8 Hours / 80 Km</option>
-                        <option value="10 Hours / 100 Km">10 Hours / 100 Km</option>
-                        <option value="12 Hours / 120 Km">12 Hours / 120 Km</option>
-                      </select>
-                      <ChevronDown size={14} className="text-black absolute right-2 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                /* One Way & Round Trip Location Inputs */
-                <div className="relative bg-[#f3f3f3] rounded-2xl flex flex-col p-1.5 z-50">
-                  {/* Connecting Line */}
-                  <div className="absolute left-[21px] top-[38px] bottom-[38px] w-[2px] bg-black/20 z-0"></div>
-                  
-                  {/* From Input */}
-                  <div className={`relative flex items-center gap-4 bg-transparent p-3 border-b border-gray-300/50 transition-all ${showFromSuggestions ? 'z-30' : 'z-10'}`}>
-                     <div className="w-3 h-3 bg-white rounded-full border-[3px] border-black flex-shrink-0 ml-1"></div>
-                      <div className="flex flex-col flex-grow relative">
-                         <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">From</span>
-                         <input 
-                           required
-                           value={fromLoc}
-                           onChange={(e) => {
-                             setFromLoc(e.target.value);
-                             setShowFromSuggestions(true);
-                             setIsSearching(true);
-                           }}
-                           onFocus={() => setShowFromSuggestions(true)}
-                           onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
-                           placeholder="Enter Departure City or Pincode"
-                           className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
-                        />
-                     </div>
-                     {fromLoc && (
-                       <button type="button" onClick={() => setFromLoc("")} className="text-gray-400 hover:text-black">
-                         <X size={20} />
-                       </button>
-                     )}
+    const tripLabel = tripType === "one-way" ? "One Way" : tripType === "round-trip" ? "Round Trip" : "Hourly Rental";
+    const lines = [
+      `🚖 *New Booking Request*`,
+      ``,
+      `👤 *Customer:* ${customerName || "—"}`,
+      `📞 *Phone:* ${phone}`,
+      `🗺️ *Trip Type:* ${tripLabel}`,
+      `📍 *From:* ${from || "—"}`,
+      tripType !== "hourly" ? `📍 *To:* ${to || "—"}` : `⏱️ *Duration:* ${duration || "—"}`,
+      `📅 *Date:* ${date || "—"}`,
+      `⏰ *Time:* ${time || "—"}`,
+      `🚗 *Car Type:* ${carType || "—"}`,
+      ``,
+      `_Sent from Amaravathi Fast Car Travels website_`,
+    ].filter(Boolean).join("\n");
 
-                      <AnimatePresence>
-                        {showFromSuggestions && fromLoc.length > 0 && (
-                          <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                            {fromSuggestions.map((city) => (
-                              <button key={city} type="button" onMouseDown={() => setFromLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                  </div>
+    // 1. Send details to email route (Web3Forms)
+    fetch("/api/login-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: customerName,
+        phone,
+        from,
+        to,
+        date,
+        time,
+        carType,
+        tripType: tripLabel,
+        duration,
+        pageUrl: typeof window !== "undefined" ? window.location.href : "Hero Booking Form",
+      }),
+    }).catch((err) => console.error("Email send error:", err));
 
-                  {/* To Input */}
-                  <div className={`relative flex items-center gap-4 bg-transparent p-3 transition-all ${showToSuggestions ? 'z-30' : 'z-10'}`}>
-                     <div className="w-3 h-3 bg-black flex-shrink-0 ml-1"></div>
-                      <div className="flex flex-col flex-grow relative">
-                         <span className="text-xs sm:text-sm font-black text-gray-700 mb-0.5 uppercase tracking-wider">To</span>
-                         <input 
-                           required
-                           value={toLoc}
-                           onChange={(e) => {
-                             setToLoc(e.target.value);
-                             setShowToSuggestions(true);
-                             setIsSearching(true);
-                           }}
-                           onFocus={() => setShowToSuggestions(true)}
-                           onBlur={() => setTimeout(() => setShowToSuggestions(false), 200)}
-                           placeholder="Enter Destination City or Pincode"
-                           className="bg-transparent text-base font-semibold text-black outline-none placeholder-gray-400 w-full"
-                        />
-                     </div>
-                     {toLoc && (
-                       <button type="button" onClick={() => setToLoc("")} className="text-gray-400 hover:text-black">
-                         <X size={20} />
-                       </button>
-                     )}
+    // 2. Open WhatsApp chat with pre-filled booking details
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
+    window.open(waUrl, "_blank");
+    setSubmitted(true);
+  };
 
-                      <AnimatePresence>
-                        {showToSuggestions && toLoc.length > 0 && (
-                          <motion.div className="absolute left-0 right-0 top-full mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] max-h-60 overflow-y-auto no-scrollbar">
-                            {toSuggestions.map((city) => (
-                              <button key={city} type="button" onMouseDown={() => setToLoc(city)} className="w-full text-left px-5 py-3 hover:bg-gray-100 font-semibold text-black text-sm border-b border-gray-100 last:border-0">{city}</button>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                  </div>
-                </div>
-              )}
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto bg-yellow-400 rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] border-4 border-yellow-300 overflow-visible relative text-left">
+      {/* Header */}
+      <div className="px-6 pt-6 pb-4 text-center">
+        <h2 className="text-2xl sm:text-3xl font-black text-black tracking-tight">Get Instant Quote</h2>
+        <p className="text-[12px] sm:text-sm font-semibold text-black/70 mt-1">
+          Book in 60 Seconds · WhatsApp & Email లో వస్తుంది
+        </p>
+      </div>
 
-              {/* Date & Time Row with Instant Picker Triggers */}
-              <div className="flex gap-2">
-                 <div 
-                   onClick={(e) => {
-                     const input = e.currentTarget.querySelector('input');
-                     if (input && 'showPicker' in input) {
-                       try { (input as HTMLInputElement).showPicker(); } catch(err){}
-                     }
-                   }}
-                   className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden cursor-pointer"
-                 >
-                    <Calendar size={16} className="text-black flex-shrink-0 pointer-events-none" />
-                    <input 
-                      name="date" 
-                      type="date" 
-                      required 
-                      onClick={(e) => {
-                        if ('showPicker' in e.currentTarget) {
-                          try { e.currentTarget.showPicker(); } catch(err){}
-                        }
-                      }}
-                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 cursor-pointer"
-                    />
-                 </div>
-                 <div 
-                   onClick={(e) => {
-                     const input = e.currentTarget.querySelector('input');
-                     if (input && 'showPicker' in input) {
-                       try { (input as HTMLInputElement).showPicker(); } catch(err){}
-                     }
-                   }}
-                   className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative z-40 overflow-hidden cursor-pointer"
-                 >
-                    <Clock size={16} className="text-black flex-shrink-0 pointer-events-none" />
-                    <input 
-                      name="time" 
-                      type="time" 
-                      required 
-                      onClick={(e) => {
-                        if ('showPicker' in e.currentTarget) {
-                          try { e.currentTarget.showPicker(); } catch(err){}
-                        }
-                      }}
-                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 cursor-pointer"
-                    />
-                 </div>
-              </div>
+      {/* Form */}
+      <form onSubmit={handleBook} className="px-5 sm:px-6 pb-6 space-y-3">
+        {/* Customer Name */}
+        <div>
+          <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">
+            Customer Name
+          </label>
+          <input
+            type="text"
+            required
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            placeholder="మీ పేరు / Your Name"
+            className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+          />
+        </div>
 
-              {/* Phone & Vehicle Row (Strict 10-Digit Phone Input) */}
-              <div className="flex gap-2">
-                 <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 overflow-hidden">
-                    <Phone size={16} className="text-black flex-shrink-0" />
-                    <input 
-                      name="phone" 
-                      type="tel" 
-                      required 
-                      maxLength={10}
-                      pattern="[0-9]{10}"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                      placeholder="Phone No." 
-                      className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 placeholder-gray-500"
-                    />
-                 </div>
-                 <div className="flex-1 bg-[#f3f3f3] rounded-2xl flex items-center px-3 py-3 gap-2 relative overflow-hidden cursor-pointer">
-                    <Car size={16} className="text-black flex-shrink-0 pointer-events-none" />
-                    <select name="vehicle" required className="bg-transparent text-sm font-semibold text-black outline-none w-full min-w-0 appearance-none pr-4 cursor-pointer">
-                       <option value="">Vehicle</option>
-                       <option value="Swift Dzire">Swift Dzire</option>
-                       <option value="Etios">Toyota Etios</option>
-                       <option value="Ertiga">Maruti Ertiga</option>
-                       <option value="Innova">Toyota Innova</option>
-                       <option value="Innova Crysta">Innova Crysta</option>
-                       <option value="Tempo Traveller / Force Urbania">Tempo Traveller / Force Urbania</option>
-                    </select>
-                    <ChevronDown size={14} className="text-black absolute right-3 pointer-events-none" />
-                 </div>
-              </div>
+        {/* Phone Number */}
+        <div>
+          <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            required
+            maxLength={10}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+            placeholder="10 అంకెల మొబైల్ నంబర్ / Phone Number"
+            className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+          />
+        </div>
 
-              {/* Submit Button */}
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit" 
-                disabled={loading} 
-                className="w-full bg-green-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-green-600 transition-colors mt-2"
+        {/* Trip Type Toggle */}
+        <div>
+          <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1.5">
+            Trip Type
+          </label>
+          <div className="flex gap-1.5">
+            {(["one-way", "round-trip", "hourly"] as TripType[]).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTripType(t)}
+                className={`flex-1 py-2 text-[11px] font-black rounded-lg border-2 transition-all cursor-pointer ${
+                  tripType === t
+                    ? "bg-black text-yellow-400 border-black"
+                    : "bg-white text-black border-white hover:border-black/30"
+                }`}
               >
-                {loading ? 'Processing...' : 'Explore Cabs'}
-              </motion.button>
-            </form>
-
-            {/* Success Message */}
-            {success && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 p-4 bg-green-500/20 text-green-400 rounded-xl text-center text-xs font-bold border border-green-500/30">
-                 Booking Request Sent Successfully!
-              </motion.div>
-            )}
-
-            {/* Mobile Map View */}
-            <div className="lg:hidden w-full mt-6 rounded-2xl overflow-hidden border border-white/10 h-[350px] relative">
-               <LiveMap 
-                 location={fromLoc} 
-                 destination={tripType === "HOURLY RENTAL" ? fromLoc : toLoc} 
-                 isVisible={isSearching || fromLoc.length > 0 || toLoc.length > 0} 
-               />
-            </div>
+                {t === "one-way" ? "One Way" : t === "round-trip" ? "Round Trip" : "Hourly"}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Desktop Map Integration */}
-        <div className="hidden lg:block w-full max-w-[500px] h-[550px] rounded-3xl overflow-hidden border border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.3)] bg-black">
-           <LiveMap 
-             location={fromLoc} 
-             destination={tripType === "HOURLY RENTAL" ? fromLoc : toLoc} 
-             isVisible={true} 
-           />
+        {/* From — with city/pincode suggestions */}
+        <CityInput
+          label="From"
+          value={from}
+          onChange={setFrom}
+          placeholder="City name or Pincode"
+        />
+
+        {/* To — hidden for hourly */}
+        {tripType !== "hourly" && (
+          <CityInput
+            label="To"
+            value={to}
+            onChange={setTo}
+            placeholder="City name or Pincode"
+          />
+        )}
+
+        {/* Duration — for hourly only */}
+        {tripType === "hourly" && (
+          <div>
+            <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Duration</label>
+            <div className="grid grid-cols-3 gap-1.5">
+              {HOURLY_DURATIONS.map((d) => (
+                <button
+                  key={d}
+                  type="button"
+                  onClick={() => setDuration(d)}
+                  className={`py-2 text-[11px] font-black rounded-lg border-2 transition-all cursor-pointer ${
+                    duration === d
+                      ? "bg-black text-yellow-400 border-black"
+                      : "bg-white text-black border-white hover:border-black/30"
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Date + Time row */}
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Travel Date</label>
+            <input
+              type="date"
+              required
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              min={new Date().toISOString().split("T")[0]}
+              className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-2 py-2.5 text-sm font-semibold text-black outline-none transition-all cursor-pointer"
+            />
+          </div>
+          <div>
+            <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Time</label>
+            <input
+              type="time"
+              required
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-2 py-2.5 text-sm font-semibold text-black outline-none transition-all cursor-pointer"
+            />
+          </div>
         </div>
-      </div>
-    </motion.div>
+
+        {/* Car Type */}
+        <div>
+          <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">Car Type</label>
+          <select
+            value={carType}
+            required
+            onChange={(e) => setCarType(e.target.value)}
+            className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black outline-none transition-all appearance-none cursor-pointer"
+          >
+            <option value="">Select car type</option>
+            {CAR_TYPES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Submit Button */}
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          type="submit"
+          className="w-full mt-2 bg-black text-yellow-400 font-black text-sm py-4 rounded-xl tracking-widest uppercase shadow-xl hover:bg-neutral-900 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          BOOK NOW via WhatsApp
+        </motion.button>
+
+        {submitted && (
+          <p className="text-center text-xs font-black text-black/80 mt-2">
+            ✓ Request Sent to WhatsApp & Email!
+          </p>
+        )}
+      </form>
+    </div>
   );
 }
