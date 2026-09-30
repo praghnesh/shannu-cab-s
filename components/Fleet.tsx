@@ -110,22 +110,23 @@ const fleetData = [
 ];
 
 const routes = [
-  { label: "Vijayawada ⇄ Hyderabad", value: "Vijayawada ⇄ Hyderabad" },
-  { label: "Vijayawada ⇄ Hyderabad Airport", value: "Vijayawada ⇄ Hyderabad Airport" },
-  { label: "Guntur ⇄ Hyderabad", value: "Guntur ⇄ Hyderabad" },
-  { label: "Hyderabad ⇄ Guntur", value: "Hyderabad ⇄ Guntur" },
-  { label: "Hyderabad ⇄ Tenali", value: "Hyderabad ⇄ Tenali" },
-  { label: "Hyderabad ⇄ Tirupati", value: "Hyderabad ⇄ Tirupati" },
-  { label: "Hyderabad ⇄ Bangalore", value: "Hyderabad ⇄ Bangalore" },
-  { label: "Bangalore ⇄ Hyderabad", value: "Bangalore ⇄ Hyderabad" },
-  { label: "Hyderabad ⇄ Srisailam", value: "Hyderabad ⇄ Srisailam" },
-  { label: "Hyderabad ⇄ Vizag", value: "Hyderabad ⇄ Vizag" },
-  { label: "Hyderabad ⇄ Bhimavaram", value: "Hyderabad ⇄ Bhimavaram" },
-  { label: "Eluru ⇄ Hyderabad", value: "Eluru ⇄ Hyderabad" },
-  { label: "Hyderabad ⇄ Gudivada", value: "Hyderabad ⇄ Gudivada" },
-  { label: "Elite Luxury Collection", value: "Elite Luxury Collection" },
-  { label: "Group Travel & Buses", value: "Buses & Group Travel" }
+  { label: "Vijayawada ⇄ Hyderabad (Cabs, Taxi, Cars)", value: "Vijayawada ⇄ Hyderabad" },
+  { label: "Vijayawada ⇄ Hyderabad Airport (Cabs, Taxi, Cars)", value: "Vijayawada ⇄ Hyderabad Airport" },
+  { label: "Guntur ⇄ Hyderabad (Cabs, Taxi, Cars)", value: "Guntur ⇄ Hyderabad" },
+  { label: "Hyderabad ⇄ Guntur (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Guntur" },
+  { label: "Hyderabad ⇄ Tenali (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Tenali" },
+  { label: "Hyderabad ⇄ Tirupati (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Tirupati" },
+  { label: "Hyderabad ⇄ Bangalore (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Bangalore" },
+  { label: "Bangalore ⇄ Hyderabad (Cabs, Taxi, Cars)", value: "Bangalore ⇄ Hyderabad" },
+  { label: "Hyderabad ⇄ Srisailam (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Srisailam" },
+  { label: "Hyderabad ⇄ Vizag (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Vizag" },
+  { label: "Hyderabad ⇄ Bhimavaram (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Bhimavaram" },
+  { label: "Eluru ⇄ Hyderabad (Cabs, Taxi, Cars)", value: "Eluru ⇄ Hyderabad" },
+  { label: "Hyderabad ⇄ Gudivada (Cabs, Taxi, Cars)", value: "Hyderabad ⇄ Gudivada" },
+  { label: "Elite Luxury Collection (Cabs, Taxi, Cars)", value: "Elite Luxury Collection" },
+  { label: "Group Travel & Buses (Cabs, Taxi, Cars)", value: "Buses & Group Travel" }
 ];
+
 
 export default function Fleet({ limit = 100 }: { limit?: number }) {
   const [viewIndex, setViewIndex] = useState<number | null>(null);
@@ -160,138 +161,8 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
       >
-        <div className="text-center mb-12 space-y-6">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-            <span className="text-orange-500 font-black tracking-widest uppercase text-sm px-4 py-2 bg-orange-50 rounded-full">Explore Our Elite Catalog</span>
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black text-blue-950 tracking-tighter"
-          >
-            A Vehicle for <br /> Every Ambition
-          </motion.h2>
-          
-        {/* Premium Information Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12 mb-16 text-left max-w-7xl mx-auto">
-          {/* Card 1: Book Your Car Travels */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
-          >
-            <div>
-              <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Premium Travel</span>
-              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Book Your Car Travels</h3>
-              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                Planning your next trip? Book your ride easily with <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> and enjoy a safe, comfortable, and hassle-free journey. We provide reliable car rental and taxi services in Vijayawada for local travel, outstation trips, airport transfers, corporate travel, family tours, and special occasions.
-              </p>
-              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
-                With a wide range of well-maintained vehicles and experienced drivers, we ensure a smooth travel experience tailored to your needs and budget. Whether you need a quick city ride or a long-distance journey, our team is ready to serve you with punctual and professional service.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Why Choose Amaravathi Fast Car Travels?</h4>
-              <ul className="space-y-3">
-                {[
-                  "Easy and quick booking process",
-                  "Clean and comfortable vehicles",
-                  "Professional and friendly drivers",
-                  "Affordable pricing with transparent charges",
-                  "24/7 customer support",
-                  "On-time pickup and drop services"
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                    <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Card 2: Outstation Cab Services */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
-          >
-            <div>
-              <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Long Distance</span>
-              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Outstation Cab Services</h3>
-              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> provides reliable and comfortable outstation cab services from Vijayawada to major cities, tourist destinations, pilgrimage centers, and business locations. Whether you are planning a family vacation, weekend getaway, corporate trip, or long-distance journey, we ensure a safe, smooth, and enjoyable travel experience.
-              </p>
-              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
-                Our outstation taxi services are designed to offer convenience, flexibility, and affordability with well-maintained vehicles and experienced drivers. We focus on punctual service, customer comfort, and transparent pricing to make every trip stress-free and memorable.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Our Services Include:</h4>
-              <ul className="space-y-3">
-                {[
-                  "One-way and round-trip cab services",
-                  "Family tours and holiday travel",
-                  "Pilgrimage and temple trips",
-                  "Business and corporate travel",
-                  "Weekend getaway packages",
-                  "Airport and railway station transfers",
-                  "Customized travel plans for all destinations"
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                    <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Card 3: Local Taxi Service */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
-          >
-            <div>
-              <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">City Travel</span>
-              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Local Taxi Service</h3>
-              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> offers dependable and affordable local taxi services in Vijayawada for all your daily travel needs. Whether you need a ride for office commutes, shopping, business meetings, railway station transfers, hospital visits, or local sightseeing, we provide safe and comfortable transportation with professional drivers.
-              </p>
-              <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
-                Our local taxi service is designed to give you a hassle-free travel experience with timely pickups, clean vehicles, and flexible travel options. We understand the importance of punctuality and customer satisfaction, which is why we focus on delivering reliable service at competitive prices.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Our Services Include:</h4>
-              <ul className="space-y-3">
-                {[
-                  "City rides within Vijayawada",
-                  "Railway station pickup and drop",
-                  "Local airport transfers",
-                  "Hourly and full-day taxi packages",
-                  "Corporate and business travel",
-                  "Family and personal trips",
-                  "Local sightseeing tours"
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                    <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Route Selector Banner */}
-        <div className="bg-slate-50 p-2 sm:p-4 rounded-[3rem] shadow-2xl border border-slate-100 mx-auto max-w-3xl mt-12 overflow-hidden mb-12">
+        {/* Route Selector Banner (Image 3) */}
+        <div className="bg-slate-50 p-2 sm:p-4 rounded-[3rem] shadow-2xl border border-slate-100 mx-auto max-w-3xl mt-4 sm:mt-8 overflow-hidden mb-12">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
             <div className="bg-blue-950 text-white px-10 py-5 rounded-[2.5rem] flex items-center justify-center gap-3 font-black whitespace-nowrap text-sm shadow-xl shrink-0">
               <MapPin size={20} className="text-orange-500" /> SEARCH ROUTES
@@ -299,12 +170,12 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
             <div className="relative flex-grow flex flex-col justify-center min-h-[60px]">
               <select 
                 value={selectedRoute}
-                  onChange={(e) => {
-                    setSelectedRoute(e.target.value);
-                    setViewIndex(null); 
-                    setGalleryIndex(0);
-                  }}
-                className="w-full bg-transparent px-10 pt-2 pb-0.5 text-blue-950 font-black text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
+                onChange={(e) => {
+                  setSelectedRoute(e.target.value);
+                  setViewIndex(null); 
+                  setGalleryIndex(0);
+                }}
+                className="w-full bg-transparent px-6 sm:px-10 pt-2 pb-0.5 text-blue-950 font-black text-lg sm:text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
               >
                 {routes.map(r => (
                   <option key={r.value} value={r.value}>{r.label}</option>
@@ -312,13 +183,13 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               </select>
               {selectedRoute.includes("⇄") && (
                 <div className="text-[11px] font-black text-orange-500 tracking-widest uppercase text-center sm:text-left sm:pl-10 pb-1.5 mt-0.5">
-                  (Cab, Cabs, Taxi)
+                  (Cabs, Taxi, Cars)
                 </div>
               )}
             </div>
           </div>
         </div>
-        </div>
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           <AnimatePresence mode="popLayout">
@@ -343,7 +214,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-blue-950 mb-1 leading-tight tracking-tighter">{car.name}</h4>
                   <div className="text-[10px] font-black text-slate-500 tracking-wider uppercase mb-5 flex items-center gap-1.5">
                     <Navigation size={12} className="text-orange-500 shrink-0" />
-                    {selectedRoute.includes("⇄") ? `${selectedRoute} (Cab, Cabs, Taxi)` : selectedRoute}
+                    {selectedRoute.includes("⇄") ? `${selectedRoute} (Cabs, Taxi, Cars)` : selectedRoute}
                   </div>
                   
                   <div className="grid grid-cols-3 gap-2.5 mb-6 border-b border-slate-100 pb-6 text-center">
@@ -440,6 +311,140 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
               </motion.div>
             ))}
           </AnimatePresence>
+        </div>
+
+        {/* Explore Our Elite Catalog / A Vehicle for Every Ambition (Image 1) */}
+        <div className="text-center mt-20 mb-12 space-y-6">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
+            <span className="text-orange-500 font-black tracking-widest uppercase text-sm px-4 py-2 bg-orange-50 rounded-full">
+              Explore Our Elite Catalog
+            </span>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-7xl font-black text-blue-950 tracking-tighter"
+          >
+            A Vehicle for <br /> Every Ambition
+          </motion.h2>
+          
+          {/* Premium Information Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12 mb-16 text-left max-w-7xl mx-auto">
+            {/* Card 1: Book Your Car Travels */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
+            >
+              <div>
+                <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Premium Travel</span>
+                <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Book Your Car Travels</h3>
+                <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                  Planning your next trip? Book your ride easily with <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> and enjoy a safe, comfortable, and hassle-free journey. We provide reliable car rental and taxi services in Vijayawada for local travel, outstation trips, airport transfers, corporate travel, family tours, and special occasions.
+                </p>
+                <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+                  With a wide range of well-maintained vehicles and experienced drivers, we ensure a smooth travel experience tailored to your needs and budget. Whether you need a quick city ride or a long-distance journey, our team is ready to serve you with punctual and professional service.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Why Choose Amaravathi Fast Car Travels?</h4>
+                <ul className="space-y-3">
+                  {[
+                    "Easy and quick booking process",
+                    "Clean and comfortable vehicles",
+                    "Professional and friendly drivers",
+                    "Affordable pricing with transparent charges",
+                    "24/7 customer support",
+                    "On-time pickup and drop services"
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                      <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Outstation Cab Services */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
+            >
+              <div>
+                <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">Long Distance</span>
+                <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Outstation Cab Services</h3>
+                <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                  <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> provides reliable and comfortable outstation cab services from Vijayawada to major cities, tourist destinations, pilgrimage centers, and business locations. Whether you are planning a family vacation, weekend getaway, corporate trip, or long-distance journey, we ensure a safe, smooth, and enjoyable travel experience.
+                </p>
+                <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+                  Our outstation taxi services are designed to offer convenience, flexibility, and affordability with well-maintained vehicles and experienced drivers. We focus on punctual service, customer comfort, and transparent pricing to make every trip stress-free and memorable.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Our Services Include:</h4>
+                <ul className="space-y-3">
+                  {[
+                    "One-way and round-trip cab services",
+                    "Family tours and holiday travel",
+                    "Pilgrimage and temple trips",
+                    "Business and corporate travel",
+                    "Weekend getaway packages",
+                    "Airport and railway station transfers",
+                    "Customized travel plans for all destinations"
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                      <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Local Taxi Service */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-slate-50/50 hover:bg-white rounded-[2.5rem] border border-slate-100 hover:border-green-500/20 p-8 sm:p-10 shadow-xl hover:shadow-[0_20px_50px_rgba(34,197,94,0.05)] transition-all duration-500 flex flex-col justify-between group"
+            >
+              <div>
+                <span className="text-green-600 font-black text-[10px] sm:text-xs uppercase tracking-[0.25em] block mb-3">City Travel</span>
+                <h3 className="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight mb-6">Local Taxi Service</h3>
+                <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                  <strong className="text-blue-950">Amaravathi Fast Car Travels</strong> offers dependable and affordable local taxi services in Vijayawada for all your daily travel needs. Whether you need a ride for office commutes, shopping, business meetings, railway station transfers, hospital visits, or local sightseeing, we provide safe and comfortable transportation with professional drivers.
+                </p>
+                <p className="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+                  Our local taxi service is designed to give you a hassle-free travel experience with timely pickups, clean vehicles, and flexible travel options. We understand the importance of punctuality and customer satisfaction, which is why we focus on delivering reliable service at competitive prices.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-black text-blue-950 text-xs uppercase tracking-wider mb-4 border-t border-slate-100 pt-6">Our Services Include:</h4>
+                <ul className="space-y-3">
+                  {[
+                    "City rides within Vijayawada",
+                    "Railway station pickup and drop",
+                    "Local airport transfers",
+                    "Hourly and full-day taxi packages",
+                    "Corporate and business travel",
+                    "Family and personal trips",
+                    "Local sightseeing tours"
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                      <CheckCircle size={14} className="text-green-500 shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Global Fleet Promise */}

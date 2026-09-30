@@ -11,14 +11,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import About from '@/components/About';
 import CityExplorer from '@/components/CityExplorer';
+import Tariffs from '@/components/Tariffs';
 
 export default function Home() {
    return (
       <div className="bg-white">
          <Hero />
          <Fleet limit={30} />
+         <Tariffs />
          <Services />
          <Process />
+
 
          {/* Brand Trust Bar */}
          <div className="bg-slate-50 py-2 sm:py-10 border-y border-slate-100 overflow-hidden">
