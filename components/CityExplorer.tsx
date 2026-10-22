@@ -181,7 +181,7 @@ export default function CityExplorer() {
                         </AnimatePresence>
                      </div>
 
-                     <a href="tel:+919948924786" className="mt-10 block w-full bg-blue-950 text-white font-black text-center py-5 rounded-[1.5rem] hover:bg-orange-500 transition-all shadow-xl uppercase tracking-widest text-sm">
+                     <a href="tel:+919393591444" className="mt-10 block w-full bg-blue-950 text-white font-black text-center py-5 rounded-[1.5rem] hover:bg-orange-500 transition-all shadow-xl uppercase tracking-widest text-sm">
                         Book Travel to {selectedCity}
                      </a>
                   </div>

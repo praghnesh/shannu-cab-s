@@ -48,7 +48,7 @@ export default function FloatingActions() {
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}
-            href="https://wa.me/919948924786"
+            href="https://wa.me/919393591444"
             target="_blank"
             rel="noopener noreferrer"
             className="md:hidden fixed bottom-6 right-6 z-[2000] bg-green-500 text-white p-4 rounded-full shadow-[0_10px_30px_rgba(34,197,94,0.4)] active:scale-90 border-2 border-white/20"
@@ -66,11 +66,11 @@ export default function FloatingActions() {
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -100, opacity: 0 }}
-            href="tel:+919948924786"
-            className="md:hidden fixed bottom-6 left-6 z-[2000] bg-green-600 text-white py-3 px-5 rounded-full shadow-[0_10px_30px_rgba(22,163,74,0.4)] active:scale-90 border-2 border-white/20 flex items-center gap-2 font-black text-xs uppercase tracking-widest leading-none"
+            href="tel:+919393591444"
+            className="md:hidden fixed bottom-6 left-6 z-[2000] bg-blue-950 text-white py-3.5 px-4 rounded-full shadow-[0_10px_30px_rgba(15,23,42,0.5)] active:scale-90 border-2 border-orange-400 flex items-center gap-2 font-black text-xs uppercase tracking-widest leading-none"
           >
-             <Phone size={18} className="animate-pulse" />
-             <span>+91 9948924786</span>
+             <Phone size={18} className="animate-pulse text-orange-400" />
+             <span>Call: 9393591444</span>
           </motion.a>
 
           {/* Desktop Floating Bar */}
@@ -81,7 +81,7 @@ export default function FloatingActions() {
             exit={{ y: 100, opacity: 0 }}
             className="hidden md:flex fixed bottom-6 left-1/2 -translate-x-1/2 z-[2000] w-[95%] max-w-2xl px-4"
           >
-            <div className="bg-green-600/90 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] py-5 px-4 flex items-center justify-between gap-4 w-full">
+            <div className="bg-blue-950/95 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.4)] py-4 px-5 flex items-center justify-between gap-4 w-full">
               
               {/* Route Label - Left */}
               <div className="flex items-center gap-3">
@@ -89,7 +89,7 @@ export default function FloatingActions() {
                     <Navigation size={18} />
                  </div>
                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-white/80 uppercase tracking-widest leading-none mb-1">Live Route</span>
+                    <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest leading-none mb-1">Live Cab Service</span>
                     <div className="h-5 overflow-hidden">
                        <AnimatePresence mode="wait">
                           <motion.span 
@@ -109,26 +109,26 @@ export default function FloatingActions() {
               {/* Action Buttons - Right */}
               <div className="flex gap-2">
                   <a 
-                    href="https://wa.me/919948924786" 
+                    href="https://wa.me/919393591444" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex bg-green-500 text-white p-4 rounded-full hover:bg-green-600 transition-all shadow-lg active:scale-90 items-center gap-2 group px-6 relative"
+                    className="flex bg-emerald-600 text-white p-3.5 rounded-full hover:bg-emerald-500 transition-all shadow-lg active:scale-90 items-center gap-2 group px-5 relative"
                   >
-                    <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
-                    <span className="font-black text-xs uppercase tracking-widest">WhatsApp</span>
+                    <MessageCircle size={18} className="group-hover:rotate-12 transition-transform" />
+                    <span className="font-black text-xs uppercase tracking-wider">WA: 93935 91444</span>
                     {/* Notification Dot */}
-                    <span className="absolute top-2 right-4 flex h-3 w-3">
+                    <span className="absolute top-2 right-3 flex h-2.5 w-2.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
                     </span>
-                    </a>
+                  </a>
                  {/* Desktop: Red Call Button */}
                  <a 
-                    href="tel:+919948924786" 
-                    className="flex bg-red-600 text-white p-4 rounded-full hover:bg-red-700 transition-all shadow-lg active:scale-90 items-center gap-2 group px-6"
+                    href="tel:+919393591444" 
+                    className="flex bg-orange-500 text-white p-3.5 rounded-full hover:bg-orange-600 transition-all shadow-lg active:scale-90 items-center gap-2 group px-5"
                  >
-                    <Phone size={20} className="animate-pulse" />
-                    <span className="font-black text-xs uppercase tracking-widest">Call Now</span>
+                    <Phone size={18} className="animate-pulse" />
+                    <span className="font-black text-xs uppercase tracking-wider">Call: 93935 91444</span>
                  </a>
               </div>
 

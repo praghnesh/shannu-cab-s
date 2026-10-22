@@ -61,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     'provider': {
       '@type': 'LocalBusiness',
       'name': 'Amaravathi Fast Car Travels',
-      'telephone': '+91-9948924786',
+      'telephone': '+91-9393591444',
       'email': 'fastcartravels4@gmail.com',
       'address': {
         '@type': 'PostalAddress',

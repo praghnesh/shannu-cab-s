@@ -70,7 +70,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                            <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Direct Call (24/7)</p>
-                           <p className="text-3xl font-black text-blue-950 tracking-tighter hover:text-orange-500 transition-colors cursor-pointer">+91 9948924786</p>
+                           <p className="text-3xl font-black text-blue-950 tracking-tighter hover:text-orange-500 transition-colors cursor-pointer">+91 9393591444</p>
                         </div>
                      </div>
 

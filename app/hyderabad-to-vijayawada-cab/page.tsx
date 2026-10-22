@@ -116,9 +116,9 @@ export default function HyderabadToVijayawadaPage() {
   const tourGalleryPhotos = [
     { src: "/route-photos/hyd-10-tourist-places.png", title: "Hyderabad Sightseeing & Tourist Attractions", caption: "Charminar, Ramoji Film City & Iconic Landmarks in Hyderabad" },
     { src: "/route-photos/poster-happy-customer.png", title: "Happy Customer Reviews", caption: "Fast, Safe & Comfortable Journeys with Amaravathi Fast Car Travels" },
-    { src: "/route-photos/fast-car-travels-banner.jpg", title: "Amaravathi Fast Car Travels Chauffeur Banner", caption: "Call +91 9948924786 for Rentals, Tours, Outstation & Airport Drops" },
+    { src: "/route-photos/fast-car-travels-banner.jpg", title: "Amaravathi Fast Car Travels Chauffeur Banner", caption: "Call +91 9393591444 for Rentals, Tours, Outstation & Airport Drops" },
     { src: "/route-photos/poster-one-way.jpg", title: "Amaravathi Fast Car Travels One Way Offer", caption: "Chilakaluripet & Vijayawada to Hyderabad One Way Drop Rs. 6750/-" },
-    { src: "/route-photos/poster-taxi-247.png", title: "24/7 Taxi Service Concierge", caption: "Call +91 9948924786 anytime for instant booking" },
+    { src: "/route-photos/poster-taxi-247.png", title: "24/7 Taxi Service Concierge", caption: "Call +91 9393591444 anytime for instant booking" },
     { src: "/route-photos/hussain-sagar-buddha.png", title: "Hussain Sagar Buddha Statue Hyderabad", caption: "Iconic landmark of Hyderabad city" },
     { src: "/route-photos/dhyana-buddha.jpg", title: "Dhyana Buddha Statue Amaravati", caption: "Popular attraction near Vijayawada & Guntur" },
     { src: "/route-photos/hyd-10-tourist-places.png", title: "Hyderabad Sightseeing Tour", caption: "Charminar, Ramoji Film City & Temples" },
@@ -176,10 +176,10 @@ export default function HyderabadToVijayawadaPage() {
 
               <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
                 <a
-                  href="tel:+919948924786"
+                  href="tel:+919393591444"
                   className="inline-flex items-center gap-3 bg-orange-500 text-white font-black px-8 py-4 rounded-2xl text-lg hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20"
                 >
-                  <PhoneCall size={20} /> CALL NOW: 9948924786
+                  <PhoneCall size={20} /> CALL NOW: 9393591444
                 </a>
                 <a
                   href="#booking-section"
@@ -241,7 +241,7 @@ export default function HyderabadToVijayawadaPage() {
               </div>
 
               <a
-                href="tel:+919948924786"
+                href="tel:+919393591444"
                 className="w-full py-4 bg-blue-950 hover:bg-orange-500 text-white font-black rounded-2xl flex items-center justify-center gap-3 transition-colors text-center text-base"
               >
                 <PhoneCall size={18} /> CALL TO BOOK THIS PLAN
@@ -619,10 +619,10 @@ export default function HyderabadToVijayawadaPage() {
 
               <div className="pt-4 flex flex-wrap gap-4">
                 <a
-                  href="tel:+919948924786"
+                  href="tel:+919393591444"
                   className="bg-orange-500 hover:bg-orange-600 text-white font-black px-8 py-4 rounded-2xl text-base inline-flex items-center gap-3 transition-colors shadow-lg"
                 >
-                  <PhoneCall size={20} /> CALL NOW: 9948924786
+                  <PhoneCall size={20} /> CALL NOW: 9393591444
                 </a>
 
               </div>
@@ -708,7 +708,7 @@ export default function HyderabadToVijayawadaPage() {
                     <div>
                       <p className="font-bold text-white">Phone Numbers:</p>
 
-                      <p className="text-xs text-white font-bold">+91 9948924786 (Main Concierge)</p>
+                      <p className="text-xs text-white font-bold">+91 9393591444 (Main Concierge)</p>
                     </div>
                   </div>
 
@@ -729,20 +729,20 @@ export default function HyderabadToVijayawadaPage() {
                   </div>
                 </div>
 
-                <div className="pt-2 flex gap-2">
+                <div className="pt-2 flex flex-col sm:flex-row gap-2">
                   <a
-                    href="tel:+919948924786"
-                    className="flex-1 py-3 bg-orange-500 hover:bg-orange-600 text-white font-black text-center rounded-xl text-xs uppercase tracking-wider transition-colors"
+                    href="tel:+919393591444"
+                    className="flex-1 py-3 bg-orange-500 hover:bg-orange-600 text-white font-black text-center rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md"
                   >
-                    Call Now
+                    Call: 93935 91444
                   </a>
                   <a
-                    href="https://wa.me/919948924786"
+                    href="https://wa.me/919393591444"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-black text-center rounded-xl text-xs uppercase tracking-wider transition-colors"
+                    className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-center rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md"
                   >
-                    WhatsApp
+                    WhatsApp: 93935 91444
                   </a>
                 </div>
               </div>

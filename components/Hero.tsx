@@ -20,10 +20,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            href="https://wa.me/919948924786?text=Hi,%20I%20want%20to%20book%20a%20Hyderabad%20to%20Vijayawada%20cab%20and%20avail%20the%20Rs.500%20discount%20offer."
+            href="https://wa.me/919393591444?text=Hi,%20I%20want%20to%20book%20a%20Hyderabad%20to%20Vijayawada%20cab%20and%20avail%20the%20Rs.500%20discount%20offer."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-5 py-2.5 rounded-full font-black text-xs md:text-sm tracking-wide shadow-2xl mb-8 border border-white/20 transition-all cursor-pointer"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-5 py-2.5 rounded-full font-black text-xs md:text-sm tracking-wide shadow-2xl mb-4 border border-white/20 transition-all cursor-pointer"
           >
             <span className="bg-white text-orange-600 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider">
               Offer
@@ -31,8 +31,30 @@ export default function Hero() {
             <span>Book Hyderabad to Vijayawada Cabs: Up to ₹500 Off!</span>
           </motion.a>
 
+          {/* Direct 24/7 Helpline Pill - Prominent Size */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 bg-black/80 backdrop-blur-md border-2 border-yellow-400/40 px-5 sm:px-8 py-3 rounded-full text-white shadow-2xl">
+              <a href="tel:+919393591444" className="text-yellow-400 hover:text-yellow-300 flex items-center gap-2 transition-colors">
+                <Phone size={18} className="text-yellow-400" />
+                <span className="text-xs sm:text-sm font-semibold text-gray-300">Call:</span>
+                <span className="text-base sm:text-xl font-black text-white tracking-wider">93935 91444</span>
+              </a>
+              <span className="text-yellow-400/40 hidden sm:inline">|</span>
+              <a 
+                href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-emerald-400 hover:text-emerald-300 flex items-center gap-2 transition-colors"
+              >
+                <MessageCircle size={18} className="text-emerald-400" />
+                <span className="text-xs sm:text-sm font-semibold text-emerald-200">WhatsApp:</span>
+                <span className="text-base sm:text-xl font-black text-white tracking-wider">93935 91444</span>
+              </a>
+            </div>
+          </div>
+
           {/* Main Hero Booking Form (2nd Image Prominent Focus) */}
-          <div id="main-booking-form" className="w-full mb-12 flex justify-center">
+          <div id="main-booking-form" className="w-full mb-8 flex justify-center">
             <motion.div
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
@@ -48,23 +70,23 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex md:hidden gap-4 max-w-md mx-auto mb-12 px-4"
+            className="flex md:hidden gap-3 max-w-md mx-auto mb-12 px-4"
           >
             <a 
-              href="tel:+919948924786"
-              className="flex-1 bg-blue-600 text-white py-4 px-6 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all"
+              href="tel:+919393591444"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3.5 px-4 rounded-2xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all"
             >
-              <Phone size={16} fill="currentColor" />
-              <span>Call Now</span>
+              <Phone size={18} fill="currentColor" />
+              <span>Call: 93935 91444</span>
             </a>
             <a 
-              href="https://wa.me/919948924786"
+              href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 bg-green-500 text-white py-4 px-6 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(34,197,94,0.3)] active:scale-95 transition-all"
+              className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3.5 px-4 rounded-2xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(34,197,94,0.3)] active:scale-95 transition-all"
             >
-              <MessageCircle size={16} fill="currentColor" />
-              <span>WhatsApp</span>
+              <MessageCircle size={18} fill="currentColor" />
+              <span>WA: 93935 91444</span>
             </a>
           </motion.div>
 

@@ -6,7 +6,7 @@ import Fleet from '@/components/Fleet';
 import Testimonials from '@/components/Testimonials';
 import Process from '@/components/Process';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Star, ShieldCheck, Clock, MapPin, X, ZoomIn, Phone, CheckCircle, Navigation, Shield, Award } from 'lucide-react';
+import { ArrowRight, Star, ShieldCheck, Clock, MapPin, X, ZoomIn, Phone, CheckCircle, Navigation, Shield, Award, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CityExplorer from '@/components/CityExplorer';
@@ -48,20 +48,43 @@ export default function Home() {
                   <p className="text-slate-600 font-medium max-w-3xl mx-auto text-sm sm:text-base mt-2">
                      Brundavanam Colony, Beside Chandana Grands, MG Road, Vijayawada - 520010 · Prop: SK. Hassan
                   </p>
-                  <div className="flex flex-wrap justify-center gap-3 mt-4">
+                  <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4 sm:gap-6 mt-6 max-w-3xl mx-auto px-2">
+                     {/* Calling Button */}
                      <a 
-                        href="tel:+919948924786"
-                        className="inline-flex items-center gap-2 bg-blue-950 hover:bg-blue-900 text-white text-xs sm:text-sm font-black px-5 py-2.5 rounded-full shadow-md transition-all"
+                        href="tel:+919393591444"
+                        className="flex-1 flex items-center justify-center gap-4 bg-gradient-to-r from-blue-950 to-blue-900 hover:from-blue-900 hover:to-blue-950 text-white p-4 sm:p-5 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all border-2 border-orange-500/50 group"
                      >
-                        <Phone size={14} className="text-orange-400" /> Call Prop. SK. Hassan: 9948924786
+                        <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center text-white shrink-0 shadow-lg group-hover:rotate-12 transition-transform">
+                           <Phone size={24} />
+                        </div>
+                        <div className="text-left">
+                           <span className="block text-[11px] sm:text-xs font-black text-orange-400 uppercase tracking-widest">
+                              24/7 Calling · SK. Hassan
+                           </span>
+                           <span className="block text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white mt-0.5">
+                              93935 91444
+                           </span>
+                        </div>
                      </a>
+
+                     {/* WhatsApp Button */}
                      <a 
                         href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-black px-5 py-2.5 rounded-full shadow-md transition-all"
+                        className="flex-1 flex items-center justify-center gap-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white p-4 sm:p-5 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all border-2 border-emerald-400/50 group"
                      >
-                        WhatsApp: 9393591444
+                        <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-emerald-600 shrink-0 shadow-lg group-hover:rotate-12 transition-transform">
+                           <MessageCircle size={26} />
+                        </div>
+                        <div className="text-left">
+                           <span className="block text-[11px] sm:text-xs font-black text-emerald-100 uppercase tracking-widest">
+                              Instant WhatsApp Booking
+                           </span>
+                           <span className="block text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white mt-0.5">
+                              93935 91444
+                           </span>
+                        </div>
                      </a>
                   </div>
                </div>
@@ -109,7 +132,7 @@ export default function Home() {
                         <span className="text-white text-xs sm:text-sm font-bold bg-orange-500 px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-lg">
                            <ZoomIn size={14} /> Click to View Full Banner
                         </span>
-                        <span className="text-white/90 text-xs font-semibold">Prop. SK. Hassan · 9948924786</span>
+                        <span className="text-white/90 text-xs font-semibold">Prop. SK. Hassan · 9393591444</span>
                      </div>
                   </motion.div>
                </div>
@@ -248,7 +271,7 @@ export default function Home() {
                   <motion.a
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
-                     href="tel:+919948924786"
+                     href="tel:+919393591444"
                      className="inline-flex items-center gap-4 bg-blue-950 text-white font-black px-12 py-6 rounded-[2rem] hover:bg-blue-900 transition shadow-[0_30px_60px_rgba(30,_58,_138,_0.4)] text-xl tracking-tight"
                   >
                      CLAIM VIP OFFER <ArrowRight size={24} />
@@ -334,7 +357,7 @@ export default function Home() {
                         <span className="text-white text-xs sm:text-sm font-bold bg-orange-500 px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-lg">
                            <ZoomIn size={14} /> Tap to View Full Poster
                         </span>
-                        <span className="text-white font-black text-sm">Call/WhatsApp: 9948924786</span>
+                        <span className="text-white font-black text-sm">Call: 9393591444 · WhatsApp: 9393591444</span>
                      </div>
                   </motion.div>
                </div>
@@ -345,20 +368,20 @@ export default function Home() {
                      <h4 className="text-xl sm:text-2xl font-black text-blue-950">Book Vijayawada ⇄ Hyderabad Now</h4>
                      <p className="text-xs sm:text-sm text-slate-600 font-medium">Flat ₹5,000 one-way. AC cars, experienced drivers, doorstep pickup.</p>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap sm:flex-nowrap gap-3 w-full sm:w-auto">
                      <a 
-                        href="tel:+919948924786"
-                        className="bg-blue-950 hover:bg-blue-900 text-white font-black px-6 py-3.5 rounded-2xl text-sm transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
+                        href="tel:+919393591444"
+                        className="flex-1 sm:flex-initial bg-blue-950 hover:bg-blue-900 text-white font-black px-6 py-3.5 rounded-2xl text-sm transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap"
                      >
-                        <Phone size={16} className="text-orange-400" /> 9948924786
+                        <Phone size={16} className="text-orange-400" /> Call: 93935 91444
                      </a>
                      <a 
                         href="https://wa.me/919393591444?text=Hi%2C%20I%20want%20to%20book%20Vijayawada%20to%20Hyderabad%20cab%20for%20Rs%205000"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-6 py-3.5 rounded-2xl text-sm transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
+                        className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-700 text-white font-black px-6 py-3.5 rounded-2xl text-sm transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap"
                      >
-                        Book on WhatsApp
+                        <MessageCircle size={16} className="text-white" /> WhatsApp: 93935 91444
                      </a>
                   </div>
                </div>
@@ -419,7 +442,7 @@ export default function Home() {
                      <h3 className="text-2xl font-black mb-2">Need a custom route?</h3>
                      <p className="text-blue-200">We provide taxi services to any destination across South India.</p>
                   </div>
-                  <a href="tel:+919948924786" className="bg-orange-500 hover:bg-orange-600 text-white font-black px-10 py-5 rounded-2xl transition-all shadow-xl whitespace-nowrap">
+                  <a href="tel:+919393591444" className="bg-orange-500 hover:bg-orange-600 text-white font-black px-10 py-5 rounded-2xl transition-all shadow-xl whitespace-nowrap">
                      GET A CUSTOM QUOTE
                   </a>
                </div>

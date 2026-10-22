@@ -185,7 +185,7 @@ export default function Services() {
                    >
                      DETAILS <Navigation size={18} className="group-hover/btn:translate-x-1" />
                    </motion.button>
-                   <a href="tel:+919948924786" className="bg-orange-500 p-5 rounded-3xl text-white shadow-xl hover:rotate-12 transition-transform">
+                   <a href="tel:+919393591444" className="bg-orange-500 p-5 rounded-3xl text-white shadow-xl hover:rotate-12 transition-transform">
                       <Phone size={24} />
                    </a>
                 </div>
@@ -318,7 +318,7 @@ export default function Services() {
 
                  <motion.a 
                     whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                    href="tel:+919948924786" 
+                    href="tel:+919393591444" 
                     className="mt-2 md:mt-8 flex w-full bg-orange-500 md:bg-blue-950 text-white font-black text-base py-4 rounded-[1rem] hover:bg-orange-600 md:hover:bg-orange-500 transition-all items-center justify-center gap-2 shadow-2xl pointer-events-auto"
                  >
                     <Star size={16} fill="currentColor" /> BOOK THIS SERVICE

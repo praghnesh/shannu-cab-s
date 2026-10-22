@@ -290,7 +290,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   {car.name.toLowerCase().includes("urbania") && (
                     <div className="flex gap-4 mt-4 w-full">
                       <a
-                        href="https://wa.me/919948924786?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20hire%20the%20Force%20Urbania."
+                        href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20hire%20the%20Force%20Urbania."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-grow bg-orange-500 hover:bg-orange-600 text-white font-black text-xs py-5 rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 text-center"
@@ -298,7 +298,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                         HIRE <ArrowRight size={16} />
                       </a>
                       <a
-                        href="https://wa.me/919948924786?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20rent%20the%20Force%20Urbania."
+                        href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20rent%20the%20Force%20Urbania."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-grow bg-blue-950 hover:bg-orange-500 text-white font-black text-xs py-5 rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-blue-950/20 text-center"
@@ -630,7 +630,7 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                       <motion.a 
                          whileHover={{ scale: 1.02 }}
                          whileTap={{ scale: 0.98 }}
-                         href="tel:+919948924786" 
+                         href="tel:+919393591444" 
                          className="bg-blue-950 text-white font-black text-base sm:text-lg py-5 sm:py-6 rounded-[1.2rem] sm:rounded-[1.5rem] hover:bg-orange-500 transition-all text-center flex items-center justify-center gap-3 sm:gap-4 shadow-2xl"
                       >
                          <Phone size={22} /> BOOK THIS VEHICLE

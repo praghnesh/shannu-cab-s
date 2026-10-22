@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Menu, X, PhoneCall, ShieldCheck, Clock, ArrowRight } from 'lucide-react';
+import { Menu, X, PhoneCall, ShieldCheck, Clock, ArrowRight, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -44,11 +44,43 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 flex flex-col ${scrolled
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border-b border-slate-100'
+            ? 'bg-white/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border-b border-slate-100'
             : 'bg-transparent'
           }`}
       >
-
+        {/* Top Quick Contact Banner - Always prominent */}
+        <div className={`w-full py-2 px-4 sm:px-8 border-b transition-colors duration-300 ${
+          scrolled ? 'bg-blue-950 text-white border-blue-900' : 'bg-black/50 backdrop-blur-md text-white border-white/10'
+        }`}>
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
+            <span className="hidden md:inline text-slate-300 font-semibold">
+              Amaravathi Fast Car Travels · 24/7 Available Across AP & Telangana
+            </span>
+            <div className="flex items-center gap-3 sm:gap-6 w-full sm:w-auto justify-between sm:justify-end">
+              <a 
+                href="tel:+919393591444"
+                className="inline-flex items-center gap-2 hover:text-orange-400 font-black tracking-wide transition-colors group"
+              >
+                <div className="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center shrink-0">
+                  <PhoneCall size={12} />
+                </div>
+                <span>Call: <strong className="text-orange-400 text-sm sm:text-base font-black">93935 91444</strong></span>
+              </a>
+              <span className="text-white/40">|</span>
+              <a 
+                href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-emerald-300 font-black tracking-wide transition-colors group"
+              >
+                <div className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                  <MessageCircle size={13} />
+                </div>
+                <span>WhatsApp: <strong className="text-emerald-400 text-sm sm:text-base font-black">93935 91444</strong></span>
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div className={`max-w-7xl mx-auto w-full px-6 sm:px-8 transition-all duration-500 ${scrolled ? 'py-1' : 'py-3 sm:py-4'}`}>
           <div className="flex justify-between items-center h-24">
@@ -71,7 +103,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-10">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -84,14 +116,28 @@ export default function Navbar() {
                 </Link>
               ))}
 
+              {/* Desktop WhatsApp Action */}
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="tel:+919948924786"
-                className="flex items-center gap-3 bg-orange-500 text-white px-8 py-3.5 rounded-2xl font-black text-sm tracking-widest shadow-2xl hover:bg-blue-950 transition-colors"
+                href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 rounded-2xl font-black text-xs tracking-wider shadow-lg transition-colors"
               >
-                <PhoneCall size={18} />
-                BOOK NOW
+                <MessageCircle size={16} />
+                <span>93935 91444</span>
+              </motion.a>
+
+              {/* Desktop Call Action */}
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="tel:+919393591444"
+                className="flex items-center gap-2 bg-orange-500 text-white px-5 py-3 rounded-2xl font-black text-sm tracking-wider shadow-lg hover:bg-blue-950 transition-colors"
+              >
+                <PhoneCall size={16} />
+                <span className="font-black text-base">93935 91444</span>
               </motion.a>
             </div>
 
@@ -174,13 +220,33 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                <div className="mt-16 pt-10 border-t border-slate-100">
+                <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col gap-3">
                   <a
-                    href="tel:+919948924786"
-                    className="flex flex-col gap-2 group"
+                    href="tel:+919393591444"
+                    className="flex items-center gap-3 p-3.5 bg-blue-950 text-white rounded-2xl group shadow-md"
                   >
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Live Concierge 24/7</span>
-                    <span className="text-2xl font-black text-blue-950 group-hover:text-orange-500 transition-colors">+91 9948924786</span>
+                    <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shrink-0">
+                      <PhoneCall size={18} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest">Call 24/7 · Direct Line</span>
+                      <span className="text-lg font-black text-white">93935 91444</span>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3.5 bg-emerald-600 text-white rounded-2xl group shadow-md"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-emerald-600 shrink-0">
+                      <MessageCircle size={20} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-black text-emerald-100 uppercase tracking-widest">Instant WhatsApp</span>
+                      <span className="text-base font-black text-white">93935 91444</span>
+                    </div>
                   </a>
                 </div>
               </div>

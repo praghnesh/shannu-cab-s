@@ -18,7 +18,7 @@ const fleetData = [
 ];
 
 const locations = ["Hyderabad", "Vijayawada", "Guntur", "Vizag", "Tirupati", "Bangalore", "Tenali", "Ongole"];
-const supportNumbers = ["+91 9948924786"];
+const supportNumbers = ["+91 9393591444"];
 
 export default function BookingNotification() {
   const [activeNotification, setActiveNotification] = useState<any>(null);
@@ -118,7 +118,7 @@ export default function BookingNotification() {
                     </div>
                     <div className="flex gap-2">
                       <a
-                        href="tel:+919948924786"
+                        href="tel:+919393591444"
                         className="bg-blue-950 text-white text-[9px] sm:text-[11px] font-black px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl hover:bg-orange-500 transition-all shadow-lg flex items-center gap-1.5 shrink-0 uppercase tracking-widest"
                       >
                         <Phone size={12} /> BOOK
