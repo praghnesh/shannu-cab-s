@@ -161,13 +161,13 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
       >
-        {/* Route Selector Banner (Image 3) */}
-        <div className="bg-slate-50 p-2 sm:p-4 rounded-[3rem] shadow-2xl border border-slate-100 mx-auto max-w-3xl mt-4 sm:mt-8 overflow-hidden mb-12">
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
-            <div className="bg-blue-950 text-white px-10 py-5 rounded-[2.5rem] flex items-center justify-center gap-3 font-black whitespace-nowrap text-sm shadow-xl shrink-0">
-              <MapPin size={20} className="text-orange-500" /> SEARCH ROUTES
+        {/* Route Selector Banner */}
+        <div className="bg-slate-50 p-2 sm:p-3 rounded-full shadow-2xl border border-slate-200 mx-auto max-w-2xl mt-4 sm:mt-8 overflow-hidden mb-12">
+          <div className="flex items-center">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 bg-blue-950 rounded-full flex items-center justify-center shrink-0 shadow-md ml-1 sm:ml-2">
+              <MapPin size={20} className="text-orange-500" />
             </div>
-            <div className="relative flex-grow flex flex-col justify-center min-h-[60px]">
+            <div className="relative flex-grow flex flex-col justify-center min-h-[52px]">
               <select 
                 value={selectedRoute}
                 onChange={(e) => {
@@ -175,14 +175,14 @@ export default function Fleet({ limit = 100 }: { limit?: number }) {
                   setViewIndex(null); 
                   setGalleryIndex(0);
                 }}
-                className="w-full bg-transparent px-6 sm:px-10 pt-2 pb-0.5 text-blue-950 font-black text-lg sm:text-xl outline-none cursor-pointer appearance-none text-center sm:text-left tracking-tight"
+                className="w-full bg-transparent px-4 sm:px-6 pt-1 pb-0.5 text-blue-950 font-black text-base sm:text-xl outline-none cursor-pointer appearance-none text-left tracking-tight"
               >
                 {routes.map(r => (
                   <option key={r.value} value={r.value}>{r.label}</option>
                 ))}
               </select>
               {selectedRoute.includes("⇄") && (
-                <div className="text-[11px] font-black text-orange-500 tracking-widest uppercase text-center sm:text-left sm:pl-10 pb-1.5 mt-0.5">
+                <div className="text-[11px] font-black text-orange-500 tracking-widest uppercase text-left pl-4 sm:pl-6 pb-1">
                   (Cabs, Taxi, Cars)
                 </div>
               )}

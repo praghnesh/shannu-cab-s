@@ -4,17 +4,20 @@ export async function POST(req: Request) {
   try {
     const { name, phone, from, to, date, time, carType, tripType, duration, pageUrl } = await req.json();
 
-    if (!name || !phone) {
-      return NextResponse.json({ success: false, message: "Name and Phone required" }, { status: 400 });
+    const customerPhone = phone || "";
+    const customerName = name || customerPhone || "Direct Customer";
+
+    if (!customerPhone) {
+      return NextResponse.json({ success: false, message: "Phone required" }, { status: 400 });
     }
 
     const subject = tripType
-      ? `🚨 NEW INSTANT QUOTE BOOKING: ${name} (${phone}) - ${tripType}`
-      : `🚨 NEW WEBSITE CUSTOMER: ${name} (${phone})`;
+      ? `🚨 NEW INSTANT QUOTE BOOKING: ${customerPhone} - ${tripType}`
+      : `🚨 NEW WEBSITE CUSTOMER: ${customerPhone}`;
 
     const messageLines = [
-      `👤 Customer Name: ${name}`,
-      `📞 Phone Number: ${phone}`,
+      customerName && customerName !== customerPhone ? `👤 Customer Name: ${customerName}` : null,
+      `📞 Customer Phone: ${customerPhone}`,
       tripType ? `🗺️ Trip Type: ${tripType}` : null,
       from ? `📍 From: ${from}` : null,
       to ? `📍 To: ${to}` : null,

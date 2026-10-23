@@ -137,6 +137,11 @@ export default function BookingForm() {
   const handleBook = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!phone || phone.length < 10) {
+      alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి / Please enter a valid 10-digit mobile number");
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Mark as filled so modal never opens again
@@ -150,8 +155,7 @@ export default function BookingForm() {
     const lines = [
       `🚖 *NEW INSTANT BOOKING REQUEST*`,
       ``,
-      customerName ? `👤 *Customer Name:* ${customerName}` : "",
-      phone ? `📞 *Phone Number:* ${phone}` : "",
+      `📞 *Customer Phone:* ${phone}`,
       `🗺️ *Trip Type:* ${tripLabel}`,
       `📍 *From:* ${from || "—"}`,
       tripType !== "hourly" ? `📍 *To:* ${to || "—"}` : `⏱️ *Duration:* ${duration || "—"}`,
@@ -164,8 +168,8 @@ export default function BookingForm() {
     ].filter(Boolean).join("\n");
 
     const emailPayload = {
-      name: customerName || "Direct Customer",
-      phone: phone || "Via WhatsApp",
+      name: phone,
+      phone: phone,
       from,
       to,
       date,
@@ -190,7 +194,9 @@ export default function BookingForm() {
             "Accept": "application/json",
           },
           body: JSON.stringify({
-            _subject: `🚨 NEW BOOKING: ${from || "Trip"} ➔ ${to || duration || "Destination"} (${tripLabel})`,
+            _subject: `🚨 NEW BOOKING: ${phone} - ${from || "Trip"} ➔ ${to || duration || "Destination"} (${tripLabel})`,
+            Phone_Number: phone,
+            Customer_Phone: phone,
             Trip_Type: tripLabel,
             From_Location: from || "N/A",
             To_Location: to || duration || "N/A",
@@ -211,11 +217,11 @@ export default function BookingForm() {
           },
           body: JSON.stringify({
             access_key: "08733671-9205-44ca-9b07-965cf3115bb0",
-            subject: `🚨 NEW BOOKING: ${customerName} (${phone}) - ${tripLabel}`,
+            subject: `🚨 NEW BOOKING: ${phone} - ${tripLabel}`,
             from_name: "Amaravathi Fast Car Travels",
-            name: customerName,
+            name: phone,
             phone: phone,
-            Customer_Name: customerName,
+            Customer_Name: phone,
             Phone_Number: phone,
             Trip_Type: tripLabel,
             From_Location: from || "N/A",
@@ -293,6 +299,22 @@ export default function BookingForm() {
 
       {/* Form */}
       <form onSubmit={handleBook} className="px-5 sm:px-6 pb-6 space-y-3">
+        {/* Customer Mobile Number */}
+        <div>
+          <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">
+            Customer Mobile Number
+          </label>
+          <input
+            type="tel"
+            required
+            maxLength={10}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+            placeholder="10 అంకెల మొబైల్ నంబర్ / Phone Number"
+            className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+          />
+        </div>
+
         {/* Trip Type Toggle */}
         <div>
           <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1.5">

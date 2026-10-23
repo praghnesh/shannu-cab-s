@@ -74,7 +74,7 @@ export default function Hero() {
           >
             <a 
               href="tel:+919393591444"
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3.5 px-4 rounded-2xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3.5 px-4 rounded-2xl font-bold text-sm tracking-wide flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all"
             >
               <Phone size={18} fill="currentColor" />
               <span>Call: 93935 91444</span>
@@ -83,7 +83,7 @@ export default function Hero() {
               href="https://wa.me/919393591444?text=Hi%20Amaravathi%20Fast%20Car%20Travels,%20I%20want%20to%20book%20a%20cab."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3.5 px-4 rounded-2xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(34,197,94,0.3)] active:scale-95 transition-all"
+              className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3.5 px-4 rounded-2xl font-bold text-sm tracking-wide flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(34,197,94,0.3)] active:scale-95 transition-all"
             >
               <MessageCircle size={18} fill="currentColor" />
               <span>WA: 93935 91444</span>

@@ -196,6 +196,11 @@ export default function LoginModal() {
   const handleBook = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!phone || phone.length < 10) {
+      alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి / Please enter a valid 10-digit mobile number");
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Mark as filled so modal never opens again
@@ -209,8 +214,7 @@ export default function LoginModal() {
     const lines = [
       `🚖 *NEW INSTANT QUOTE BOOKING*`,
       ``,
-      customerName ? `👤 *Customer Name:* ${customerName}` : "",
-      phone ? `📞 *Phone Number:* ${phone}` : "",
+      `📞 *Customer Phone:* ${phone}`,
       `🗺️ *Trip Type:* ${tripLabel}`,
       `📍 *From:* ${from || "—"}`,
       tripType !== "hourly" ? `📍 *To:* ${to || "—"}` : `⏱️ *Duration:* ${duration || "—"}`,
@@ -223,8 +227,8 @@ export default function LoginModal() {
     ].filter(Boolean).join("\n");
 
     const emailPayload = {
-      name: customerName || "Direct Customer",
-      phone: phone || "Via WhatsApp",
+      name: phone,
+      phone: phone,
       from,
       to,
       date,
@@ -248,9 +252,9 @@ export default function LoginModal() {
             "Accept": "application/json",
           },
           body: JSON.stringify({
-            _subject: `🚨 NEW MODAL BOOKING: ${customerName} (${phone}) - ${tripLabel}`,
-            Customer_Name: customerName,
+            _subject: `🚨 NEW BOOKING: ${phone} - ${from || "Trip"} ➔ ${to || duration || "Drop"} (${tripLabel})`,
             Phone_Number: phone,
+            Customer_Phone: phone,
             Trip_Type: tripLabel,
             From_Location: from || "N/A",
             To_Location: to || duration || "N/A",
@@ -377,6 +381,22 @@ export default function LoginModal() {
 
           {/* Form */}
           <form onSubmit={handleBook} className="px-5 pb-6 space-y-3">
+            {/* Customer Mobile Number */}
+            <div>
+              <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1">
+                Customer Mobile Number
+              </label>
+              <input
+                type="tel"
+                required
+                maxLength={10}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                placeholder="10 అంకెల మొబైల్ నంబర్ / Phone Number"
+                className="w-full bg-white border-2 border-white focus:border-black rounded-lg px-3 py-2.5 text-sm font-semibold text-black placeholder-black/30 outline-none transition-all"
+              />
+            </div>
+
             {/* Trip Type Toggle */}
             <div>
               <label className="text-[10px] font-black text-black/60 uppercase tracking-widest block mb-1.5">

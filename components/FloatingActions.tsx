@@ -67,10 +67,15 @@ export default function FloatingActions() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -100, opacity: 0 }}
             href="tel:+919393591444"
-            className="md:hidden fixed bottom-6 left-6 z-[2000] bg-blue-950 text-white py-3.5 px-4 rounded-full shadow-[0_10px_30px_rgba(15,23,42,0.5)] active:scale-90 border-2 border-orange-400 flex items-center gap-2 font-black text-xs uppercase tracking-widest leading-none"
+            className="md:hidden fixed bottom-6 left-4 z-[2000] bg-blue-950 text-white py-3 px-4 rounded-full shadow-[0_12px_35px_rgba(0,0,0,0.6)] active:scale-95 border-2 border-orange-400 flex items-center gap-2.5"
           >
-             <Phone size={18} className="animate-pulse text-orange-400" />
-             <span>Call: 9393591444</span>
+             <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center shrink-0">
+               <Phone size={15} className="text-white fill-white animate-pulse" />
+             </div>
+             <div className="flex items-center gap-1.5 leading-none">
+               <span className="text-[11px] font-medium text-orange-300 uppercase tracking-wider">Call:</span>
+               <span className="text-sm sm:text-base font-bold text-white tracking-wide">93935 91444</span>
+             </div>
           </motion.a>
 
           {/* Desktop Floating Bar */}
@@ -128,7 +133,7 @@ export default function FloatingActions() {
                     className="flex bg-orange-500 text-white p-3.5 rounded-full hover:bg-orange-600 transition-all shadow-lg active:scale-90 items-center gap-2 group px-5"
                  >
                     <Phone size={18} className="animate-pulse" />
-                    <span className="font-black text-xs uppercase tracking-wider">Call: 93935 91444</span>
+                    <span className="font-bold text-sm tracking-wide">Call: 93935 91444</span>
                  </a>
               </div>
 
